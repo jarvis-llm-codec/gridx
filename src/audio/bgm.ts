@@ -23,8 +23,8 @@ export class BgmManager {
   private enabled = false;
 
   constructor(config: BgmConfig = {}) {
-    this.baseVolume = config.baseVolume ?? 0.25;
-    this.bossVolume = config.bossVolume ?? 0.3;
+    this.baseVolume = config.baseVolume ?? 0.32;
+    this.bossVolume = config.bossVolume ?? 0.38;
     this.fadeSeconds = config.fadeSeconds ?? 1.8;
     this.onExternalState = config.onExternalState;
   }

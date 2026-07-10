@@ -42,3 +42,4 @@ Downloaded 2026-07-10. 전부 **CC0** (public domain) — 크레딧 의무 없�
 | 멀티업 | multiplier.ogg | phaserUp5 | Kenney Digital (CC0) |
 | 보스 등장 | boss.ogg | forceField_000 | Kenney Sci-Fi (CC0) |
 | ⚡라이트닝 | lightning.ogg | (기확정, faxcorp CC0 가공) | — |
+| 사망 대폭발 (보스/주인공) | death.ogg | deathboom.wav 앞 3.2s 페이드컷 | faxcorp Electricity (CC0) |

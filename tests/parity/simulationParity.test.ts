@@ -1,6 +1,12 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
+
+// Balance changes are legitimate post-restoration evolution: re-baseline with
+//   UPDATE_GOLDEN=1 npx vitest run tests/parity/simulationParity.test.ts
+const UPDATE_GOLDEN = process.env.UPDATE_GOLDEN === '1';
+const GOLDEN_PATH = resolve(process.cwd(), 'tests/golden/original-sim-trajectory.json');
+const regenerated: Array<{ seed: number; steps: number; snapshots: unknown[] }> = [];
 import type { InputState } from '../../src/input/inputState.js';
 import { createWorld, stepWorld } from '../../src/sim/world.js';
 
@@ -150,7 +156,20 @@ describe('canonical simulation trajectory', () => {
           actualSnapshots.push(snapshot(step, world, systems, eventCounts));
         }
       }
+      if (UPDATE_GOLDEN) {
+        regenerated.push({ seed, steps, snapshots: actualSnapshots });
+        return;
+      }
       compare(actualSnapshots, expectedSnapshots, `seed(${seed})`);
     },
   );
+
+  afterAll(() => {
+    if (!UPDATE_GOLDEN || regenerated.length === 0) return;
+    writeFileSync(
+      GOLDEN_PATH,
+      `${JSON.stringify({ scenarios: regenerated, snapshotInterval: golden.snapshotInterval }, null, 1)}\n`,
+      'utf8',
+    );
+  });
 });

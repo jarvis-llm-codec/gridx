@@ -15,9 +15,23 @@ export const nextWeaponDrop = (world: World): Exclude<WeaponType, 'blaster'> => 
   return locked || world.rng.pick(WEAPON_DROP_ORDER);
 };
 
-export const randomItemKind = (world: World): ItemKind => {
+const SUSTAIN_KINDS: ReadonlySet<ItemKind> = new Set<ItemKind>(['heal', 'life', 'shield']);
+
+export const lateGameFactor = (wave: number): number => {
+  const decay = CONFIG.items.decay;
+  return 1 / (1 + decay.perWave * Math.max(0, wave - decay.startWave));
+};
+
+export const dropChanceForWave = (wave: number): number =>
+  Math.max(CONFIG.items.decay.chanceFloor, CONFIG.items.dropChance * lateGameFactor(wave));
+
+export const randomItemKind = (world: World, wave = 0): ItemKind => {
+  const factor = Math.max(CONFIG.items.decay.sustainFloor, lateGameFactor(wave));
   const pool = (Object.entries(CONFIG.items.dropWeights) as Array<[ItemKind, number]>)
-    .flatMap(([kind, weight]) => Array<ItemKind>(weight).fill(kind));
+    .flatMap(([kind, weight]) => {
+      const scaled = SUSTAIN_KINDS.has(kind) ? Math.max(1, Math.round(weight * 10 * factor)) : weight * 10;
+      return Array<ItemKind>(scaled).fill(kind);
+    });
   return world.rng.pick(pool);
 };
 

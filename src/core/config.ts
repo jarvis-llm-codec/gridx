@@ -127,6 +127,10 @@ export const CONFIG = {
     radius: 0.5,
     lifespan: 12,
     dropChance: 0.3,
+    // Late-game economy: sustain drops (heal/life/shield) and overall drop
+    // rate decay past startWave so runs can actually end. Weapons/multiplier
+    // keep full weight — firepower stays, survival dries up.
+    decay: { startWave: 5, perWave: 0.12, chanceFloor: 0.15, sustainFloor: 0.2 },
     bossDropCount: 6,
     bossWeaponDrops: { mini: 2, big: 3 },
     dropWeights: { life: 5, heal: 4, weapon: 5, boost: 2, shield: 2, multiplier: 1 },

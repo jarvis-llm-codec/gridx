@@ -12,7 +12,7 @@ import { bossHit, makeBoss, stepBoss } from './boss.js';
 import { bulletAlive, stepBullet } from './bullet.js';
 import { damageEnemy } from './enemy.js';
 import { stepEnemyBehavior } from './enemyBehaviors.js';
-import { makeItem, randomItemKind, stepItems } from './items.js';
+import { dropChanceForWave, makeItem, randomItemKind, stepItems } from './items.js';
 import { spawnBurst, stepParticle } from './particles.js';
 import { createPlayer, damagePlayer, stepPlayer, tryFire } from './player.js';
 import { addWeaponArc, firePlayerWeapons, WEAPON_COLORS } from './weapons.js';
@@ -79,8 +79,8 @@ export const killEnemy = (world: World, systems: WorldSystems, enemy: EnemyState
   world.trauma = systems.shake.trauma;
   systems.spawn.killsThisWave += 1;
   systems.spawn = advanceWave(systems.spawn, systems.spawn.killsThisWave);
-  if (world.rng.chance(CONFIG.items.dropChance)) {
-    world.items.push(makeItem(randomItemKind(world), { ...enemy.pos }, world));
+  if (world.rng.chance(dropChanceForWave(systems.spawn.wave))) {
+    world.items.push(makeItem(randomItemKind(world, systems.spawn.wave), { ...enemy.pos }, world));
   }
   if (singularity) {
     for (const other of world.enemies) {

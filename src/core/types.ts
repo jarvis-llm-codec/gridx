@@ -11,9 +11,13 @@ export type Vec = Vec3;
 /** Enemy behavior kind. New kinds are added by extending this union + behaviors map. */
 export type EnemyKind = 'grunt' | 'wanderer' | 'singularity' | 'dodger';
 
+export type BossType = 'mini' | 'big';
+
+export type WeaponType = 'blaster' | 'missile' | 'lightning' | 'laser';
+
 /** Bullet ownership + variant. */
 export type BulletOwner = 'player' | 'enemy';
-export type BulletKind = 'standard' | 'spread';
+export type BulletKind = 'standard' | 'spread' | 'missile' | 'lightning' | 'laser' | 'enemy';
 
 /** Entity tag for broad-phase bookkeeping. */
 export type EntityTag = 'player' | 'bullet' | 'enemy' | 'particle' | 'pickup';

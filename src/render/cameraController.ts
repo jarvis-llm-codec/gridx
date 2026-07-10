@@ -52,11 +52,11 @@ export class CameraController {
       targetPos.z + 30 + behind.z
     );
     // Exponential follow
-    const t = 1 - Math.exp(-CONFIG.camera.followLambda * dt);
+    const t = 1 - Math.exp(-6 * dt);
     this.pos.lerp(wantPos, t);
     // Dynamic FOV by speed
     const wantFov = THREE.MathUtils.lerp(CONFIG.camera.fovBase, CONFIG.camera.fovBoost, Math.min(1, speed / 26));
-    this.fov += (wantFov - this.fov) * (1 - Math.exp(-CONFIG.camera.fovLambda * dt));
+    this.fov += (wantFov - this.fov) * (1 - Math.exp(-4 * dt));
     this.camera.fov = this.fov;
     this.camera.updateProjectionMatrix();
     // Look at player

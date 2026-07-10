@@ -1,5 +1,5 @@
 // palette.ts — Neon palette. New enemies add a color entry here + renderer geometry.
-import type { EnemyKind, BulletKind } from './types.js';
+import type { BossType, BulletKind, EnemyKind, WeaponType } from './types.js';
 
 /** Map a 0xRRGGBB int to a normalized [r,g,b] 0..1 array. */
 export const rgb = (hex: number): [number, number, number] => [
@@ -22,7 +22,21 @@ export const PALETTE = {
   bulletColor: {
     standard: 0x88ffff,
     spread: 0x66ffcc,
+    missile: 0xff7a18,
+    lightning: 0xc8f7ff,
+    laser: 0xff2bd6,
+    enemy: 0xff3a4a,
   } as Record<BulletKind, number>,
+  weaponColor: {
+    blaster: 0x88ffff,
+    missile: 0xff7a18,
+    lightning: 0xc8f7ff,
+    laser: 0xff2bd6,
+  } as Record<WeaponType, number>,
+  bossPalette: {
+    mini: { armor: 0x247cff, joint: 0x071d5c, core: 0x7df9ff },
+    big: { armor: 0xff4b1f, joint: 0x521008, core: 0xffd166 },
+  } as Record<BossType, { armor: number; joint: number; core: number }>,
   // Particle hue pool for explosions.
   sparkPool: [0xffffff, 0x88ffff, 0xff66cc, 0xffaa22, 0x66ffcc, 0xaa66ff, 0xffffff],
   grid: 0x0044aa,

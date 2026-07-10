@@ -1,19 +1,11 @@
-// config.ts — Tunable game constants. Data-driven so new enemies/weapons are
-// added here without touching collision/score/spawn logic.
-
-import type { EnemyKind } from './types.js';
-
+// Canonical gameplay constants restored from geometry_wars_3d_glm5_2.html.
+// Balance values are product behavior: change them only with a new parity baseline.
 export const CONFIG = {
-  // --- Fixed-timestep loop ---
   fixedStep: 1 / 60,
   maxSubsteps: 8,
-
-  // --- Arena (sphere cap) ---
   sphereRadius: 60,
-  capHalfAngle: 0.448, // rad; chosen so radius*sin(cap) = worldBounds (26)
-  worldBounds: 26, // arena edge radius used for spawn ring & wrap (matches sphereMapping.arenaRadius)
-
-  // --- Player ---
+  capHalfAngle: 0.448,
+  worldBounds: 26,
   player: {
     radius: 0.55,
     speed: 16,
@@ -30,65 +22,143 @@ export const CONFIG = {
     boostDrain: 0.55,
     boostRegen: 0.18,
     invulnTime: 1.6,
+    maxLives: 3,
+    maxEnergy: 100,
+    energyRegen: 8,
+    energyPerKill: 2.2,
+    skillCost: 100,
+    skillDamage: 12,
+    skillRadius: 14,
+    maxWeaponLevel: 3,
+    shieldTime: 1.4,
+    weapons: {
+      blaster: { interval: 0.09, damage: 1 },
+      missile: { interval: 0.48, damage: 4.5, blastRadius: 2.6, turnRate: 5.4 },
+      lightning: { interval: 0.38, damage: 1.8, range: 17 },
+      laser: { interval: 0.22, damage: 1.65 },
+    },
   },
-
-  // --- Enemies (data-driven: collision/score only read radius/hp/score) ---
   enemies: {
     grunt: { radius: 0.7, hp: 1, score: 100, speed: 7, spawnWeight: 5 },
     wanderer: { radius: 0.85, hp: 2, score: 250, speed: 9, spawnWeight: 3 },
-    singularity: { radius: 1.6, hp: 6, score: 600, speed: 3.5, spawnWeight: 1, pullRadius: 9, explodeTime: 4, pullForce: 26 },
-    dodger: { radius: 0.65, hp: 2, score: 400, speed: 11, spawnWeight: 2, dodgeRange: 6, dodgeSpeed: 24, dodgeCooldown: 1.4 },
-  } as Record<EnemyKind, {
-    radius: number; hp: number; score: number; speed: number; spawnWeight: number;
-    pullRadius?: number; explodeTime?: number; pullForce?: number;
-    dodgeRange?: number; dodgeSpeed?: number; dodgeCooldown?: number;
-  }>,
-
-  // --- Multiplier system ---
-  score: {
-    multiplierStep: 1.25, // base grows geometric-ish: floor(x * step)
-    multiplierMax: 25,
-    comboWindow: 3.0, // sec since last kill before combo resets
+    singularity: {
+      radius: 1.6,
+      hp: 6,
+      score: 600,
+      speed: 3.5,
+      spawnWeight: 1,
+      pullRadius: 9,
+      explodeTime: 4,
+      pullForce: 26,
+    },
+    dodger: {
+      radius: 0.65,
+      hp: 2,
+      score: 400,
+      speed: 11,
+      spawnWeight: 2,
+      dodgeRange: 6,
+      dodgeSpeed: 24,
+      dodgeCooldown: 1.4,
+    },
   },
-
-  // --- Spawn system ---
+  score: { multiplierStep: 1.25, multiplierMax: 25, comboWindow: 3 },
   spawn: {
     baseInterval: 1.5,
     minInterval: 0.35,
-    intervalDecay: 0.94, // per wave
+    intervalDecay: 0.94,
     maxAlive: 60,
+    maxAlivePerWave: 4,
+    maxAliveCap: 140,
     waveBudgetGrowth: 4,
     spawnRingPad: 2,
   },
-
-  // --- Particles ---
   particles: {
-    perKill: 26,
-    perBigKill: 60,
-    maxParticles: 3000,
-    lifespan: 1.1,
-    damping: 0.92,
-    speed: 14,
+    perKill: 64,
+    perBigKill: 150,
+    maxParticles: 5000,
+    lifespan: 1.5,
+    damping: 0.9,
+    speed: 17,
+    muzzle: 8,
+    pickup: 30,
+    hitPlayer: 26,
   },
-
-  // --- Camera shake ---
   camera: {
     fovBase: 62,
-    fovBoost: 78,
-    fovLambda: 4,
-    followLambda: 6,
-    traumaDecay: 1.4, // per sec
-    shakeAmp: 1.6,
-    rollAmp: 0.18,
+    fovBoost: 62,
+    traumaDecay: 2.2,
+    shakeAmp: 0.55,
+    rollAmp: 0,
     shakeLambda: 8,
+    eventWobbleDecay: 1.25,
+    eventWobbleShift: 0.42,
+    eventWobbleRoll: 0.012,
+    eventWobbleFov: 1.6,
+    eventEntityShift: 0.32,
+    eventEntityLift: 0.16,
+    eventEntityRoll: 0.035,
+    eventEntityScale: 0.025,
+    zoomMin: 0.78,
+    zoomMax: 1.38,
+    zoomWheelSpeed: 0.00075,
+    zoomLambda: 7,
   },
-
-  // --- Wave grid distortion ---
-  grid: {
-    waveSpeed: 60,
-    waveWavelength: 14,
-    impulseLifespan: 2.4,
-    impulseStrength: 6,
+  grid: { impulseStrength: 6, maxImpulses: 20 },
+  items: {
+    radius: 0.5,
+    lifespan: 12,
+    dropChance: 0.3,
+    bossDropCount: 6,
+    bossWeaponDrops: { mini: 2, big: 3 },
+    dropWeights: { life: 5, heal: 4, weapon: 5, boost: 2, shield: 2, multiplier: 1 },
+    magnetRadius: 11,
+    magnetPull: 36,
+    colors: {
+      heal: 0x33ff88,
+      boost: 0xff2bd6,
+      weapon: 0xffdd33,
+      life: 0x19f0ff,
+      shield: 0x9966ff,
+      multiplier: 0xff7733,
+    },
+  },
+  boss: {
+    miniWave: 3,
+    bigWave: 10,
+    firstDelay: 42,
+    interval: 52,
+    intervalMin: 38,
+    postThirdIntervalCut: 5,
+    postThirdIntervalMin: 26,
+    postThirdHpGrowth: 0.45,
+    postThirdSpeedGrowth: 0.08,
+    postThirdFireAccel: 0.13,
+    postThirdBulletSpeedGrowth: 0.09,
+    postThirdDamageGrowth: 2,
+    postThirdExtraBullets: 2,
+    mini: {
+      radius: 2.2,
+      hp: 70,
+      score: 5000,
+      speed: 5,
+      fireInterval: 1.1,
+      bulletSpeed: 20,
+      bulletLife: 3.5,
+      bulletDamage: 14,
+      color: 0x247cff,
+    },
+    big: {
+      radius: 3.4,
+      hp: 260,
+      score: 25000,
+      speed: 4,
+      fireInterval: 0.7,
+      bulletSpeed: 25,
+      bulletLife: 4.5,
+      bulletDamage: 18,
+      color: 0xff4b1f,
+    },
   },
 } as const;
 

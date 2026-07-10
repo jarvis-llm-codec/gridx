@@ -1,9 +1,9 @@
 {
-  "name": "geometry-wars-3d-v2",
+  "name": "gridx",
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Geometry Wars 3: Dimensions-style 3D twin-stick shooter (Three.js + TypeScript) — v2",
+  "description": "GRIDX — a Geometry Wars–inspired 3D twin-stick shooter, built end-to-end with AI",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

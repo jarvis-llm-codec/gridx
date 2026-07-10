@@ -82,7 +82,7 @@ export class Game implements LeaderboardGame {
   start(): void {
     this.paused = true;
     this.loop.start();
-    this.showOverlay('GEOMETRY WARS 3D', '');
+    this.showOverlay('GRIDX', '');
     leaderboard.bind(this);
     leaderboard.showMenu();
   }

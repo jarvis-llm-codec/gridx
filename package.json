@@ -10,7 +10,9 @@
     "preview": "vite preview --host",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "golden:original": "node scripts/original-sim-harness.cjs",
+    "golden:verify": "node scripts/original-sim-harness.cjs --verify tests/golden/original-sim-trajectory.json"
   },
   "dependencies": {
     "three": "^0.160.0"

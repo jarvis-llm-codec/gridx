@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>NEON DIMENSIONS — Geometry Wars 3D v2</title>
+    <style>
+      :root {
+        --neon: #19f0ff;
+        --neon2: #ff2bd6;
+        --neon3: #ffdd33;
+        --hp: #33ff88;
+        --bg: #05030f;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); }
+      #app { position: fixed; inset: 0; cursor: crosshair; }
+      canvas { display: block; }
+
+      #hud {
+        position: fixed;
+        top: 14px;
+        right: 20px;
+        text-align: right;
+        font-family: 'Segoe UI', system-ui, monospace;
+        color: var(--neon);
+        text-shadow: 0 0 8px var(--neon), 0 0 18px rgba(25, 240, 255, 0.6);
+        pointer-events: none;
+        user-select: none;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2px;
+      }
+      #hud-score { font-size: 38px; font-weight: 800; letter-spacing: 1px; }
+      #hud-mult {
+        font-size: 26px; font-weight: 800; color: var(--neon2);
+        text-shadow: 0 0 10px var(--neon2);
+        transform-origin: right center;
+        transition: transform 0.08s ease-out;
+      }
+      #hud-hp { font-size: 16px; color: var(--hp); text-shadow: 0 0 8px var(--hp); }
+      #hud-wave { font-size: 14px; opacity: 0.85; margin-top: 2px; }
+      #hud-mute {
+        font-size: 18px; margin-top: 6px; opacity: 0.5;
+        text-shadow: 0 0 6px var(--neon);
+        transition: opacity 0.2s;
+      }
+
+      #help {
+        position: fixed;
+        left: 18px;
+        bottom: 14px;
+        font-family: 'Segoe UI', system-ui, monospace;
+        color: #9bf;
+        opacity: 0.7;
+        font-size: 13px;
+        line-height: 1.6;
+        pointer-events: none;
+        user-select: none;
+        z-index: 10;
+      }
+
+      #overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 16px;
+        background: radial-gradient(circle at 50% 42%, rgba(10, 6, 30, 0.5), rgba(5, 3, 15, 0.94));
+        color: var(--neon);
+        font-family: 'Segoe UI', system-ui, monospace;
+        z-index: 20;
+        text-align: center;
+        cursor: default;
+      }
+      #overlay h1 {
+        font-size: 48px; letter-spacing: 6px; margin: 0;
+        text-shadow: 0 0 14px var(--neon), 0 0 32px var(--neon2);
+      }
+      #overlay-hint { opacity: 0.85; max-width: 560px; line-height: 1.7; font-size: 15px; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="hud">
+      <div id="hud-score">0</div>
+      <div id="hud-mult">×1</div>
+      <div id="hud-hp">100</div>
+      <div id="hud-wave">W1</div>
+      <div id="hud-mute">&#128266;</div>
+    </div>
+    <div id="help">
+      WASD / Arrows — Move &nbsp;•&nbsp; Mouse — Aim &nbsp;•&nbsp; Hold Click / Space — Fire<br />
+      SHIFT — Boost &nbsp;•&nbsp; P — Pause &nbsp;•&nbsp; M — Mute &nbsp;•&nbsp; R — Restart
+    </div>
+    <div id="overlay">
+      <h1 id="overlay-title">NEON DIMENSIONS</h1>
+      <p id="overlay-hint">Loading…</p>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

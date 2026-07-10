@@ -1,0 +1,157 @@
+{
+  "pickup": [
+    {
+      "count": 1,
+      "kind": "weapon",
+      "ms": 1.2335999999999991,
+      "items": 0,
+      "particles": 30,
+      "bursts": 0,
+      "events": 1,
+      "weaponLevel": 1,
+      "lives": 3
+    },
+    {
+      "count": 1,
+      "kind": "life",
+      "ms": 0.09440000000000026,
+      "items": 0,
+      "particles": 30,
+      "bursts": 0,
+      "events": 1,
+      "weaponLevel": 1,
+      "lives": 4
+    },
+    {
+      "count": 1,
+      "kind": "shield",
+      "ms": 0.08599999999999852,
+      "items": 0,
+      "particles": 30,
+      "bursts": 0,
+      "events": 1,
+      "weaponLevel": 1,
+      "lives": 3
+    },
+    {
+      "count": 1,
+      "kind": "boost",
+      "ms": 0.055800000000001404,
+      "items": 0,
+      "particles": 30,
+      "bursts": 0,
+      "events": 1,
+      "weaponLevel": 1,
+      "lives": 3
+    },
+    {
+      "count": 1,
+      "kind": "heal",
+      "ms": 0.0704000000000029,
+      "items": 0,
+      "particles": 30,
+      "bursts": 0,
+      "events": 1,
+      "weaponLevel": 1,
+      "lives": 3
+    },
+    {
+      "count": 1,
+      "kind": "multiplier",
+      "ms": 0.04970000000000141,
+      "items": 0,
+      "particles": 30,
+      "bursts": 0,
+      "events": 1,
+      "weaponLevel": 1,
+      "lives": 3
+    },
+    {
+      "count": 6,
+      "kind": "weapon",
+      "ms": 0.9268000000000001,
+      "items": 0,
+      "particles": 150,
+      "bursts": 1,
+      "events": 6,
+      "weaponLevel": 3,
+      "lives": 3
+    },
+    {
+      "count": 30,
+      "kind": "weapon",
+      "ms": 0.22250000000000014,
+      "items": 0,
+      "particles": 150,
+      "bursts": 25,
+      "events": 30,
+      "weaponLevel": 3,
+      "lives": 3
+    },
+    {
+      "count": 128,
+      "kind": "weapon",
+      "ms": 0.22879999999999967,
+      "items": 0,
+      "particles": 150,
+      "bursts": 123,
+      "events": 128,
+      "weaponLevel": 3,
+      "lives": 3
+    },
+    {
+      "count": 512,
+      "kind": "weapon",
+      "ms": 0.4206000000000003,
+      "items": 0,
+      "particles": 150,
+      "bursts": 507,
+      "events": 512,
+      "weaponLevel": 3,
+      "lives": 3
+    },
+    {
+      "count": 2000,
+      "kind": "weapon",
+      "ms": 1.4536000000000087,
+      "items": 0,
+      "particles": 150,
+      "bursts": 1995,
+      "events": 2000,
+      "weaponLevel": 3,
+      "lives": 3
+    }
+  ],
+  "impulse": [
+    {
+      "impulses": 0,
+      "samples": 9408,
+      "ms": 0.42659999999999343,
+      "acc": 0
+    },
+    {
+      "impulses": 5,
+      "samples": 9408,
+      "ms": 3.9517000000000024,
+      "acc": -3965.466
+    },
+    {
+      "impulses": 10,
+      "samples": 9408,
+      "ms": 4.3474000000000075,
+      "acc": -7999.329
+    },
+    {
+      "impulses": 20,
+      "samples": 9408,
+      "ms": 7.961600000000004,
+      "acc": -16317.17
+    },
+    {
+      "impulses": 48,
+      "samples": 9408,
+      "ms": 18.385800000000003,
+      "acc": -38950.401
+    }
+  ]
+}

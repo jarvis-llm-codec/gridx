@@ -1,6 +1,3 @@
-// project.ts — Bridge pure sim coords -> Three.js scene. Maps arena XZ onto the
-// sphere cap and applies wave Y offset. Consumed by grid mesh + entity renderer.
-
 import * as THREE from 'three';
 import { CONFIG } from '../core/config.js';
 import { mapToSphere, type SphereParams } from '../math/sphereMapping.js';
@@ -11,54 +8,40 @@ export const sphereParams: SphereParams = {
   capHalfAngle: CONFIG.capHalfAngle,
 };
 
-const tmp = new THREE.Vector3();
-
-/**
- * Project a flat sim position (px,pz) onto the sphere surface with wave Y.
- * Writes into `out` and returns it. Also returns the surface normal.
- */
 export const projectToScene = (
-  px: number,
-  pz: number,
+  x: number,
+  z: number,
   impulses: WaveImpulse[],
-  out: THREE.Vector3
+  out: THREE.Vector3,
 ): THREE.Vector3 => {
-  // Normalize sim coords to [-1,1] cap coords.
-  const arenaR = CONFIG.worldBounds;
-  const fx = px / arenaR;
-  const fz = pz / arenaR;
-  const sp = mapToSphere(fx, fz, sphereParams);
-  const wave = waveOffset(impulses, px, pz);
-  out.set(sp.x, sp.y + wave, sp.z);
-  return out;
+  const point = mapToSphere(x / CONFIG.worldBounds, z / CONFIG.worldBounds, sphereParams);
+  const displacement = waveOffset(impulses, x, z, true);
+  return out.set(
+    point.x + point.nx * displacement,
+    point.y + point.ny * displacement,
+    point.z + point.nz * displacement,
+  );
 };
 
-/** Surface normal at a projected point (for orienting entities to the sphere). */
-export const projectNormal = (px: number, pz: number, out: THREE.Vector3): THREE.Vector3 => {
-  const arenaR = CONFIG.worldBounds;
-  const sp = mapToSphere(px / arenaR, pz / arenaR, sphereParams);
-  return out.set(sp.nx, sp.ny, sp.nz);
+export const projectNormal = (x: number, z: number, out: THREE.Vector3): THREE.Vector3 => {
+  const point = mapToSphere(x / CONFIG.worldBounds, z / CONFIG.worldBounds, sphereParams);
+  return out.set(point.nx, point.ny, point.nz);
 };
 
-/** Tangent basis at a projected point (forward = -Z tangent, right = X tangent). */
 export const projectBasis = (
-  px: number,
-  pz: number,
+  x: number,
+  z: number,
   impulses: WaveImpulse[],
-  outPos: THREE.Vector3,
+  outPosition: THREE.Vector3,
   outForward: THREE.Vector3,
   outRight: THREE.Vector3,
-  outUp: THREE.Vector3
+  outUp: THREE.Vector3,
 ): void => {
-  projectToScene(px, pz, impulses, outPos);
-  projectNormal(px, pz, outUp);
-  // Forward tangent ~ derivative along +z in cap coords
-  const arenaR = CONFIG.worldBounds;
-  const sp0 = mapToSphere(px / arenaR, pz / arenaR, sphereParams);
-  const sp1 = mapToSphere(px / arenaR, (pz + 0.4) / arenaR, sphereParams);
-  outForward.set(sp1.x - sp0.x, sp1.y - sp0.y, sp1.z - sp0.z).normalize();
+  projectToScene(x, z, impulses, outPosition);
+  projectNormal(x, z, outUp);
+  const current = mapToSphere(x / CONFIG.worldBounds, z / CONFIG.worldBounds, sphereParams);
+  const ahead = mapToSphere(x / CONFIG.worldBounds, (z + 0.4) / CONFIG.worldBounds, sphereParams);
+  outForward.set(ahead.x - current.x, ahead.y - current.y, ahead.z - current.z).normalize();
   outRight.crossVectors(outUp, outForward).normalize();
   outForward.crossVectors(outRight, outUp).normalize();
 };
-
-void tmp;

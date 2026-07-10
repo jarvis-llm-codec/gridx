@@ -4,7 +4,7 @@
 // consumes GameEvent[] produced by stepWorld, plus a fire cue detected by the
 // orchestrator (per-bullet diff), so the sim never imports audio.
 
-import type { GameEvent, EnemyKind, BulletKind } from '../core/types.js';
+import type { GameEvent, EnemyKind, ItemKind, WeaponType } from '../core/types.js';
 
 type Maybe<T> = T | null;
 
@@ -40,7 +40,7 @@ export class AudioEngine {
   private noiseBuffer: Maybe<AudioBuffer> = null;
 
   // BGM scheduler state.
-  private bpm = 108;
+  private bpm = 128;
   private nextNoteTime = 0;
   private step16 = 0; // 0..15 across a bar; advances per 16th note
   private bar = 0; // chord progression index
@@ -49,9 +49,24 @@ export class AudioEngine {
   private readonly tickMs = 25; // setInterval cadence
 
   // Throttle counters (AudioContext.currentTime-based) to avoid SFX floods.
-  private lastFire = -Infinity;
+  private lastFireByWeapon: Partial<Record<WeaponType, number>> = Object.create(null);
   private lastSpawn = -Infinity;
   private spawnAccum = 0; // accumulate spawn volume within a window
+
+  private readonly normalChords: number[][] = [
+    [130.81, 155.56, 196],
+    [103.83, 130.81, 155.56],
+    [155.56, 196, 233.08],
+    [116.54, 146.83, 174.61],
+  ];
+  private readonly bossChords: number[][] = [
+    [130.81, 155.56, 196],
+    [146.83, 174.61, 207.65],
+    [130.81, 155.56, 196],
+    [196, 233.08, 293.66],
+  ];
+  private chords = this.normalChords;
+  private bossMode = false;
 
   constructor() {}
 
@@ -81,6 +96,18 @@ export class AudioEngine {
   }
 
   isMuted(): boolean { return this.muted; }
+
+  setBossMode(enabled: boolean): void {
+    if (enabled === this.bossMode) return;
+    this.bossMode = enabled;
+    this.bpm = enabled ? 142 : 128;
+    this.chords = enabled ? this.bossChords : this.normalChords;
+    if (this.bgmBus && this.ctx) {
+      const time = this.ctx.currentTime;
+      this.bgmBus.gain.cancelScheduledValues(time);
+      this.bgmBus.gain.setTargetAtTime(enabled ? MIX.bgm * 1.6 : MIX.bgm, time, 0.4);
+    }
+  }
 
   dispose(): void {
     if (this.schedulerTimer != null) { window.clearInterval(this.schedulerTimer); this.schedulerTimer = null; }
@@ -155,46 +182,62 @@ export class AudioEngine {
   // ---------------------------------------------------------------- SFX API
 
   /** Player fired a bullet (called per actual bullet spawned). */
-  playFire(kind: BulletKind, pan = 0): void {
+  playFire(kind: WeaponType, pan = 0): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
     const t = this.time;
-    // Throttle: never more than ~16/s so rapid fire stays crisp, not mushy.
-    if (t - this.lastFire < 0.06) return;
-    this.lastFire = t;
+    const fireGap = kind === 'lightning' ? 0.12 : kind === 'missile' ? 0.1 : kind === 'laser' ? 0.08 : 0.06;
+    const lastFire = this.lastFireByWeapon[kind] ?? -Infinity;
+    if (t - lastFire < fireGap) return;
+    this.lastFireByWeapon[kind] = t;
 
     const panner = this.makePanner(pan);
     const out: AudioNode = panner ?? this.sfxBus;
     if (panner) panner.connect(this.sfxBus);
 
-    // Tonal zap: saw sweeping down through a band-pass-ish lowpass.
     const osc = ctx.createOscillator();
     osc.type = 'sawtooth';
-    const base = kind === 'spread' ? 900 : 1200;
+    const lightning = kind === 'lightning';
+    const base = { blaster: 1200, missile: 260, lightning: 1850, laser: 1050 }[kind];
+    const end = kind === 'missile' ? 90 : lightning ? 210 : 300;
+    const duration = lightning ? 0.18 : 0.09;
     osc.frequency.setValueAtTime(base, t);
-    osc.frequency.exponentialRampToValueAtTime(300, t + 0.08);
+    osc.frequency.exponentialRampToValueAtTime(end, t + duration);
 
     const lp = ctx.createBiquadFilter();
     lp.type = 'lowpass';
-    lp.frequency.setValueAtTime(3200, t);
-    lp.frequency.exponentialRampToValueAtTime(900, t + 0.08);
-    lp.Q.value = 1.1;
+    lp.frequency.setValueAtTime(lightning ? 5200 : 3200, t);
+    lp.frequency.exponentialRampToValueAtTime(lightning ? 1250 : 900, t + duration);
+    lp.Q.value = lightning ? 2.4 : 1.1;
 
     const g = ctx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(kind === 'spread' ? 0.16 : 0.22, t + 0.004);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+    g.gain.exponentialRampToValueAtTime(lightning ? 0.34 : kind === 'missile' ? 0.26 : 0.22, t + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + duration);
 
     osc.connect(lp); lp.connect(g); g.connect(out as AudioNode);
-    osc.start(t); osc.stop(t + 0.1);
+    osc.start(t); osc.stop(t + duration + 0.02);
+
+    if (lightning) {
+      const thunder = ctx.createOscillator();
+      thunder.type = 'square';
+      thunder.frequency.setValueAtTime(310, t);
+      thunder.frequency.exponentialRampToValueAtTime(72, t + 0.16);
+      const thunderGain = ctx.createGain();
+      thunderGain.gain.setValueAtTime(0.2, t);
+      thunderGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.17);
+      thunder.connect(thunderGain); thunderGain.connect(out);
+      thunder.start(t); thunder.stop(t + 0.18);
+    }
 
     // Tiny noise transient for the "click".
     const n = this.noiseSource(); if (n) {
-      const hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 2500;
+      const hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = lightning ? 1050 : 2500;
       const ng = ctx.createGain();
-      ng.gain.setValueAtTime(0.18, t);
-      ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.03);
+      const noiseDuration = lightning ? 0.14 : 0.03;
+      ng.gain.setValueAtTime(lightning ? 0.3 : 0.18, t);
+      ng.gain.exponentialRampToValueAtTime(0.0001, t + noiseDuration);
       n.connect(hp); hp.connect(ng); ng.connect(out as AudioNode);
-      n.start(t); n.stop(t + 0.04);
+      n.start(t); n.stop(t + noiseDuration + 0.01);
     }
   }
 
@@ -373,6 +416,83 @@ export class AudioEngine {
     osc.start(t); osc.stop(t + 0.12);
   }
 
+  playSkill(pan = 0): void {
+    const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
+    const time = this.time;
+    const panner = this.makePanner(pan); const output: AudioNode = panner ?? this.sfxBus;
+    panner?.connect(this.sfxBus);
+    const oscillator = ctx.createOscillator(); oscillator.type = 'sawtooth';
+    oscillator.frequency.setValueAtTime(180, time);
+    oscillator.frequency.exponentialRampToValueAtTime(1400, time + 0.18);
+    oscillator.frequency.exponentialRampToValueAtTime(120, time + 0.6);
+    const filter = ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.Q.value = 6;
+    filter.frequency.setValueAtTime(400, time);
+    filter.frequency.exponentialRampToValueAtTime(5000, time + 0.18);
+    filter.frequency.exponentialRampToValueAtTime(300, time + 0.6);
+    const gain = ctx.createGain(); gain.gain.setValueAtTime(0.0001, time);
+    gain.gain.exponentialRampToValueAtTime(0.34, time + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.62);
+    oscillator.connect(filter); filter.connect(gain); gain.connect(output);
+    oscillator.start(time); oscillator.stop(time + 0.66);
+  }
+
+  playPickup(kind: ItemKind, pan = 0): void {
+    const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
+    const start = this.time;
+    const panner = this.makePanner(pan); const output: AudioNode = panner ?? this.sfxBus;
+    panner?.connect(this.sfxBus);
+    const base = kind === 'life' ? 880 : kind === 'weapon' ? 660 : kind === 'shield' ? 520 : 740;
+    for (let index = 0; index < 2; index += 1) {
+      const time = start + index * 0.05;
+      const oscillator = ctx.createOscillator(); oscillator.type = 'triangle';
+      oscillator.frequency.value = base * (index ? 1.5 : 1);
+      const gain = ctx.createGain(); gain.gain.setValueAtTime(0.0001, time);
+      gain.gain.exponentialRampToValueAtTime(0.16, time + 0.005);
+      gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.12);
+      oscillator.connect(gain); gain.connect(output); oscillator.start(time); oscillator.stop(time + 0.14);
+    }
+  }
+
+  playBossFire(pan = 0): void {
+    this.playBossTone(pan, 160, 70, 0.18);
+  }
+
+  playBossHit(pan = 0): void {
+    const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
+    const time = this.time; const panner = this.makePanner(pan); const output: AudioNode = panner ?? this.sfxBus;
+    panner?.connect(this.sfxBus);
+    const noise = this.noiseSource(); if (!noise) return;
+    const filter = ctx.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = 900; filter.Q.value = 1;
+    const gain = ctx.createGain(); gain.gain.setValueAtTime(0.16, time); gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.08);
+    noise.connect(filter); filter.connect(gain); gain.connect(output); noise.start(time); noise.stop(time + 0.1);
+  }
+
+  playBossDead(pan = 0): void {
+    const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
+    const time = this.time; const panner = this.makePanner(pan); const output: AudioNode = panner ?? this.sfxBus;
+    panner?.connect(this.sfxBus);
+    const oscillator = ctx.createOscillator(); oscillator.type = 'sawtooth';
+    oscillator.frequency.setValueAtTime(420, time); oscillator.frequency.exponentialRampToValueAtTime(50, time + 1.1);
+    const filter = ctx.createBiquadFilter(); filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(3000, time); filter.frequency.exponentialRampToValueAtTime(200, time + 1.1);
+    const gain = ctx.createGain(); gain.gain.setValueAtTime(0.0001, time);
+    gain.gain.exponentialRampToValueAtTime(0.4, time + 0.02); gain.gain.exponentialRampToValueAtTime(0.0001, time + 1.3);
+    oscillator.connect(filter); filter.connect(gain); gain.connect(output); oscillator.start(time); oscillator.stop(time + 1.35);
+  }
+
+  private playBossTone(pan: number, startFrequency: number, endFrequency: number, duration: number): void {
+    const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
+    const time = this.time; const panner = this.makePanner(pan); const output: AudioNode = panner ?? this.sfxBus;
+    panner?.connect(this.sfxBus);
+    const oscillator = ctx.createOscillator(); oscillator.type = 'square';
+    oscillator.frequency.setValueAtTime(startFrequency, time);
+    oscillator.frequency.exponentialRampToValueAtTime(endFrequency, time + duration - 0.02);
+    const gain = ctx.createGain(); gain.gain.setValueAtTime(0.0001, time);
+    gain.gain.exponentialRampToValueAtTime(0.18, time + 0.005);
+    gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+    oscillator.connect(gain); gain.connect(output); oscillator.start(time); oscillator.stop(time + duration + 0.02);
+  }
+
   // ---------------------------------------------------------------- events
 
   /** Consume a batch of GameEvent[] from the sim step. Positional pan from world. */
@@ -387,6 +507,13 @@ export class AudioEngine {
         case 'spawn': this.playSpawn(e.kind, this.panFor(e.pos, playerX, arenaR)); break;
         case 'multiplier-up': this.playMultiplierUp(e.value); break;
         case 'game-over': this.playGameOver(); break;
+        case 'skill-fire': this.playSkill(this.panFor(e.pos, playerX, arenaR)); break;
+        case 'weapon-fire': this.playFire(e.weapon, this.panFor(e.pos, playerX, arenaR)); break;
+        case 'pickup': this.playPickup(e.kind, this.panFor(e.pos, playerX, arenaR)); break;
+        case 'boss-fire': this.playBossFire(this.panFor(e.pos, playerX, arenaR)); break;
+        case 'boss-hit': this.playBossHit(this.panFor(e.pos, playerX, arenaR)); break;
+        case 'boss-dead': this.playBossDead(this.panFor(e.pos, playerX, arenaR)); break;
+        case 'revive': this.playMultiplierUp(4); break;
       }
     }
   }
@@ -394,13 +521,6 @@ export class AudioEngine {
   // ---------------------------------------------------------------- BGM
 
   // Synthwave progression in A minor: Am - F - C - G (one chord per bar).
-  private chords: number[][] = [
-    [220.0, 261.63, 329.63], // Am: A C E
-    [174.61, 220.0, 261.63],  // F:  F A C
-    [261.63, 329.63, 392.0],  // C:  C E G
-    [196.0, 246.94, 293.66],  // G:  G B D
-  ];
-
   private scheduler(): void {
     const ctx = this.ctx; if (!ctx || !this.bgmBus) return;
     const secPer16 = (60 / this.bpm) / 4;

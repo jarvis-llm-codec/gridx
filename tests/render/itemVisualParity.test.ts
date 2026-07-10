@@ -4,7 +4,7 @@ import type { ItemState } from '../../src/core/types.js';
 import { EntityRenderer } from '../../src/render/entityRenderer.js';
 
 interface ItemRendererInternals {
-  itemGeometry: THREE.OctahedronGeometry;
+  itemGeometry: THREE.SphereGeometry;
   itemMaterial: THREE.MeshBasicMaterial;
   itemInstances: THREE.InstancedMesh;
   itemRingGeometry: THREE.CylinderGeometry;
@@ -27,7 +27,7 @@ describe('canonical item rendering', () => {
   it('uses the original geometry and material parameters', () => {
     const renderer = new EntityRenderer();
     const item = internals(renderer);
-    expect(item.itemGeometry.parameters).toMatchObject({ radius: 0.5, detail: 0 });
+    expect(item.itemGeometry.parameters).toMatchObject({ radius: 0.62, widthSegments: 12, heightSegments: 8 });
     expect(item.itemMaterial.blending).toBe(THREE.AdditiveBlending);
     expect(item.itemMaterial.depthWrite).toBe(false);
     expect(item.itemMaterial.transparent).toBe(false);

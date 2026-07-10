@@ -123,6 +123,7 @@ export const CONFIG = {
     boss: { volume: 0.7, gap: 0, voices: 1 },
   },
   items: {
+    visual: { scale: 1 },
     radius: 0.5,
     lifespan: 12,
     dropChance: 0.3,

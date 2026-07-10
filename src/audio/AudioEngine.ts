@@ -187,7 +187,7 @@ export class AudioEngine {
   }
 
   private async loadSampleMap(): Promise<void> {
-    await Promise.all(['fire', 'explosion', 'bigkill', 'hit', 'pickup', 'multiplier', 'boss'].map(async (name) => {
+    await Promise.all(['fire', 'explosion', 'bigkill', 'hit', 'pickup', 'multiplier', 'boss', 'death'].map(async (name) => {
       try { const r = await fetch(`/assets/sfx/${name}.ogg`); if (r.ok && this.ctx) this.sampleBuffers.set(name, await this.ctx.decodeAudioData(await r.arrayBuffer())); } catch { /* per-event fallback */ }
     }));
   }
@@ -440,6 +440,7 @@ export class AudioEngine {
   /** Game over — a long descending lament. */
   playGameOver(): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
+    this.playSample('death', 0, 0.8, 0, 1);
     const t = this.time;
     const osc = ctx.createOscillator();
     osc.type = 'sawtooth';
@@ -546,6 +547,7 @@ export class AudioEngine {
 
   playBossDead(pan = 0): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
+    this.playSample('death', pan, 0.8, 0, 1);
     const time = this.time; const panner = this.makePanner(pan); const output: AudioNode = panner ?? this.sfxBus;
     panner?.connect(this.sfxBus);
     const oscillator = ctx.createOscillator(); oscillator.type = 'sawtooth';

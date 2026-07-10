@@ -65,6 +65,14 @@ WebAudio sample dispatcher with per-event volume, throttle, voice cap, and
 world-position panning. Any individual fetch/decode failure falls back only
 that event to its preserved synth implementation; simulation is unchanged.
 
+## Items/death addendum
+
+Item cores now use the confirmed large spherical visual (`SphereGeometry`
+radius 0.62, 12×8), while collision `CONFIG.items.radius` remains 0.5.
+`CONFIG.items.visual.scale` is exposed at 1.0 for visual-only tuning.
+`assets/sfx/death.ogg` is wired for boss-death and game-over one-shots at 0.8;
+the existing game-over synth remains as fallback/underlay.
+
 - Add an approved staging Supabase project before automating leaderboard write tests. The current smoke performs no production write.
 - Consider screenshot-diff and captured-audio regression baselines. Current automation proves nonblank rendering, layout bounds, interaction flow, and simulation identity, but not pixel- or waveform-identical output.
 - Upgrade the Vite 5 / Vitest 1 development toolchain in a separate change. `npm audit --omit=dev` is clean; development-only audit findings should not be mixed into the restored gameplay baseline.

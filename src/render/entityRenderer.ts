@@ -114,7 +114,7 @@ export class EntityRenderer {
     this.effectInstances = this.makeInstances(this.effectGeometry, this.effectMaterial, 1024);
     this.group.add(this.effectInstances);
 
-    this.itemGeometry = new THREE.OctahedronGeometry(0.5, 0);
+    this.itemGeometry = new THREE.SphereGeometry(0.62, 12, 8);
     this.itemMaterial = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       blending: THREE.AdditiveBlending,
@@ -368,7 +368,7 @@ export class EntityRenderer {
       projectBasis(item.pos.x, item.pos.z, this.impulses, position, forward, right, up);
       this.dummy.position.set(position.x, position.y + 0.5 + bob * 0.4, position.z);
       this.dummy.rotation.set(time * 1.5 + item.bob, time * 1.1, 0);
-      this.dummy.scale.setScalar(0.7 + bob * 0.25);
+      this.dummy.scale.setScalar((0.7 + bob * 0.25) * CONFIG.items.visual.scale);
       this.dummy.updateMatrix();
       this.itemInstances.setMatrixAt(count, this.dummy.matrix);
       this.color.setHex(item.color);

@@ -11,3 +11,11 @@ coverage/
 
 assets/bgm/candidates/
 assets/sfx/candidates/
+.tmp/
+*.bak
+*.bak[0-9]*
+.tmp_sim_harness.cjs
+JARVIS.md
+.JARVIS.md.lock
+_deploy/
+dist-single/

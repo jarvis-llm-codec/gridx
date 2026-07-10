@@ -2,7 +2,7 @@
 
 **A Geometry Wars–inspired 3D twin-stick arena shooter — built end-to-end with AI.**
 
-🎮 **[Play it now](https://jarvis-llm-codec.github.io/jarvis-code/geometry-wars-3d.html)** — no install, no ads, no monetization. Ever.
+🎮 **[Play it now](https://jarvis-llm-codec.github.io/gridx/)** — no install, no ads, no monetization. Ever.
 
 Fight geometric swarms on a neon sphere. Grab weapons, pop your NOVA, survive the mini-boss, then face the MEGA BOSS at 200 BPM. Global leaderboard included — register your score with a one-line comment.
 

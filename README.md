@@ -31,7 +31,7 @@ WASD/Arrows move · Mouse aim · Click/Space fire · Shift boost · Q/F bomb (NO
 
 ## Contributing
 
-PRs welcome — this project exists to be played with. Good first ideas: new enemy types, new weapons, gamepad support, new bolt visuals. Rules: keep it fun, keep it free, no ads, no tracking. Gameplay balance changes need a new parity baseline (see `RESTORE_NOTES.md`).
+PRs welcome — this project exists to be played with. Good first ideas: new enemy types, new weapons, gamepad support, new bolt visuals. Rules: keep it fun, keep it free, no ads, no tracking. Gameplay balance changes need a new parity baseline (see `docs/RESTORE_NOTES.md`).
 
 ## Leaderboard
 

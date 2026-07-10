@@ -19,3 +19,5 @@ JARVIS.md
 .JARVIS.md.lock
 _deploy/
 dist-single/
+*.bak_reverse_base
+.codepen-preview.log

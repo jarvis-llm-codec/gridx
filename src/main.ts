@@ -64,9 +64,9 @@ export class Game implements LeaderboardGame {
     const mode = (import.meta as ImportMeta & { env?: { MODE?: string } }).env?.MODE;
     if (mode !== 'single') {
       this.bgm.loadBgm({
-        base: '/assets/bgm/base.ogg',
-        miniBoss: '/assets/bgm/boss_mini.ogg',
-        megaBoss: '/assets/bgm/boss_mega.ogg',
+        base: 'assets/bgm/base.ogg',
+        miniBoss: 'assets/bgm/boss_mini.ogg',
+        megaBoss: 'assets/bgm/boss_mega.ogg',
       });
     }
     this.loop = createLoop({

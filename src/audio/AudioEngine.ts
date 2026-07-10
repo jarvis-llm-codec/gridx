@@ -179,7 +179,7 @@ export class AudioEngine {
     const ctx = this.ctx;
     if (!ctx) return;
     try {
-      const response = await fetch('/assets/sfx/lightning.ogg');
+      const response = await fetch('assets/sfx/lightning.ogg');
       if (!response.ok) return;
       this.lightningBuffer = await ctx.decodeAudioData(await response.arrayBuffer());
     } catch {
@@ -189,7 +189,7 @@ export class AudioEngine {
 
   private async loadSampleMap(): Promise<void> {
     await Promise.all(['fire', 'explosion', 'bigkill', 'hit', 'pickup', 'multiplier', 'boss', 'death'].map(async (name) => {
-      try { const r = await fetch(`/assets/sfx/${name}.ogg`); if (r.ok && this.ctx) this.sampleBuffers.set(name, await this.ctx.decodeAudioData(await r.arrayBuffer())); } catch { /* per-event fallback */ }
+      try { const r = await fetch(`assets/sfx/${name}.ogg`); if (r.ok && this.ctx) this.sampleBuffers.set(name, await this.ctx.decodeAudioData(await r.arrayBuffer())); } catch { /* per-event fallback */ }
     }));
   }
 

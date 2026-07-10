@@ -8,3 +8,6 @@ coverage/
 .tmp/reverse/vite-smoke.pid
 .tmp/reverse/vite-smoke.port
 .tmp/reverse/parity-build/
+
+assets/bgm/candidates/
+assets/sfx/candidates/

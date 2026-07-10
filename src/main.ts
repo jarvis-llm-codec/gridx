@@ -1,4 +1,5 @@
 import { AudioEngine } from './audio/AudioEngine.js';
+import { BgmManager } from './audio/bgm.js';
 import { CONFIG } from './core/config.js';
 import { createLoop } from './core/gameLoop.js';
 import { createInputAdapter } from './input/keyboardMouse.js';
@@ -40,6 +41,7 @@ export class Game implements LeaderboardGame {
   private readonly loop;
   private readonly hud: HudElements;
   private readonly audio = new AudioEngine();
+  private readonly bgm = new BgmManager({ onExternalState: (active) => this.audio.setExternalBgmActive(active) });
   private world;
   private systems: WorldSystems;
   private paused = false;
@@ -59,6 +61,10 @@ export class Game implements LeaderboardGame {
     this.input.setMouseAimResolver((x, y, playerPos) => this.renderer.screenToArenaAim(x, y, playerPos));
     this.input.attach(container);
     this.updateMuteIcon();
+    const mode = (import.meta as ImportMeta & { env?: { MODE?: string } }).env?.MODE;
+    if (mode !== 'single') {
+      this.bgm.loadBgm({ base: '/assets/bgm/base.ogg', boss: '/assets/bgm/boss.mp3' });
+    }
     this.loop = createLoop({
       step: (dt) => this.step(dt),
       render: () => {
@@ -85,6 +91,7 @@ export class Game implements LeaderboardGame {
     this.paused = false;
     this.hideOverlay();
     this.startAudio();
+    void this.bgm.start();
   }
 
   private step(dt: number): void {
@@ -106,12 +113,14 @@ export class Game implements LeaderboardGame {
     const events = stepWorld(this.world, this.systems, input, dt);
     if (events.some((event) => event.type === 'hit-player')) this.flashDamage();
     if (this.audioStarted) this.audio.setBossMode(Boolean(this.world.boss && !this.world.boss.dead));
+    if (this.audioStarted) this.bgm.setBossMode(Boolean(this.world.boss && !this.world.boss.dead));
     this.updateHud();
     if (this.audioStarted && !this.muted) {
       this.audio.playEvents(events, this.world.player.pos.x, this.world.arenaRadius);
     }
     if (this.world.gameOver && !this.shownGameOver) {
       this.shownGameOver = true;
+      this.bgm.gameOver();
       this.showOverlay('GAME OVER', '');
       leaderboard.onGameOver(this.world.player.score, this.runTime);
     }
@@ -126,6 +135,7 @@ export class Game implements LeaderboardGame {
   private toggleMute(): void {
     this.muted = !this.muted;
     this.audio.setMuted(this.muted);
+    this.bgm.setMuted(this.muted);
     this.updateMuteIcon();
   }
 
@@ -148,6 +158,7 @@ export class Game implements LeaderboardGame {
     this.runTime = 0;
     leaderboard.hideAll();
     this.hideOverlay();
+    this.bgm.restart();
     if (this.audioStarted && !this.muted) this.audio.playMultiplierUp(3);
   }
 
@@ -210,6 +221,7 @@ export class Game implements LeaderboardGame {
     this.input.detach();
     this.renderer.dispose();
     this.audio.dispose();
+    this.bgm.dispose();
   }
 }
 

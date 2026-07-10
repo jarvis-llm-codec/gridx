@@ -38,6 +38,9 @@ export class AudioEngine {
 
   // Shared reusable noise buffer (created once).
   private noiseBuffer: Maybe<AudioBuffer> = null;
+  private lightningBuffer: Maybe<AudioBuffer> = null;
+  private readonly lightningVoices = new Set<AudioBufferSourceNode>();
+  private lastLightningSample = -Infinity;
 
   // BGM scheduler state.
   private bpm = 128;
@@ -67,6 +70,7 @@ export class AudioEngine {
   ];
   private chords = this.normalChords;
   private bossMode = false;
+  private externalBgm = false;
 
   constructor() {}
 
@@ -83,6 +87,7 @@ export class AudioEngine {
       this.started = true;
       this.nextNoteTime = ctx.currentTime + 0.08;
       this.schedulerTimer = window.setInterval(() => this.scheduler(), this.tickMs);
+      void this.loadLightningSample();
     }
   }
 
@@ -105,13 +110,24 @@ export class AudioEngine {
     if (this.bgmBus && this.ctx) {
       const time = this.ctx.currentTime;
       this.bgmBus.gain.cancelScheduledValues(time);
-      this.bgmBus.gain.setTargetAtTime(enabled ? MIX.bgm * 1.6 : MIX.bgm, time, 0.4);
+      this.bgmBus.gain.setTargetAtTime(this.externalBgm ? 0.0001 : (enabled ? MIX.bgm * 1.6 : MIX.bgm), time, 0.4);
     }
+  }
+
+  /** Mute only the procedural music while preserving all SFX. */
+  setExternalBgmActive(active: boolean): void {
+    this.externalBgm = active;
+    if (!this.bgmBus || !this.ctx) return;
+    const t = this.ctx.currentTime;
+    this.bgmBus.gain.cancelScheduledValues(t);
+    this.bgmBus.gain.setTargetAtTime(active ? 0.0001 : (this.bossMode ? MIX.bgm * 1.6 : MIX.bgm), t, 0.08);
   }
 
   dispose(): void {
     if (this.schedulerTimer != null) { window.clearInterval(this.schedulerTimer); this.schedulerTimer = null; }
     if (this.ctx) { this.ctx.close().catch(() => {}); this.ctx = null; }
+    this.lightningVoices.clear();
+    this.lightningBuffer = null;
     this.master = this.sfxBus = this.bgmBus = this.compressor = null;
     this.started = false;
   }
@@ -153,6 +169,18 @@ export class AudioEngine {
     this.noiseBuffer = buf;
   }
 
+  private async loadLightningSample(): Promise<void> {
+    const ctx = this.ctx;
+    if (!ctx) return;
+    try {
+      const response = await fetch('/assets/sfx/lightning.ogg');
+      if (!response.ok) return;
+      this.lightningBuffer = await ctx.decodeAudioData(await response.arrayBuffer());
+    } catch {
+      this.lightningBuffer = null;
+    }
+  }
+
   // ---------------------------------------------------------------- helpers
 
   private get time(): number { return this.ctx ? this.ctx.currentTime : 0; }
@@ -189,6 +217,27 @@ export class AudioEngine {
     const lastFire = this.lastFireByWeapon[kind] ?? -Infinity;
     if (t - lastFire < fireGap) return;
     this.lastFireByWeapon[kind] = t;
+
+    if (kind === 'lightning' && this.lightningBuffer && t - this.lastLightningSample >= 0.075) {
+      this.lastLightningSample = t;
+      if (this.lightningVoices.size >= 4) {
+        const oldest = this.lightningVoices.values().next().value as AudioBufferSourceNode | undefined;
+        oldest?.stop();
+        if (oldest) this.lightningVoices.delete(oldest);
+      }
+      const sample = ctx.createBufferSource();
+      sample.buffer = this.lightningBuffer;
+      const gain = ctx.createGain();
+      gain.gain.value = 0.55;
+      const panner = this.makePanner(pan);
+      sample.connect(gain);
+      gain.connect(panner ?? this.sfxBus);
+      panner?.connect(this.sfxBus);
+      this.lightningVoices.add(sample);
+      sample.addEventListener('ended', () => this.lightningVoices.delete(sample), { once: true });
+      sample.start(t);
+      return;
+    }
 
     const panner = this.makePanner(pan);
     const out: AudioNode = panner ?? this.sfxBus;

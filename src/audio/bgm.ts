@@ -1,21 +1,24 @@
 export interface BgmTracks {
   base: string;
-  boss: string;
+  miniBoss: string;
+  megaBoss: string;
 }
 
 export interface BgmConfig {
   baseVolume?: number;
-  bossVolume?: number;
+  miniBossVolume?: number;
+  megaBossVolume?: number;
   fadeSeconds?: number;
   onExternalState?: (active: boolean) => void;
 }
 
-type Track = 'base' | 'boss';
+type Track = 'base' | 'miniBoss' | 'megaBoss';
+
+const TRACK_KEYS = ['base', 'miniBoss', 'megaBoss'] as const;
 
 /** Optional file-backed music layer. It never rejects startup: synth remains the fallback. */
 export class BgmManager {
-  private readonly baseVolume: number;
-  private readonly bossVolume: number;
+  private readonly volumes: Record<Track, number>;
   private readonly fadeSeconds: number;
   private readonly onExternalState?: (active: boolean) => void;
   private tracks: Partial<Record<Track, HTMLAudioElement>> = {};
@@ -23,15 +26,18 @@ export class BgmManager {
   private enabled = false;
 
   constructor(config: BgmConfig = {}) {
-    this.baseVolume = config.baseVolume ?? 0.32;
-    this.bossVolume = config.bossVolume ?? 0.38;
+    this.volumes = {
+      base: config.baseVolume ?? 0.32,
+      miniBoss: config.miniBossVolume ?? 0.36,
+      megaBoss: config.megaBossVolume ?? 0.38,
+    };
     this.fadeSeconds = config.fadeSeconds ?? 1.8;
     this.onExternalState = config.onExternalState;
   }
 
   loadBgm(tracks: BgmTracks): void {
     this.disposeTracks();
-    for (const kind of ['base', 'boss'] as const) {
+    for (const kind of TRACK_KEYS) {
       const audio = new Audio(tracks[kind]);
       audio.loop = true;
       audio.preload = 'auto';
@@ -48,7 +54,7 @@ export class BgmManager {
     try {
       await base.play();
       this.current = 'base';
-      this.fade(base, this.baseVolume);
+      this.fade(base, this.volumes.base);
       this.onExternalState?.(true);
       return true;
     } catch {
@@ -57,16 +63,17 @@ export class BgmManager {
     }
   }
 
-  setBossMode(boss: boolean): void {
-    if (!this.enabled || !this.tracks.base || !this.tracks.boss) return;
-    const next: Track = boss ? 'boss' : 'base';
+  /** Route by live boss type: null → base, 'mini' → miniBoss, 'big' → megaBoss. */
+  setBossState(bossType: 'mini' | 'big' | null): void {
+    if (!this.enabled) return;
+    const next: Track = bossType === 'big' ? 'megaBoss' : bossType === 'mini' ? 'miniBoss' : 'base';
     if (next === this.current) return;
     const incoming = this.tracks[next];
-    const outgoing = this.current ? this.tracks[this.current] : undefined;
     if (!incoming) return;
+    const outgoing = this.current ? this.tracks[this.current] : undefined;
     incoming.currentTime = 0;
     void incoming.play().catch(() => this.disableIfUnavailable());
-    this.fade(incoming, next === 'boss' ? this.bossVolume : this.baseVolume);
+    this.fade(incoming, this.volumes[next]);
     if (outgoing) this.fade(outgoing, 0, () => outgoing.pause());
     this.current = next;
   }

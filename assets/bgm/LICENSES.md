@@ -45,3 +45,9 @@ Sources: https://opengameart.org/content/arcade-background-music · https://open
 - 둘 다 Tomasz Kucza (Magnesus), **CC-BY 4.0** — ⚠️ **README 크레딧 필수**:
   `Music: "Shadow Operations" & "Hostile Territory" by Tomasz Kucza (magnesus.com) — CC-BY 4.0`
 - 볼륨 기본값 하향: base 0.5→0.25, boss 0.6→0.3 (SFX 묻힘 해결)
+
+## 🔁🔁 3트랙 재확정 (2026-07-10 밤, 아들 픽)
+- **일반 = Deadly Contracts** → base.ogg (CC-BY, Kucza)
+- **미니보스 = Going Undercover** → boss_mini.ogg (CC-BY, Kucza)
+- **메가보스 = Hard Boss Battle 1** → boss_mega.ogg (CC0, MintoDog, mp3→ogg 변환)
+- README 크레딧: Kucza 2곡 CC-BY 필수

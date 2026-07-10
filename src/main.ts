@@ -63,7 +63,11 @@ export class Game implements LeaderboardGame {
     this.updateMuteIcon();
     const mode = (import.meta as ImportMeta & { env?: { MODE?: string } }).env?.MODE;
     if (mode !== 'single') {
-      this.bgm.loadBgm({ base: '/assets/bgm/base.ogg', boss: '/assets/bgm/boss.ogg' });
+      this.bgm.loadBgm({
+        base: '/assets/bgm/base.ogg',
+        miniBoss: '/assets/bgm/boss_mini.ogg',
+        megaBoss: '/assets/bgm/boss_mega.ogg',
+      });
     }
     this.loop = createLoop({
       step: (dt) => this.step(dt),
@@ -113,7 +117,10 @@ export class Game implements LeaderboardGame {
     const events = stepWorld(this.world, this.systems, input, dt);
     if (events.some((event) => event.type === 'hit-player')) this.flashDamage();
     if (this.audioStarted) this.audio.setBossMode(Boolean(this.world.boss && !this.world.boss.dead));
-    if (this.audioStarted) this.bgm.setBossMode(Boolean(this.world.boss && !this.world.boss.dead));
+    if (this.audioStarted) {
+      const liveBoss = this.world.boss && !this.world.boss.dead ? this.world.boss : null;
+      this.bgm.setBossState(liveBoss ? liveBoss.bossType : null);
+    }
     this.updateHud();
     if (this.audioStarted && !this.muted) {
       this.audio.playEvents(events, this.world.player.pos.x, this.world.arenaRadius);

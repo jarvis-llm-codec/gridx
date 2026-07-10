@@ -63,7 +63,7 @@ export class Game implements LeaderboardGame {
     this.updateMuteIcon();
     const mode = (import.meta as ImportMeta & { env?: { MODE?: string } }).env?.MODE;
     if (mode !== 'single') {
-      this.bgm.loadBgm({ base: '/assets/bgm/base.ogg', boss: '/assets/bgm/boss.mp3' });
+      this.bgm.loadBgm({ base: '/assets/bgm/base.ogg', boss: '/assets/bgm/boss.ogg' });
     }
     this.loop = createLoop({
       step: (dt) => this.step(dt),

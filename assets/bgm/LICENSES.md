@@ -38,3 +38,10 @@ Sources: https://opengameart.org/content/arcade-background-music · https://open
 - **BASE = Eyeless** (Never Sleep, CC0) → `assets/bgm/base.ogg`
 - **BOSS = Hard Boss Battle 1** (MintoDog, CC0) → `assets/bgm/boss.mp3`
 - 둘 다 CC0 — 크레딧 의무 없음 (예의상 README 크레딧은 넣을 예정)
+
+## 🔁 재확정 (2026-07-10 밤, Jun 귀 재판정 — Eyeless/HardBoss 교체)
+- **BASE = Shadow Operations** (25s seamless) → `assets/bgm/base.ogg`
+- **BOSS = Hostile Territory** (35s seamless) → `assets/bgm/boss.ogg` (mp3 제거, 경로 변경됨)
+- 둘 다 Tomasz Kucza (Magnesus), **CC-BY 4.0** — ⚠️ **README 크레딧 필수**:
+  `Music: "Shadow Operations" & "Hostile Territory" by Tomasz Kucza (magnesus.com) — CC-BY 4.0`
+- 볼륨 기본값 하향: base 0.5→0.25, boss 0.6→0.3 (SFX 묻힘 해결)

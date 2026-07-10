@@ -109,6 +109,7 @@ export class AudioEngine {
   setBossMode(enabled: boolean): void {
     if (enabled === this.bossMode) return;
     this.bossMode = enabled;
+    if (enabled) this.playSample('boss', 0, 0.7, 0, 1);
     this.bpm = enabled ? 142 : 128;
     this.chords = enabled ? this.bossChords : this.normalChords;
     if (this.bgmBus && this.ctx) {
@@ -468,7 +469,6 @@ export class AudioEngine {
   playSpawn(kind: EnemyKind, pan = 0): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
     const t = this.time;
-    if (kind === 'singularity' && this.playSample('boss', pan, 0.7, 0, 1)) return;
     // Bucket spawns: allow a short cluster then gate for a few ms.
     this.spawnAccum += 1;
     if (t - this.lastSpawn < 0.04 && this.spawnAccum > 3) return;

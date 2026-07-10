@@ -58,6 +58,13 @@ flicker, and capped branching. Tunables are exposed under
 Validation: typecheck, all 143 Vitest tests, and simulation parity (3/3) pass.
 Browser screenshot/FPS and Jun visual approval remain manual acceptance items.
 
+## SFX sample map
+
+The seven confirmed CC0 samples are loaded independently through a shared
+WebAudio sample dispatcher with per-event volume, throttle, voice cap, and
+world-position panning. Any individual fetch/decode failure falls back only
+that event to its preserved synth implementation; simulation is unchanged.
+
 - Add an approved staging Supabase project before automating leaderboard write tests. The current smoke performs no production write.
 - Consider screenshot-diff and captured-audio regression baselines. Current automation proves nonblank rendering, layout bounds, interaction flow, and simulation identity, but not pixel- or waveform-identical output.
 - Upgrade the Vite 5 / Vitest 1 development toolchain in a separate change. `npm audit --omit=dev` is clean; development-only audit findings should not be mixed into the restored gameplay baseline.

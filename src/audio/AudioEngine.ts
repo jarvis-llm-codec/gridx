@@ -41,6 +41,9 @@ export class AudioEngine {
   private lightningBuffer: Maybe<AudioBuffer> = null;
   private readonly lightningVoices = new Set<AudioBufferSourceNode>();
   private lastLightningSample = -Infinity;
+  private readonly sampleBuffers = new Map<string, AudioBuffer>();
+  private readonly sampleVoices = new Map<string, Set<AudioBufferSourceNode>>();
+  private readonly sampleLast = new Map<string, number>();
 
   // BGM scheduler state.
   private bpm = 128;
@@ -88,6 +91,7 @@ export class AudioEngine {
       this.nextNoteTime = ctx.currentTime + 0.08;
       this.schedulerTimer = window.setInterval(() => this.scheduler(), this.tickMs);
       void this.loadLightningSample();
+      void this.loadSampleMap();
     }
   }
 
@@ -128,6 +132,7 @@ export class AudioEngine {
     if (this.ctx) { this.ctx.close().catch(() => {}); this.ctx = null; }
     this.lightningVoices.clear();
     this.lightningBuffer = null;
+    this.sampleBuffers.clear(); this.sampleVoices.clear(); this.sampleLast.clear();
     this.master = this.sfxBus = this.bgmBus = this.compressor = null;
     this.started = false;
   }
@@ -181,6 +186,23 @@ export class AudioEngine {
     }
   }
 
+  private async loadSampleMap(): Promise<void> {
+    await Promise.all(['fire', 'explosion', 'bigkill', 'hit', 'pickup', 'multiplier', 'boss'].map(async (name) => {
+      try { const r = await fetch(`/assets/sfx/${name}.ogg`); if (r.ok && this.ctx) this.sampleBuffers.set(name, await this.ctx.decodeAudioData(await r.arrayBuffer())); } catch { /* per-event fallback */ }
+    }));
+  }
+
+  private playSample(name: string, pan: number, volume: number, gap: number, cap: number): boolean {
+    const ctx = this.ctx; const buffer = this.sampleBuffers.get(name); if (!ctx || !this.sfxBus || !buffer) return false;
+    const t = this.time; if (t - (this.sampleLast.get(name) ?? -Infinity) < gap) return true;
+    this.sampleLast.set(name, t);
+    let voices = this.sampleVoices.get(name); if (!voices) { voices = new Set(); this.sampleVoices.set(name, voices); }
+    if (voices.size >= cap) { const old = voices.values().next().value as AudioBufferSourceNode | undefined; old?.stop(); if (old) voices.delete(old); }
+    const source = ctx.createBufferSource(); source.buffer = buffer; const gain = ctx.createGain(); gain.gain.value = volume;
+    const panner = this.makePanner(pan); source.connect(gain); gain.connect(panner ?? this.sfxBus); panner?.connect(this.sfxBus);
+    voices.add(source); source.addEventListener('ended', () => voices!.delete(source), { once: true }); source.start(t); return true;
+  }
+
   // ---------------------------------------------------------------- helpers
 
   private get time(): number { return this.ctx ? this.ctx.currentTime : 0; }
@@ -217,6 +239,7 @@ export class AudioEngine {
     const lastFire = this.lastFireByWeapon[kind] ?? -Infinity;
     if (t - lastFire < fireGap) return;
     this.lastFireByWeapon[kind] = t;
+    if (kind !== 'lightning' && this.playSample('fire', pan, 0.30, 0.05, 5)) return;
 
     if (kind === 'lightning' && this.lightningBuffer && t - this.lastLightningSample >= 0.075) {
       this.lastLightningSample = t;
@@ -294,6 +317,7 @@ export class AudioEngine {
   playKill(kind: EnemyKind, pan = 0): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
     const t = this.time;
+    if (this.playSample(kind === 'singularity' ? 'bigkill' : 'explosion', pan, kind === 'singularity' ? 0.6 : 0.5, kind === 'singularity' ? 0.15 : 0.08, kind === 'singularity' ? 2 : 4)) return;
     const big = kind === 'singularity';
 
     const panner = this.makePanner(pan);
@@ -348,6 +372,7 @@ export class AudioEngine {
   playHitPlayer(damage: number, pan = 0): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
     const t = this.time;
+    if (this.playSample('hit', pan, 0.6, 0.2, 2)) return;
     const panner = this.makePanner(pan);
     const dest: AudioNode = panner ?? this.sfxBus;
     if (panner) panner.connect(this.sfxBus);
@@ -388,6 +413,7 @@ export class AudioEngine {
   playMultiplierUp(value: number): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
     const t = this.time;
+    if (this.playSample('multiplier', 0, 0.45, 0.1, 2)) return;
     const notes = [440, 554, 660, 880]; // A4 → C#5 → E5 → A5
     const stepUp = clamp(Math.floor(value), 1, 5);
     const count = Math.min(notes.length, 2 + stepUp);
@@ -441,6 +467,7 @@ export class AudioEngine {
   playSpawn(kind: EnemyKind, pan = 0): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
     const t = this.time;
+    if (kind === 'singularity' && this.playSample('boss', pan, 0.7, 0, 1)) return;
     // Bucket spawns: allow a short cluster then gate for a few ms.
     this.spawnAccum += 1;
     if (t - this.lastSpawn < 0.04 && this.spawnAccum > 3) return;
@@ -488,6 +515,7 @@ export class AudioEngine {
   playPickup(kind: ItemKind, pan = 0): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
     const start = this.time;
+    if (this.playSample('pickup', pan, 0.5, 0.1, 3)) return;
     const panner = this.makePanner(pan); const output: AudioNode = panner ?? this.sfxBus;
     panner?.connect(this.sfxBus);
     const base = kind === 'life' ? 880 : kind === 'weapon' ? 660 : kind === 'shield' ? 520 : 740;

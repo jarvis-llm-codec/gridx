@@ -113,6 +113,15 @@ export const CONFIG = {
     flickerPeriod: 0.05,
     glowMultiplier: 3.5,
   },
+  sfxSamples: {
+    fire: { volume: 0.30, gap: 0.05, voices: 5 },
+    explosion: { volume: 0.5, gap: 0.08, voices: 4 },
+    bigkill: { volume: 0.6, gap: 0.15, voices: 2 },
+    hit: { volume: 0.6, gap: 0.2, voices: 2 },
+    pickup: { volume: 0.5, gap: 0.1, voices: 3 },
+    multiplier: { volume: 0.45, gap: 0.1, voices: 2 },
+    boss: { volume: 0.7, gap: 0, voices: 1 },
+  },
   items: {
     radius: 0.5,
     lifespan: 12,

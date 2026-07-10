@@ -30,3 +30,15 @@ Downloaded 2026-07-10. 전부 **CC0** (public domain) — 크레딧 의무 없�
 - 원본: `hit.wav` (faxcorp, Electricity Game Sound Pack, **CC0**) — https://opengameart.org/content/electricity-game-sound-pack
 - 가공: 앞 1.2s 컷 + 페이드아웃 + highshelf 5kHz +9dB (자비스, ffmpeg). CC0 파생물 = CC0.
 - ⚠️ 나머지 효과음은 전부 기존 신스 유지 (Jun 명시). 8슬롯 교체안은 폐기.
+
+## ✅ SFX 전면 확정 (2026-07-10 밤, Jun "올 B" 판정 — BGM 무거워져 신스가 안 어울림)
+| 이벤트 | 파일 | 원본 | 출처 |
+|---|---|---|---|
+| 발사 | fire.ogg | laserSmall_000 | Kenney Sci-Fi (CC0) |
+| 적 폭발 | explosion.ogg | explosionCrunch_000 | Kenney Sci-Fi (CC0) |
+| 빅킬/NOVA | bigkill.ogg | lowFrequency_explosion_000 | Kenney Sci-Fi (CC0) |
+| 피격 | hit.ogg | impactMetal_000 | Kenney Sci-Fi (CC0) |
+| 픽업 | pickup.ogg | powerUp5 | Kenney Digital (CC0) |
+| 멀티업 | multiplier.ogg | phaserUp5 | Kenney Digital (CC0) |
+| 보스 등장 | boss.ogg | forceField_000 | Kenney Sci-Fi (CC0) |
+| ⚡라이트닝 | lightning.ogg | (기확정, faxcorp CC0 가공) | — |

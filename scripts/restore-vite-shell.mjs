@@ -12,6 +12,13 @@ const closeIndex = source.lastIndexOf('</script>');
 if (openIndex < 0 || closeIndex < 0 || closeIndex <= openIndex) {
   throw new Error('Unable to locate canonical module script');
 }
-const output = `${source.slice(0, openIndex)}<script type="module" src="/src/main.ts"></script>${source.slice(closeIndex + '</script>'.length)}`;
+const mobileRestoreStyles = `<style>
+      @media (max-width: 560px) {
+        #help { display: none; }
+        #hud-bosstimer { bottom: 12px; width: min(82vw, 560px); }
+      }
+    </style>
+    `;
+const output = `${source.slice(0, openIndex)}${mobileRestoreStyles}<script type="module" src="/src/main.ts"></script>${source.slice(closeIndex + '</script>'.length)}`;
 await writeFile(outputPath, output, 'utf8');
 console.log(`restored ${path.relative(root, outputPath)} from canonical shell`);

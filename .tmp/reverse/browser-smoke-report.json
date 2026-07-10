@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "url": "http://127.0.0.1:4173/",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "checks": {
+    "menuVisible": true,
+    "leaderboardVisible": true,
+    "gameStarted": true,
+    "novaEnergyConsumed": 0.7999999999999999,
+    "bossSpawned": "mini",
+    "gameOverVisible": true,
+    "menuCanvas": {
+      "width": 1280,
+      "height": 720,
+      "litPixels": 632880,
+      "litRatio": 0.68671875,
+      "colorTransitions": 561372
+    },
+    "playCanvas": {
+      "width": 1280,
+      "height": 720,
+      "litPixels": 921600,
+      "litRatio": 1,
+      "colorTransitions": 172388
+    },
+    "mobileCanvas": {
+      "width": 390,
+      "height": 844,
+      "litPixels": 253278,
+      "litRatio": 0.7694677360554137,
+      "colorTransitions": 210833
+    },
+    "mobilePlayCanvas": {
+      "width": 390,
+      "height": 844,
+      "litPixels": 329160,
+      "litRatio": 1,
+      "colorTransitions": 58149
+    },
+    "mobileLayout": {
+      "scrollY": 0,
+      "innerHeight": 844,
+      "hud": {
+        "top": 14,
+        "right": 370,
+        "bottom": 279,
+        "left": 194.8125
+      },
+      "bossTimer": {
+        "top": 802,
+        "right": 354.8984375,
+        "bottom": 832,
+        "left": 35.1015625
+      },
+      "helpDisplay": "none"
+    },
+    "mobileGameStarted": true,
+    "touchControls": 4,
+    "browserErrors": []
+  }
+}

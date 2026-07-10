@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "tolerance": 1e-9,
+  "bundle": ".tmp\\reverse\\parity-build\\sim.mjs",
+  "golden": "tests\\golden\\original-sim-trajectory.json",
+  "scenarios": [
+    {
+      "seed": 12345,
+      "steps": 3000,
+      "snapshots": 101
+    },
+    {
+      "seed": 24680,
+      "steps": 3000,
+      "snapshots": 101
+    },
+    {
+      "seed": 987654321,
+      "steps": 3000,
+      "snapshots": 101
+    }
+  ]
+}

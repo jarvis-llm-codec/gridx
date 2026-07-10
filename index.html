@@ -255,6 +255,12 @@
         #damage-vignette.flash { animation-duration: 180ms; }
       }
     </style>
+    <style>
+      @media (max-width: 560px) {
+        #help { display: none; }
+        #hud-bosstimer { bottom: 12px; width: min(82vw, 560px); }
+      }
+    </style>
     <script type="module" src="/src/main.ts"></script>
   </head>
   <body>

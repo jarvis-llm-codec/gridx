@@ -66,6 +66,8 @@ export class EntityRenderer {
   private readonly dummy = new THREE.Object3D();
   private readonly color = new THREE.Color();
   private lastBossVisual: BossVisual | null = null;
+  private itemCoreMaterialPriming = false;
+  private itemCoreMaterialPrimed = false;
 
   constructor() {
     const playerGeometry = new THREE.OctahedronGeometry(0.7, 0);
@@ -113,7 +115,12 @@ export class EntityRenderer {
     this.group.add(this.effectInstances);
 
     this.itemGeometry = new THREE.OctahedronGeometry(0.5, 0);
-    this.itemMaterial = makeMaterial(0xffffff);
+    this.itemMaterial = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      wireframe: true,
+    });
     this.itemInstances = this.makeInstances(this.itemGeometry, this.itemMaterial, 128);
     this.itemRingGeometry = new THREE.CylinderGeometry(0.72, 0.72, 0.08, 16, 1, true);
     this.itemRingMaterial = new THREE.MeshBasicMaterial({
@@ -334,6 +341,7 @@ export class EntityRenderer {
     up: THREE.Vector3,
   ): void {
     let count = 0;
+    const initializeItemColorProgram = items.length > 0 && this.itemInstances.instanceColor === null;
     for (const item of items) {
       const bob = Math.sin(item.bob) * 0.4 + 0.6;
       projectBasis(item.pos.x, item.pos.z, this.impulses, position, forward, right, up);
@@ -351,12 +359,29 @@ export class EntityRenderer {
       this.itemRingInstances.setColorAt(count, this.color);
       count += 1;
     }
-    this.itemInstances.count = count;
-    this.itemRingInstances.count = count;
+    for (let index = count; index < this.itemInstances.count; index += 1) {
+      this.dummy.position.set(0, -9999, 0);
+      this.dummy.scale.set(0, 0, 0);
+      this.dummy.updateMatrix();
+      this.itemInstances.setMatrixAt(index, this.dummy.matrix);
+      this.itemRingInstances.setMatrixAt(index, this.dummy.matrix);
+    }
+    this.itemInstances.count = Math.max(this.itemInstances.count, count);
+    this.itemRingInstances.count = Math.max(this.itemRingInstances.count, count);
     this.itemInstances.instanceMatrix.needsUpdate = true;
     this.itemRingInstances.instanceMatrix.needsUpdate = true;
     if (this.itemInstances.instanceColor) this.itemInstances.instanceColor.needsUpdate = true;
     if (this.itemRingInstances.instanceColor) this.itemRingInstances.instanceColor.needsUpdate = true;
+    if (initializeItemColorProgram) this.itemMaterial.needsUpdate = true;
+    if (items.length > 0 && !this.itemCoreMaterialPrimed) {
+      if (this.itemCoreMaterialPriming) {
+        this.itemMaterial.wireframe = false;
+        this.itemMaterial.needsUpdate = true;
+        this.itemCoreMaterialPrimed = true;
+      } else {
+        this.itemCoreMaterialPriming = true;
+      }
+    }
   }
 
   private updateBoss(

@@ -112,8 +112,8 @@ export class Renderer {
         label.dataset.itemKind = item.kind;
         label.textContent = item.kind === 'weapon' && item.weaponType
           ? `WEAPON · ${WEAPON_NAMES[item.weaponType]}`
-          : ITEM_LABELS[item.kind];
-        label.style.setProperty('--item-color', `#${item.color.toString(16).padStart(6, '0')}`);
+          : ITEM_LABELS[item.kind] || item.kind.toUpperCase();
+        label.style.setProperty('--item-color', `#${(item.color ?? 0xffffff).toString(16).padStart(6, '0')}`);
         this.itemLabelLayer.appendChild(label);
         this.itemLabels.set(item.id, label);
       }

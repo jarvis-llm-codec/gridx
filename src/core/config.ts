@@ -106,9 +106,9 @@ export const CONFIG = {
   },
   grid: { impulseStrength: 6, maxImpulses: 20 },
   lightningVisual: {
-    displacement: 0.15,
-    depth: 4,
-    branchProbability: 0.3,
+    displacement: 0.22,
+    depth: 5,
+    branchProbability: 0.55,
     lifetime: 0.1,
     flickerPeriod: 0.05,
     glowMultiplier: 3.5,

@@ -105,6 +105,14 @@ export const CONFIG = {
     zoomLambda: 7,
   },
   grid: { impulseStrength: 6, maxImpulses: 20 },
+  lightningVisual: {
+    displacement: 0.15,
+    depth: 4,
+    branchProbability: 0.3,
+    lifetime: 0.1,
+    flickerPeriod: 0.05,
+    glowMultiplier: 3.5,
+  },
   items: {
     radius: 0.5,
     lifespan: 12,

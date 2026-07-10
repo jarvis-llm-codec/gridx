@@ -264,7 +264,7 @@ export class EntityRenderer {
     this.enemyBulletInstances.instanceMatrix.needsUpdate = true;
     this.enemyBulletTrailInstances.instanceMatrix.needsUpdate = true;
 
-    this.updateEffects(bullets, weaponEffects, position, forward, right, up);
+    this.updateEffects(bullets, weaponEffects, time, position, forward, right, up);
     this.updateItems(items, time, position, forward, right, up);
     this.updateBoss(boss, eventWobble, time, position, forward, right, up);
   }
@@ -272,6 +272,7 @@ export class EntityRenderer {
   private updateEffects(
     bullets: BulletState[],
     effects: WeaponEffect[],
+    time: number,
     first: THREE.Vector3,
     forward: THREE.Vector3,
     right: THREE.Vector3,
@@ -318,11 +319,31 @@ export class EntityRenderer {
     for (const effect of effects) {
       const fade = effect.life / Math.max(0.001, effect.maxLife || effect.life);
       if (effect.kind === 'lightning') {
-        const style = effect.style || 'bolt';
+        const segments = Math.min(1 << CONFIG.lightningVisual.depth, 32);
+        const dx = effect.to.x - effect.from.x;
+        const dz = effect.to.z - effect.from.z;
+        const length = Math.hypot(dx, dz) || 1;
+        const nx = -dz / length;
+        const nz = dx / length;
+        const jitter = (i: number) => Math.sin(time / CONFIG.lightningVisual.flickerPeriod + i * 17.31 + effect.from.x * 3.7) * 0.5 + Math.sin(i * 9.17 + effect.to.z) * 0.5;
+        const points = Array.from({ length: segments + 1 }, (_, i) => {
+          const p = i / segments;
+          const amp = i === 0 || i === segments ? 0 : length * CONFIG.lightningVisual.displacement * (1 - Math.abs(p - 0.5));
+          const j = jitter(i) * amp;
+          return { x: effect.from.x + dx * p + nx * j, z: effect.from.z + dz * p + nz * j };
+        });
         const height = effect.height ?? 0.72;
-        draw(effect.from, effect.to, 0x246bff, style === 'bolt' ? 5.6 : style === 'branch' ? 3.35 : 4.3, fade * 0.5, height);
-        draw(effect.from, effect.to, 0x69dcff, style === 'bolt' ? 3.1 : style === 'branch' ? 1.85 : 2.45, Math.max(0.42, fade), height + 0.018);
-        draw(effect.from, effect.to, 0xffffff, style === 'bolt' ? 1.22 : style === 'branch' ? 0.72 : 1.02, Math.max(0.72, fade), height + 0.036);
+        for (let i = 0; i < segments && count < 1024; i += 1) {
+          draw(points[i], points[i + 1], 0x246bff, 5.2, fade * 0.42, height);
+          draw(points[i], points[i + 1], 0x69dcff, 2.7, Math.max(0.42, fade), height + 0.018);
+          draw(points[i], points[i + 1], 0xffffff, 1.05, Math.max(0.72, fade), height + 0.036);
+          if (i > 1 && i < segments - 2 && jitter(i + 41) > 0.55 && count < 1018) {
+            const q = points[i];
+            const branch = { x: q.x + nx * length * 0.28 + dx / length * length * 0.12, z: q.z + nz * length * 0.28 + dz / length * length * 0.12 };
+            draw(q, branch, 0x69dcff, 1.7, fade * 0.55, height + 0.02);
+            draw(q, branch, 0xffffff, 0.62, fade * 0.75, height + 0.04);
+          }
+        }
       } else {
         draw(effect.from, effect.to, effect.kind === 'laser' ? WEAPON_COLORS.laser : WEAPON_COLORS.missile, effect.kind === 'laser' ? 1.25 : 1.05, fade);
       }

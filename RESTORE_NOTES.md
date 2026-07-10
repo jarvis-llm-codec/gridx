@@ -48,6 +48,16 @@ Validation: `npm run typecheck`, `npm test` (143 tests), `npm run parity:verify`
   original procedural lightning SFX.
 - Other SFX paths are unchanged; simulation remains audio-independent.
 
+## Lightning visual addendum
+
+Lightning weapon effects are now render-only midpoint-displacement bolts with
+32-segment zigzag cores, cyan/blue additive glow and white cores, deterministic
+flicker, and capped branching. Tunables are exposed under
+`CONFIG.lightningVisual`; simulation and targeting code were untouched.
+
+Validation: typecheck, all 143 Vitest tests, and simulation parity (3/3) pass.
+Browser screenshot/FPS and Jun visual approval remain manual acceptance items.
+
 - Add an approved staging Supabase project before automating leaderboard write tests. The current smoke performs no production write.
 - Consider screenshot-diff and captured-audio regression baselines. Current automation proves nonblank rendering, layout bounds, interaction flow, and simulation identity, but not pixel- or waveform-identical output.
 - Upgrade the Vite 5 / Vitest 1 development toolchain in a separate change. `npm audit --omit=dev` is clean; development-only audit findings should not be mixed into the restored gameplay baseline.

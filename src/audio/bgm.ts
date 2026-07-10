@@ -27,9 +27,9 @@ export class BgmManager {
 
   constructor(config: BgmConfig = {}) {
     this.volumes = {
-      base: config.baseVolume ?? 0.32,
-      miniBoss: config.miniBossVolume ?? 0.36,
-      megaBoss: config.megaBossVolume ?? 0.38,
+      base: config.baseVolume ?? 0.45,
+      miniBoss: config.miniBossVolume ?? 0.5,
+      megaBoss: config.megaBossVolume ?? 0.55,
     };
     this.fadeSeconds = config.fadeSeconds ?? 1.8;
     this.onExternalState = config.onExternalState;

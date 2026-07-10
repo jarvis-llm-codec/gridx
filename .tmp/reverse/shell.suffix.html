@@ -1,0 +1,58 @@
+</script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="hud">
+      <div id="hud-score">0</div>
+      <div id="hud-mult">×1</div>
+      <div id="hud-hp">100</div>
+      <div id="hud-energy"><div id="hud-energy-fill"></div></div>
+      <div id="hud-weapon"><span id="hud-primary" class="weapon-slot">MAIN BLASTER · ALWAYS</span><span id="hud-secondary" class="weapon-slot">SUB EMPTY</span></div>
+      <div id="hud-lives">♥♥♥</div>
+      <div id="hud-wave">W1</div>
+      <div id="hud-mute">&#128266;</div>
+    </div>
+    <div id="damage-vignette" aria-hidden="true"></div>
+    <div id="hud-boss">
+      <div id="hud-boss-label">⚠ BOSS</div>
+      <div id="hud-boss-track"><div id="hud-boss-fill"></div></div>
+    </div>
+    <div id="hud-bosstimer">
+      <div id="hud-bosstimer-label">Next Boss</div>
+      <div id="hud-bosstimer-track"><div id="hud-bosstimer-fill"></div></div>
+    </div>
+    <div id="help">
+      WASD / Arrow Keys — Move &nbsp;•&nbsp; Mouse — Aim &nbsp;•&nbsp; Hold Click/Space — Fire<br />
+      SHIFT — Boost &nbsp;•&nbsp; Wheel — Zoom &nbsp;•&nbsp; Q / F — Bomb (Nova) &nbsp;•&nbsp; BLASTER always fires + WEAPON equips SUB &nbsp;•&nbsp; P — Pause &nbsp;•&nbsp; M — Mute &nbsp;•&nbsp; R — Restart<br />
+      Touch: Left — Move &nbsp;•&nbsp; Right — Aim+Fire &nbsp;•&nbsp; Boost / Bomb / II / R Buttons
+    </div>
+    <div id="overlay">
+      <h1 id="overlay-title">GEOMETRY WARS 3D</h1>
+      <p id="overlay-hint">WASD Move &middot; Mouse Aim &middot; Touch OK</p>
+      <div id="gw-menu" style="display: none">
+        <button id="gw-start-btn" class="gw-btn" type="button">&#9654;&nbsp; GAME START</button>
+        <button id="gw-board-btn" class="gw-btn" type="button">&#127942;&nbsp; LEADERBOARD</button>
+        <div id="gw-credit">
+          BUILT WITH <a href="https://jlc-codec.org/" target="_blank" rel="noopener">JARVIS CODE</a>
+          <span class="gw-models">&middot; GLM 5.2 + GPT 5.6</span>
+        </div>
+      </div>
+      <div id="gw-gameover" style="display: none">
+        <div id="gw-final">SCORE 0</div>
+        <div id="gw-entry">
+          <input id="gw-name" maxlength="12" placeholder="YOUR NAME" autocomplete="off" autocapitalize="characters" spellcheck="false" enterkeyhint="done" />
+          <input id="gw-comment" maxlength="40" placeholder="ONE-LINE COMMENT (OPTIONAL)" autocomplete="off" spellcheck="false" enterkeyhint="done" />
+          <button id="gw-submit-btn" class="gw-btn" style="min-width: 130px" type="button">REGISTER</button>
+        </div>
+        <div id="gw-entry-msg"></div>
+        <button id="gw-restart-btn" class="gw-btn" type="button">&#8635;&nbsp; RESTART</button>
+      </div>
+      <div id="gw-board" style="display: none">
+        <div id="gw-board-title">&#127942; TOP 100</div>
+        <ol id="gw-board-list"></ol>
+        <div id="gw-board-msg"></div>
+        <button id="gw-board-close" class="gw-btn" type="button">&#9664;&nbsp; BACK</button>
+      </div>
+    </div>
+  </body>
+</html>

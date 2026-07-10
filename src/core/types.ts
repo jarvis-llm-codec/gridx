@@ -1,70 +1,64 @@
-// types.ts — Shared simulation types. Pure data; no Three.js.
-// The architecture rule: collision/score/spawn logic must read only these
-// generic fields (`radius`, `hp`, `score`, `kind`), never switch on enemy type.
-
+import type { RNG } from '../math/rng.js';
 import type { Vec3 } from '../math/vec3.js';
 import type { WaveImpulse } from '../math/wave.js';
-import type { RNG } from '../math/rng.js';
 
 export type Vec = Vec3;
-
-/** Enemy behavior kind. New kinds are added by extending this union + behaviors map. */
+export type PlanePoint = Pick<Vec, 'x' | 'z'>;
 export type EnemyKind = 'grunt' | 'wanderer' | 'singularity' | 'dodger';
-
 export type BossType = 'mini' | 'big';
-
 export type WeaponType = 'blaster' | 'missile' | 'lightning' | 'laser';
-
-/** Bullet ownership + variant. */
-export type BulletOwner = 'player' | 'enemy';
+export type WeaponSlot = 'primary' | 'secondary';
+export type BulletOwner = 'player' | 'enemy' | 'boss';
 export type BulletKind = 'standard' | 'spread' | 'missile' | 'lightning' | 'laser' | 'enemy';
+export type ItemKind = 'life' | 'heal' | 'weapon' | 'boost' | 'shield' | 'multiplier';
+export type EntityTag = 'player' | 'bullet' | 'enemy' | 'particle' | 'item';
 
-/** Entity tag for broad-phase bookkeeping. */
-export type EntityTag = 'player' | 'bullet' | 'enemy' | 'particle' | 'pickup';
-
-/** A body that participates in collision. Generic so collision never switches on type. */
 export interface Body {
   readonly id: number;
   readonly tag: EntityTag;
-  /** World position (XZ is the play plane). */
   pos: Vec;
-  /** Velocity (units/sec). */
   vel: Vec;
-  /** Collision radius (XZ circle). */
   radius: number;
 }
+
+export type WeaponLevels = Record<WeaponType, number>;
 
 export interface PlayerState extends Body {
   tag: 'player';
   hp: number;
   maxHp: number;
-  /** Current aim direction (XZ, normalized). */
   aim: Vec;
-  /** Seconds until next shot allowed. */
   fireCooldown: number;
   fireInterval: number;
-  /** Boost (Shift) energy 0..1. */
   boost: number;
-  /** True after taking fatal damage; sim stops spawning. */
   alive: boolean;
-  /** Invulnerability timer after hit/respawn (sec). */
   invuln: number;
-  /** Score multiplier contributed by survival streak (managed by ScoreSystem). */
   multiplier: number;
-  /** Total score. */
   score: number;
+  energy: number;
+  weaponLevel: number;
+  weaponLevels: WeaponLevels;
+  primaryWeapon: 'blaster';
+  secondaryWeapon: Exclude<WeaponType, 'blaster'> | null;
+  weaponCooldowns: Record<WeaponSlot, number>;
+  lives: number;
+  shield: number;
+  hitCount: number;
 }
 
 export interface BulletState extends Body {
   tag: 'bullet';
   owner: BulletOwner;
   kind: BulletKind;
-  /** Lifespan in seconds. */
   life: number;
-  /** Damage dealt on hit. */
   damage: number;
-  /** Whether this bullet has already hit something (one-shot). */
   spent: boolean;
+  pierce: boolean;
+  level: number;
+  turnRate: number;
+  blastRadius: number;
+  hitIds: number[];
+  prevPos: Vec;
 }
 
 export interface EnemyState extends Body {
@@ -72,45 +66,93 @@ export interface EnemyState extends Body {
   kind: EnemyKind;
   hp: number;
   maxHp: number;
-  /** Score awarded on kill (read by ScoreSystem; never switch on kind). */
   score: number;
-  /** Behavior-internal timer (dodger dodge cd, singularity charge, etc.). */
   behaviorTimer: number;
-  /** Phase for wandering/oscillation. */
   phase: number;
-  /** Singularity: when true it has reached critical mass and will explode. */
   critical: boolean;
-  /** Per-enemy jitter direction seeded at spawn. */
   jitter: Vec;
-  /** Flag set the frame it dies, so renderer/score can react. */
   dead: boolean;
+  hitFlash?: number;
+}
+
+export interface BossState extends Omit<EnemyState, 'kind'> {
+  kind: 'boss';
+  bossType: BossType;
+  bossNumber: number;
+  rageLevel: number;
+  speed: number;
+  color: number;
+  fireCooldown: number;
+  fireInterval: number;
+  bulletSpeed: number;
+  bulletLife: number;
+  bulletDamage: number;
+  extraBullets: number;
 }
 
 export interface ParticleState extends Body {
   tag: 'particle';
-  /** Remaining life (sec). */
   life: number;
-  /** Total lifespan for fade normalization. */
   lifespan: number;
-  /** Velocity damping per second (0..1, 1 = no damping). */
   damping: number;
-  /** Neon color as 0xRRGGBB. */
   color: number;
-  /** Size of the instanced voxel. */
   size: number;
 }
 
-/** Discrete events emitted by the sim step. Renderers/audio subscribe; sim stays pure. */
+export interface ItemState extends Body {
+  tag: 'item';
+  kind: ItemKind;
+  weaponType: Exclude<WeaponType, 'blaster'> | null;
+  life: number;
+  bob: number;
+  color: number;
+  dead: boolean;
+}
+
+export interface PendingBurst {
+  pos: Vec;
+  remaining: number;
+  color: number;
+  perFrame: number;
+}
+
+export interface PendingLightning {
+  pos: Vec;
+  dir: Vec;
+  level: number;
+  damage: number;
+  range: number;
+}
+
+export interface WeaponEffect {
+  kind: WeaponType;
+  style?: 'bolt' | 'trail' | 'branch' | 'flash';
+  from: PlanePoint;
+  to: PlanePoint;
+  height?: number;
+  life: number;
+  maxLife: number;
+}
+
 export type GameEvent =
   | { type: 'kill'; pos: Vec; kind: EnemyKind; score: number }
   | { type: 'explode'; pos: Vec; radius: number; strength: number; color: number }
   | { type: 'hit-player'; pos: Vec; damage: number }
+  | { type: 'revive'; pos: Vec }
   | { type: 'shockwave'; pos: Vec; strength: number }
   | { type: 'spawn'; pos: Vec; kind: EnemyKind }
   | { type: 'game-over'; pos: Vec }
-  | { type: 'multiplier-up'; value: number };
+  | { type: 'multiplier-up'; value: number }
+  | { type: 'weapon-fire'; pos: Vec; weapon: WeaponType; level: number; slot: WeaponSlot }
+  | { type: 'skill'; pos: Vec; radius: number; color: number }
+  | { type: 'skill-fire'; pos: Vec }
+  | { type: 'pickup'; pos: Vec; kind: ItemKind }
+  | { type: 'boss-spawn'; pos: Vec; bossType: BossType; bossNumber: number; rageLevel: number }
+  | { type: 'boss-fire'; pos: Vec }
+  | { type: 'boss-hit'; pos: Vec }
+  | { type: 'boss-dead'; pos: Vec; score: number }
+  | { type: 'missile-explode'; pos: Vec; radius: number };
 
-/** Aggregate world state. stepWorld mutates and returns events. */
 export interface World {
   seed: number;
   rng: RNG;
@@ -121,14 +163,17 @@ export interface World {
   enemies: EnemyState[];
   particles: ParticleState[];
   impulses: WaveImpulse[];
-  /** Pending events for the current step (cleared each step). */
   events: GameEvent[];
-  /** Global spawn/telegraph state owned by SpawnSystem. */
+  items: ItemState[];
+  boss: BossState | null;
+  bossActiveWave: number;
+  bossDefeatedWaves: Set<number>;
   spawnState: { timer: number; wave: number; budget: number; toSpawn: number };
-  /** Camera trauma managed by CameraShakeSystem (consumed by renderer). */
+  pendingBursts: PendingBurst[];
+  pendingLightning: PendingLightning[];
+  weaponEffects: WeaponEffect[];
   trauma: number;
-  /** Whether the player has lost (drives game-over). */
+  eventWobble: number;
   gameOver: boolean;
-  /** Next entity id allocator. */
   nextId: number;
 }

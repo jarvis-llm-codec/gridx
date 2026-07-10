@@ -68,7 +68,8 @@ describe('enemy behaviors', () => {
       pos: { x: 0, y: 0, z: 15 },
       vel: { x: 0, y: 0, z: -30 },
       radius: 0.2, owner: 'player' as const, kind: 'standard' as const,
-      life: 5, damage: 1, spent: false,
+      life: 5, damage: 1, spent: false, pierce: false, level: 1,
+      turnRate: 0, blastRadius: 0, hitIds: [], prevPos: { x: 0, y: 0, z: 15 },
     };
     const d0 = e.pos.x;
     for (let i = 0; i < 6; i++) {

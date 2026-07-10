@@ -30,6 +30,7 @@ export const createEnemy = (kind: EnemyKind, pos: { x: number; y: number; z: num
 
 /** Apply damage to enemy. Returns true if it died this call. */
 export const damageEnemy = (e: EnemyState, dmg: number): boolean => {
+  e.hitFlash = 0.14;
   e.hp -= dmg;
   if (e.hp <= 0) {
     e.hp = 0;

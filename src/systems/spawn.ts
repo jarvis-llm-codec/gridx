@@ -12,6 +12,9 @@ export interface SpawnSystemState {
   wave: number;
   budget: number; // kills needed to advance wave
   killsThisWave: number;
+  bossTimer: number;
+  bossTimerMax: number;
+  bossIndex: number;
 }
 
 export const createSpawnSystem = (): SpawnSystemState => ({
@@ -19,6 +22,9 @@ export const createSpawnSystem = (): SpawnSystemState => ({
   wave: 1,
   budget: CONFIG.spawn.waveBudgetGrowth,
   killsThisWave: 0,
+  bossTimer: CONFIG.boss.firstDelay,
+  bossTimerMax: CONFIG.boss.firstDelay,
+  bossIndex: 0,
 });
 
 const weightedKind = (rng: RNG): EnemyKind => {
@@ -55,7 +61,7 @@ export const stepSpawn = (
   const edge = world.arenaRadius - cfg.spawnRingPad;
   while (timer >= intervalForWave(sys.wave)) {
     timer -= intervalForWave(sys.wave);
-    if (world.enemies.length < cfg.maxAlive) {
+    if (world.enemies.length < Math.min(cfg.maxAliveCap, cfg.maxAlive + sys.wave * cfg.maxAlivePerWave)) {
       const kind = weightedKind(world.rng);
       const ang = world.rng.next() * Math.PI * 2;
       const r = edge * (0.7 + world.rng.next() * 0.3);
@@ -73,10 +79,10 @@ export const advanceWave = (sys: SpawnSystemState, kills: number): SpawnSystemSt
   const killsThisWave = kills;
   if (killsThisWave >= sys.budget) {
     return {
+      ...sys,
       wave: sys.wave + 1,
       budget: sys.wave * CONFIG.spawn.waveBudgetGrowth + CONFIG.spawn.waveBudgetGrowth,
       killsThisWave: 0,
-      timer: sys.timer,
     };
   }
   return { ...sys, killsThisWave };

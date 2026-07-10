@@ -16,6 +16,8 @@ export interface WaveImpulse {
   wavelength: number;
   /** Wave propagation speed (units/sec). */
   speed: number;
+  eventTier: 'ordinary' | 'death' | 'heart' | 'localBlast';
+  coupleEntities: boolean;
 }
 
 export const createImpulse = (
@@ -31,6 +33,8 @@ export const createImpulse = (
   lifespan: opts?.lifespan ?? 2.4,
   wavelength: opts?.wavelength ?? 14,
   speed: opts?.speed ?? 60,
+  eventTier: opts?.eventTier ?? 'ordinary',
+  coupleEntities: opts?.coupleEntities ?? false,
 });
 
 /** Advance all impulses by dt and prune dead ones (returns new array). */
@@ -41,6 +45,7 @@ export const advanceImpulses = (impulses: WaveImpulse[], dt: number): WaveImpuls
     if (age >= imp.lifespan) continue;
     out.push({ ...imp, age });
   }
+  if (out.length > 20) out.splice(0, out.length - 20);
   return out;
 };
 
@@ -56,9 +61,10 @@ export const impulseAmplitude = (imp: WaveImpulse): number => {
  * Each impulse contributes a sine ring expanding outward at `speed`,
  * amplitude scaled by distance falloff and age decay.
  */
-export const waveOffset = (impulses: WaveImpulse[], px: number, pz: number): number => {
+export const waveOffset = (impulses: WaveImpulse[], px: number, pz: number, coupledOnly = false): number => {
   let y = 0;
   for (const imp of impulses) {
+    if (coupledOnly && !imp.coupleEntities) continue;
     const dx = px - imp.x;
     const dz = pz - imp.z;
     const dist = Math.hypot(dx, dz);

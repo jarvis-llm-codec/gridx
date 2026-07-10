@@ -24,7 +24,7 @@ export const PALETTE = {
     spread: 0x66ffcc,
     missile: 0xff7a18,
     lightning: 0xc8f7ff,
-    laser: 0xff2bd6,
+    laser: 0x19ffff,
     enemy: 0xff3a4a,
   } as Record<BulletKind, number>,
   weaponColor: {

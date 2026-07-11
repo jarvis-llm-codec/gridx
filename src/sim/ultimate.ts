@@ -115,13 +115,9 @@ export const stepUltimate = (world: World, dt: number): void => {
       const angleB = angleA + angleStep;
       const from = { x: player.pos.x + Math.cos(angleA) * radius, z: player.pos.z + Math.sin(angleA) * radius };
       const tip = { x: player.pos.x + Math.cos(angleB) * radius, z: player.pos.z + Math.sin(angleB) * radius };
+      // Arc + built-in tip crackle only — no particle bursts here, they read
+      // as explosions instead of a spark running its orbit.
       addWeaponArc(world, 'lightning', from, tip, index * 7 + 3);
-      world.pendingBursts.push({
-        pos: { x: tip.x, y: 0, z: tip.z },
-        remaining: cfg.sparkPerTick,
-        color: WEAPON_COLORS.lightning,
-        perFrame: cfg.sparkPerTick,
-      });
       tempest.remaining -= 1;
       tempest.timer += cfg.orbitInterval;
     }

@@ -110,9 +110,9 @@ export const CONFIG = {
   // section only — golden scenario never presses the button, so no rebaseline.
   ultimate: {
     cooldown: 45,
-    missile: { count: 20, perWave: 4, waveInterval: 0.06, damageMul: 1.1, turnRate: 7.5, blastRadius: 2.9, speed: 17, life: 3.4 },
-    lightning: { shots: 6, chains: 12, chainRange: 14, range: 60, damageMul: 1.25 },
-    laser: { duration: 2.0, burstInterval: 0.08, beamsPerBurst: 3, spreadDeg: 5, damageMul: 0.9, speed: 80, life: 0.5 },
+    missile: { count: 60, perWave: 6, waveInterval: 0.06, damageMul: 1.1, turnRate: 7.5, blastRadius: 2.9, speed: 17, life: 3.4 },
+    lightning: { shots: 6, chains: 12, chainRange: 14, range: 60, damageMul: 1.25, radialBolts: 14 },
+    laser: { duration: 6.0, burstInterval: 0.08, beamsPerBurst: 3, spreadDeg: 5, damageMul: 0.9, speed: 80, life: 0.5 },
   },
   lightningVisual: {
     displacement: 0.22,
@@ -141,8 +141,9 @@ export const CONFIG = {
     // keep full weight — firepower stays, survival dries up.
     decay: { startWave: 5, perWave: 0.12, chanceFloor: 0.15, sustainFloor: 0.2 },
     bossDropCount: 6,
-    bossWeaponDrops: { mini: 2, big: 3 },
-    dropWeights: { life: 5, heal: 4, weapon: 5, boost: 2, shield: 2, multiplier: 1 },
+    // Bosses drop no weapons — grunts drop them often enough (weight 8).
+    bossWeaponDrops: { mini: 0, big: 0 },
+    dropWeights: { life: 5, heal: 4, weapon: 8, boost: 2, shield: 2, multiplier: 1 },
     magnetRadius: 11,
     magnetPull: 36,
     colors: {

@@ -136,7 +136,8 @@ export const bossHit = (boss: BossState | null, damage: number, world: World, sy
   for (let index = 0; index < CONFIG.items.bossDropCount; index += 1) {
     const angle = world.rng.next() * Math.PI * 2;
     const radius = world.rng.range(0, 3);
-    const kind = index < guaranteedWeapons ? 'weapon' : randomItemKind(world);
+    // Boss loot never rolls weapons — regular kills supply those.
+    const kind = index < guaranteedWeapons ? 'weapon' : randomItemKind(world, 0, { noWeapons: true });
     world.items.push(makeItem(kind, {
       x: boss.pos.x + Math.cos(angle) * radius,
       y: 0,

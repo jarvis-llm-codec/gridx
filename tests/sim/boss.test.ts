@@ -23,7 +23,8 @@ describe('boss system', () => {
     bossHit(world.boss, 9999, world, systems);
     expect(world.boss).toBeNull();
     expect(world.items).toHaveLength(CONFIG.items.bossDropCount);
-    expect(world.items.slice(0, CONFIG.items.bossWeaponDrops.mini).every((item) => item.kind === 'weapon')).toBe(true);
+    // Bosses never drop weapons — regular kills supply those (weight 8).
+    expect(world.items.every((item) => item.kind !== 'weapon')).toBe(true);
     expect(systems.spawn.bossIndex).toBe(1);
     expect(systems.spawn.bossTimer).toBe(49.5);
   });

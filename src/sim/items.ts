@@ -25,9 +25,10 @@ export const lateGameFactor = (wave: number): number => {
 export const dropChanceForWave = (wave: number): number =>
   Math.max(CONFIG.items.decay.chanceFloor, CONFIG.items.dropChance * lateGameFactor(wave));
 
-export const randomItemKind = (world: World, wave = 0): ItemKind => {
+export const randomItemKind = (world: World, wave = 0, options?: { noWeapons?: boolean }): ItemKind => {
   const factor = Math.max(CONFIG.items.decay.sustainFloor, lateGameFactor(wave));
   const pool = (Object.entries(CONFIG.items.dropWeights) as Array<[ItemKind, number]>)
+    .filter(([kind]) => !(options?.noWeapons && kind === 'weapon'))
     .flatMap(([kind, weight]) => {
       const scaled = SUSTAIN_KINDS.has(kind) ? Math.max(1, Math.round(weight * 10 * factor)) : weight * 10;
       return Array<ItemKind>(scaled).fill(kind);

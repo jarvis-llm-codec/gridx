@@ -27,7 +27,10 @@ describe('canonical configuration', () => {
       items: {
         dropChance: 0.3,
         bossDropCount: 6,
-        bossWeaponDrops: { mini: 2, big: 3 },
+        // 2026-07-11 balance pass (new parity baseline): bosses drop no
+        // weapons; regular kills carry the weapon economy instead.
+        bossWeaponDrops: { mini: 0, big: 0 },
+        dropWeights: { weapon: 8 },
         magnetRadius: 11,
         magnetPull: 36,
       },

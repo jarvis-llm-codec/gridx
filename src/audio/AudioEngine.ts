@@ -4,6 +4,7 @@
 // consumes GameEvent[] produced by stepWorld, plus a fire cue detected by the
 // orchestrator (per-bullet diff), so the sim never imports audio.
 
+import { CONFIG } from '../core/config.js';
 import type { GameEvent, EnemyKind, ItemKind, WeaponType } from '../core/types.js';
 
 type Maybe<T> = T | null;
@@ -572,7 +573,7 @@ export class AudioEngine {
     } else {
       // OVERDRIVE: charge-up scream into a sustained detuned beam drone
       // matching the barrage duration.
-      const duration = 2.0;
+      const duration = CONFIG.ultimate.laser.duration;
       const charge = ctx.createOscillator(); charge.type = 'sawtooth';
       charge.frequency.setValueAtTime(220, t);
       charge.frequency.exponentialRampToValueAtTime(1760, t + 0.3);

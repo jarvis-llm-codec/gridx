@@ -3563,8 +3563,8 @@
       "items": 3,
       "itemsByKind": {
        "life": 1,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -3649,8 +3649,8 @@
       "items": 3,
       "itemsByKind": {
        "life": 1,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -3735,8 +3735,8 @@
       "items": 3,
       "itemsByKind": {
        "life": 1,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -3821,8 +3821,8 @@
       "items": 3,
       "itemsByKind": {
        "life": 1,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -3907,8 +3907,8 @@
       "items": 3,
       "itemsByKind": {
        "life": 1,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -3993,8 +3993,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4080,8 +4080,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4167,8 +4167,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4254,8 +4254,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4341,8 +4341,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4428,8 +4428,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4515,8 +4515,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4602,8 +4602,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4689,8 +4689,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4776,8 +4776,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4863,8 +4863,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -4950,8 +4950,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -5037,8 +5037,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -5124,8 +5124,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -5211,8 +5211,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -5298,8 +5298,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -5385,8 +5385,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -5472,8 +5472,8 @@
       "items": 4,
       "itemsByKind": {
        "life": 2,
-       "heal": 1,
-       "weapon": 1,
+       "heal": 0,
+       "weapon": 2,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -5559,8 +5559,8 @@
       "items": 2,
       "itemsByKind": {
        "life": 1,
-       "heal": 1,
-       "weapon": 0,
+       "heal": 0,
+       "weapon": 1,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
@@ -7802,8 +7802,8 @@
       "itemsByKind": {
        "life": 0,
        "heal": 0,
-       "weapon": 0,
-       "boost": 1,
+       "weapon": 1,
+       "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
@@ -7904,8 +7904,8 @@
       "itemsByKind": {
        "life": 0,
        "heal": 0,
-       "weapon": 0,
-       "boost": 1,
+       "weapon": 1,
+       "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
@@ -8006,8 +8006,8 @@
       "itemsByKind": {
        "life": 0,
        "heal": 0,
-       "weapon": 0,
-       "boost": 1,
+       "weapon": 1,
+       "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
@@ -8108,8 +8108,8 @@
       "itemsByKind": {
        "life": 0,
        "heal": 0,
-       "weapon": 0,
-       "boost": 1,
+       "weapon": 1,
+       "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
@@ -8210,8 +8210,8 @@
       "itemsByKind": {
        "life": 0,
        "heal": 0,
-       "weapon": 0,
-       "boost": 1,
+       "weapon": 1,
+       "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
@@ -8311,9 +8311,9 @@
       "items": 2,
       "itemsByKind": {
        "life": 0,
-       "heal": 1,
-       "weapon": 0,
-       "boost": 1,
+       "heal": 0,
+       "weapon": 2,
+       "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
@@ -8413,9 +8413,9 @@
       "items": 2,
       "itemsByKind": {
        "life": 0,
-       "heal": 1,
-       "weapon": 0,
-       "boost": 1,
+       "heal": 0,
+       "weapon": 2,
+       "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
@@ -8515,9 +8515,9 @@
       "items": 2,
       "itemsByKind": {
        "life": 0,
-       "heal": 1,
-       "weapon": 0,
-       "boost": 1,
+       "heal": 0,
+       "weapon": 2,
+       "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
@@ -8617,9 +8617,9 @@
       "items": 3,
       "itemsByKind": {
        "life": 0,
-       "heal": 1,
-       "weapon": 0,
-       "boost": 2,
+       "heal": 0,
+       "weapon": 2,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
@@ -8719,9 +8719,9 @@
       "items": 3,
       "itemsByKind": {
        "life": 0,
-       "heal": 1,
-       "weapon": 0,
-       "boost": 2,
+       "heal": 0,
+       "weapon": 2,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
@@ -8821,9 +8821,9 @@
       "items": 3,
       "itemsByKind": {
        "life": 0,
-       "heal": 1,
-       "weapon": 0,
-       "boost": 2,
+       "heal": 0,
+       "weapon": 2,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
@@ -12609,8 +12609,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 121,
@@ -12696,8 +12696,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 78,
@@ -12783,8 +12783,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 35,
@@ -12870,8 +12870,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 8,
@@ -12957,8 +12957,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -13044,8 +13044,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -13131,8 +13131,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -13218,8 +13218,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -13305,8 +13305,8 @@
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -13392,8 +13392,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 278,
@@ -13479,8 +13479,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 236,
@@ -13566,8 +13566,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 135,
@@ -13653,8 +13653,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 46,
@@ -13740,8 +13740,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -13827,8 +13827,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 0,
-       "boost": 1,
-       "shield": 1,
+       "boost": 2,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -13914,8 +13914,8 @@
        "life": 1,
        "heal": 1,
        "weapon": 0,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -14001,8 +14001,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 1,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 322,
@@ -14088,8 +14088,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 1,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 792,
@@ -14175,8 +14175,8 @@
        "life": 2,
        "heal": 1,
        "weapon": 1,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 605,
@@ -14262,8 +14262,8 @@
        "life": 2,
        "heal": 2,
        "weapon": 1,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 331,
@@ -14349,8 +14349,8 @@
        "life": 2,
        "heal": 2,
        "weapon": 1,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 122,
@@ -14436,8 +14436,8 @@
        "life": 1,
        "heal": 2,
        "weapon": 1,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 24,
@@ -14523,8 +14523,8 @@
        "life": 1,
        "heal": 2,
        "weapon": 1,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 6,
@@ -14610,8 +14610,8 @@
        "life": 1,
        "heal": 2,
        "weapon": 1,
-       "boost": 0,
-       "shield": 1,
+       "boost": 1,
+       "shield": 0,
        "multiplier": 0
       },
       "particles": 0,
@@ -23733,20 +23733,20 @@
       "boost": 0.667000000000001,
       "score": 21000,
       "multiplier": 7,
-      "invuln": 0.9833333333333346,
+      "invuln": 0,
       "shield": 0,
       "hitCount": 1,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "missile",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
+       "missile": 1,
        "lightning": 0,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 8,
+      "bullets": 9,
       "enemies": 4,
       "enemiesByKind": {
        "grunt": 0,
@@ -23784,7 +23784,7 @@
      "gameOver": false,
      "rngState": 341770034,
      "eventCounts": {
-      "weapon-fire": 335,
+      "weapon-fire": 336,
       "spawn": 25,
       "kill": 21,
       "multiplier-up": 18,
@@ -23817,30 +23817,30 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 54.99999999999987,
+      "energy": 57.199999999999875,
       "boost": 0.7570000000000011,
-      "score": 21000,
-      "multiplier": 7,
-      "invuln": 0.48333333333333317,
+      "score": 23800,
+      "multiplier": 8,
+      "invuln": 0,
       "shield": 0,
       "hitCount": 1,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "missile",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
+       "missile": 1,
        "lightning": 0,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 8,
-      "enemies": 4,
+      "bullets": 9,
+      "enemies": 3,
       "enemiesByKind": {
        "grunt": 0,
        "wanderer": 2,
        "singularity": 0,
-       "dodger": 2,
+       "dodger": 1,
        "boss": 0
       },
       "items": 0,
@@ -23852,17 +23852,17 @@
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 105,
+      "particles": 203,
       "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 8
      },
      "boss": null,
      "spawn": {
       "wave": 3,
       "timer": 0.5506000000000032,
       "budget": 12,
-      "killsThisWave": 9,
+      "killsThisWave": 10,
       "bossTimer": 6.500000000001085,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -23870,17 +23870,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 341770034,
+     "rngState": 1522102074,
      "eventCounts": {
-      "weapon-fire": 339,
+      "weapon-fire": 341,
       "spawn": 25,
-      "kill": 21,
-      "multiplier-up": 18,
+      "kill": 22,
+      "multiplier-up": 19,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
       "hit-player": 1,
-      "pickup": 3
+      "pickup": 3,
+      "missile-explode": 1
      }
     },
     {
@@ -23905,30 +23906,30 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 58.99999999999986,
+      "energy": 61.19999999999986,
       "boost": 0.8470000000000012,
-      "score": 21000,
-      "multiplier": 7,
+      "score": 23800,
+      "multiplier": 8,
       "invuln": 0,
       "shield": 0,
       "hitCount": 1,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "missile",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
+       "missile": 1,
        "lightning": 0,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 5,
-      "enemies": 4,
+      "bullets": 7,
+      "enemies": 3,
       "enemiesByKind": {
        "grunt": 0,
        "wanderer": 2,
        "singularity": 0,
-       "dodger": 2,
+       "dodger": 1,
        "boss": 0
       },
       "items": 0,
@@ -23940,7 +23941,7 @@
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 52,
+      "particles": 147,
       "impulses": 0,
       "pendingBursts": 0,
       "weaponEffects": 0
@@ -23950,7 +23951,7 @@
       "wave": 3,
       "timer": 1.0506000000000044,
       "budget": 12,
-      "killsThisWave": 9,
+      "killsThisWave": 10,
       "bossTimer": 6.000000000001087,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -23958,17 +23959,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 341770034,
+     "rngState": 1522102074,
      "eventCounts": {
-      "weapon-fire": 344,
+      "weapon-fire": 347,
       "spawn": 25,
-      "kill": 21,
-      "multiplier-up": 18,
+      "kill": 22,
+      "multiplier-up": 19,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
       "hit-player": 1,
-      "pickup": 3
+      "pickup": 3,
+      "missile-explode": 1
      }
     },
     {
@@ -23993,52 +23995,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 62.999999999999844,
+      "energy": 69.59999999999998,
       "boost": 0.9370000000000013,
-      "score": 21000,
-      "multiplier": 7,
+      "score": 29500,
+      "multiplier": 11,
       "invuln": 0,
       "shield": 0,
       "hitCount": 1,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "missile",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
+       "missile": 1,
        "lightning": 0,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 2,
-      "enemies": 5,
+      "bullets": 3,
+      "enemies": 2,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
+       "grunt": 1,
+       "wanderer": 1,
        "singularity": 0,
-       "dodger": 2,
+       "dodger": 0,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 10,
+      "particles": 271,
       "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 8
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
+      "wave": 4,
       "timer": 0.22520000000000348,
-      "budget": 12,
-      "killsThisWave": 9,
+      "budget": 16,
+      "killsThisWave": 0,
       "bossTimer": 5.500000000001089,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24046,17 +24048,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 277828837,
+     "rngState": 1355423474,
      "eventCounts": {
-      "weapon-fire": 349,
+      "weapon-fire": 353,
       "spawn": 26,
-      "kill": 21,
-      "multiplier-up": 18,
+      "kill": 24,
+      "multiplier-up": 21,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
       "hit-player": 1,
-      "pickup": 3
+      "pickup": 3,
+      "missile-explode": 3
      }
     },
     {
@@ -24081,52 +24084,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 66.99999999999999,
+      "energy": 73.60000000000018,
       "boost": 1,
-      "score": 21000,
-      "multiplier": 7,
+      "score": 29500,
+      "multiplier": 11,
       "invuln": 0,
       "shield": 0,
       "hitCount": 1,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "missile",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
+       "missile": 1,
        "lightning": 0,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 1,
-      "enemies": 5,
+      "bullets": 2,
+      "enemies": 2,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
+       "grunt": 1,
+       "wanderer": 1,
        "singularity": 0,
-       "dodger": 2,
+       "dodger": 0,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 0,
+      "particles": 210,
       "impulses": 0,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
+      "wave": 4,
       "timer": 0.7252000000000042,
-      "budget": 12,
-      "killsThisWave": 9,
+      "budget": 16,
+      "killsThisWave": 0,
       "bossTimer": 5.000000000001091,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24134,17 +24137,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 277828837,
+     "rngState": 1355423474,
      "eventCounts": {
-      "weapon-fire": 354,
+      "weapon-fire": 359,
       "spawn": 26,
-      "kill": 21,
-      "multiplier-up": 18,
+      "kill": 24,
+      "multiplier-up": 21,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
       "hit-player": 1,
-      "pickup": 3
+      "pickup": 3,
+      "missile-explode": 3
      }
     },
     {
@@ -24169,52 +24173,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 71.00000000000018,
+      "energy": 77.60000000000038,
       "boost": 1,
-      "score": 21000,
-      "multiplier": 7,
+      "score": 29500,
+      "multiplier": 11,
       "invuln": 0,
       "shield": 0,
       "hitCount": 1,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "missile",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
+       "missile": 1,
        "lightning": 0,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 1,
-      "enemies": 5,
+      "enemies": 2,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
+       "grunt": 1,
+       "wanderer": 1,
        "singularity": 0,
-       "dodger": 2,
+       "dodger": 0,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 0,
+      "particles": 122,
       "impulses": 0,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
+      "wave": 4,
       "timer": 1.2252000000000043,
-      "budget": 12,
-      "killsThisWave": 9,
+      "budget": 16,
+      "killsThisWave": 0,
       "bossTimer": 4.5000000000010925,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24222,17 +24226,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 277828837,
+     "rngState": 1355423474,
      "eventCounts": {
-      "weapon-fire": 358,
+      "weapon-fire": 363,
       "spawn": 26,
-      "kill": 21,
-      "multiplier-up": 18,
+      "kill": 24,
+      "multiplier-up": 21,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
       "hit-player": 1,
-      "pickup": 3
+      "pickup": 3,
+      "missile-explode": 3
      }
     },
     {
@@ -24257,52 +24262,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 77.20000000000039,
+      "energy": 81.60000000000058,
       "boost": 1,
-      "score": 22750,
-      "multiplier": 1,
-      "invuln": 1.3333333333333335,
-      "shield": 1.3333333333333335,
-      "hitCount": 2,
+      "score": 29500,
+      "multiplier": 11,
+      "invuln": 0,
+      "shield": 0,
+      "hitCount": 1,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "missile",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
+       "missile": 1,
        "lightning": 0,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 1,
-      "enemies": 5,
+      "enemies": 3,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
+       "grunt": 1,
+       "wanderer": 1,
        "singularity": 0,
-       "dodger": 2,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 90,
-      "impulses": 1,
+      "particles": 49,
+      "impulses": 0,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 0.3998000000000039,
-      "budget": 12,
-      "killsThisWave": 10,
+      "wave": 4,
+      "timer": 0.47932400000000436,
+      "budget": 16,
+      "killsThisWave": 0,
       "bossTimer": 4.000000000001094,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24310,17 +24315,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1905749256,
+     "rngState": 1291482277,
      "eventCounts": {
-      "weapon-fire": 363,
+      "weapon-fire": 369,
       "spawn": 27,
-      "kill": 22,
-      "multiplier-up": 18,
+      "kill": 24,
+      "multiplier-up": 21,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
-      "hit-player": 2,
-      "pickup": 3
+      "hit-player": 1,
+      "pickup": 3,
+      "missile-explode": 3
      }
     },
     {
@@ -24345,52 +24351,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 81.20000000000059,
+      "energy": 85.60000000000078,
       "boost": 1,
-      "score": 22750,
-      "multiplier": 1,
-      "invuln": 0.8333333333333341,
-      "shield": 0.8333333333333341,
-      "hitCount": 2,
+      "score": 29500,
+      "multiplier": 11,
+      "invuln": 0,
+      "shield": 0,
+      "hitCount": 1,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "missile",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
+       "missile": 1,
        "lightning": 0,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 1,
-      "enemies": 5,
+      "enemies": 3,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
+       "grunt": 1,
+       "wanderer": 1,
        "singularity": 0,
-       "dodger": 2,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 88,
-      "impulses": 1,
+      "particles": 8,
+      "impulses": 0,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 0.899800000000005,
-      "budget": 12,
-      "killsThisWave": 10,
+      "wave": 4,
+      "timer": 0.9793240000000059,
+      "budget": 16,
+      "killsThisWave": 0,
       "bossTimer": 3.500000000001096,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24398,17 +24404,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1905749256,
+     "rngState": 1291482277,
      "eventCounts": {
-      "weapon-fire": 368,
+      "weapon-fire": 375,
       "spawn": 27,
-      "kill": 22,
-      "multiplier-up": 18,
+      "kill": 24,
+      "multiplier-up": 21,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
-      "hit-player": 2,
-      "pickup": 3
+      "hit-player": 1,
+      "pickup": 3,
+      "missile-explode": 3
      }
     },
     {
@@ -24433,52 +24440,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 85.20000000000078,
+      "energy": 94.00000000000098,
       "boost": 1,
-      "score": 22750,
+      "score": 34000,
       "multiplier": 1,
-      "invuln": 0.3333333333333332,
-      "shield": 0.3333333333333332,
+      "invuln": 1.1333333333333342,
+      "shield": 1.1333333333333342,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 2,
-      "enemies": 6,
+      "bullets": 3,
+      "enemies": 2,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
-       "singularity": 1,
-       "dodger": 2,
+       "grunt": 1,
+       "wanderer": 1,
+       "singularity": 0,
+       "dodger": 0,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 63,
+      "particles": 184,
       "impulses": 1,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 0.07440000000000425,
-      "budget": 12,
-      "killsThisWave": 10,
+      "wave": 4,
+      "timer": 0.23344800000000535,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 3.000000000001098,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24486,17 +24493,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1841808059,
+     "rngState": 692367898,
      "eventCounts": {
-      "weapon-fire": 373,
+      "weapon-fire": 381,
       "spawn": 28,
-      "kill": 22,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3
+      "pickup": 4,
+      "missile-explode": 3
      }
     },
     {
@@ -24521,52 +24529,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 89.20000000000098,
+      "energy": 98.00000000000118,
       "boost": 1,
-      "score": 22750,
+      "score": 34000,
       "multiplier": 1,
-      "invuln": 0,
-      "shield": 0,
+      "invuln": 0.6333333333333335,
+      "shield": 0.6333333333333335,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 2,
-      "enemies": 6,
+      "enemies": 2,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
-       "singularity": 1,
-       "dodger": 2,
+       "grunt": 1,
+       "wanderer": 1,
+       "singularity": 0,
+       "dodger": 0,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 24,
+      "particles": 171,
       "impulses": 1,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 0.5744000000000045,
-      "budget": 12,
-      "killsThisWave": 10,
+      "wave": 4,
+      "timer": 0.7334480000000061,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 2.5000000000010996,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24574,17 +24582,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1841808059,
+     "rngState": 692367898,
      "eventCounts": {
-      "weapon-fire": 378,
+      "weapon-fire": 387,
       "spawn": 28,
-      "kill": 22,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3
+      "pickup": 4,
+      "missile-explode": 3
      }
     },
     {
@@ -24609,52 +24618,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 93.20000000000118,
+      "energy": 100,
       "boost": 0.9908333333333333,
-      "score": 22750,
+      "score": 34000,
       "multiplier": 1,
-      "invuln": 0,
-      "shield": 0,
+      "invuln": 0.13333333333333325,
+      "shield": 0.13333333333333325,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 2,
-      "enemies": 6,
+      "enemies": 2,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
-       "singularity": 1,
-       "dodger": 2,
+       "grunt": 1,
+       "wanderer": 1,
+       "singularity": 0,
+       "dodger": 0,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 5,
+      "particles": 111,
       "impulses": 1,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 1.0744000000000056,
-      "budget": 12,
-      "killsThisWave": 10,
+      "wave": 4,
+      "timer": 1.233448000000006,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 2.0000000000011013,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24662,17 +24671,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1841808059,
+     "rngState": 692367898,
      "eventCounts": {
-      "weapon-fire": 382,
+      "weapon-fire": 392,
       "spawn": 28,
-      "kill": 22,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
       "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3
+      "pickup": 4,
+      "missile-explode": 3
      }
     },
     {
@@ -24697,52 +24707,52 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 97.20000000000138,
+      "energy": 100,
       "boost": 0.7158333333333337,
-      "score": 22750,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 2,
-      "enemies": 7,
+      "enemies": 3,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
-       "singularity": 1,
-       "dodger": 3,
+       "grunt": 1,
+       "wanderer": 1,
+       "singularity": 0,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 0,
-      "impulses": 0,
+      "particles": 39,
+      "impulses": 1,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 0.24900000000000466,
-      "budget": 12,
-      "killsThisWave": 10,
+      "wave": 4,
+      "timer": 0.4875720000000062,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 1.5000000000011031,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24750,17 +24760,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1777866862,
+     "rngState": 628426701,
      "eventCounts": {
-      "weapon-fire": 387,
+      "weapon-fire": 398,
       "spawn": 29,
-      "kill": 22,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3
+      "pickup": 4,
+      "missile-explode": 3
      }
     },
     {
@@ -24787,50 +24798,50 @@
       "lives": 3,
       "energy": 100,
       "boost": 0.44083333333333397,
-      "score": 22750,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 1,
-      "enemies": 7,
+      "enemies": 3,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
-       "singularity": 1,
-       "dodger": 3,
+       "grunt": 1,
+       "wanderer": 1,
+       "singularity": 0,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 0,
-      "impulses": 0,
+      "particles": 3,
+      "impulses": 1,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 0.7490000000000053,
-      "budget": 12,
-      "killsThisWave": 10,
+      "wave": 4,
+      "timer": 0.9875720000000078,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 1.000000000001105,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24838,17 +24849,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1777866862,
+     "rngState": 628426701,
      "eventCounts": {
-      "weapon-fire": 392,
+      "weapon-fire": 404,
       "spawn": 29,
-      "kill": 22,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3
+      "pickup": 4,
+      "missile-explode": 3
      }
     },
     {
@@ -24875,33 +24887,33 @@
       "lives": 3,
       "energy": 100,
       "boost": 0.3970000000000008,
-      "score": 22750,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 1,
-      "enemies": 7,
+      "enemies": 4,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 3,
-       "singularity": 1,
-       "dodger": 3,
+       "grunt": 2,
+       "wanderer": 1,
+       "singularity": 0,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
@@ -24915,10 +24927,10 @@
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 1.2490000000000052,
-      "budget": 12,
-      "killsThisWave": 10,
+      "wave": 4,
+      "timer": 0.24169600000000716,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 0.5000000000011033,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -24926,17 +24938,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1777866862,
+     "rngState": 564485504,
      "eventCounts": {
-      "weapon-fire": 397,
-      "spawn": 29,
-      "kill": 22,
-      "multiplier-up": 18,
+      "weapon-fire": 410,
+      "spawn": 30,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3
+      "pickup": 4,
+      "missile-explode": 3
      }
     },
     {
@@ -24963,50 +24976,50 @@
       "lives": 3,
       "energy": 100,
       "boost": 0.4870000000000009,
-      "score": 23350,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 0,
-      "enemies": 7,
+      "enemies": 4,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 3,
+       "grunt": 2,
+       "wanderer": 1,
        "singularity": 0,
-       "dodger": 3,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 150,
-      "impulses": 1,
+      "particles": 0,
+      "impulses": 0,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
      "boss": null,
      "spawn": {
-      "wave": 3,
-      "timer": 0.423600000000005,
-      "budget": 12,
-      "killsThisWave": 11,
+      "wave": 4,
+      "timer": 0.7416960000000079,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 1.1034437252810392e-12,
       "bossTimerMax": 42,
       "bossIndex": 0
@@ -25014,17 +25027,18 @@
      "bossActiveWave": 0,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": -1950120667,
+     "rngState": 564485504,
      "eventCounts": {
-      "weapon-fire": 401,
+      "weapon-fire": 415,
       "spawn": 30,
-      "kill": 23,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3
+      "pickup": 4,
+      "missile-explode": 3
      }
     },
     {
@@ -25051,43 +25065,43 @@
       "lives": 3,
       "energy": 100,
       "boost": 0.577000000000001,
-      "score": 23350,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 1,
-      "enemies": 7,
+      "enemies": 4,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 3,
+       "grunt": 2,
+       "wanderer": 1,
        "singularity": 0,
-       "dodger": 3,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 105,
-      "impulses": 1,
+      "particles": 0,
+      "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 17
      },
      "boss": {
       "bossType": "mini",
@@ -25103,28 +25117,29 @@
       "fireCooldown": 1.1000000000000019
      },
      "spawn": {
-      "wave": 3,
-      "timer": 0.9236000000000063,
-      "budget": 12,
-      "killsThisWave": 11,
+      "wave": 4,
+      "timer": 1.241696000000008,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1081175289,
+     "rngState": -699185836,
      "eventCounts": {
-      "weapon-fire": 406,
+      "weapon-fire": 422,
       "spawn": 30,
-      "kill": 23,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3,
+      "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1
      }
     },
@@ -25152,43 +25167,43 @@
       "lives": 3,
       "energy": 100,
       "boost": 0.667000000000001,
-      "score": 23350,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 2,
-      "enemies": 8,
+      "enemies": 5,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 3,
+       "grunt": 2,
+       "wanderer": 2,
        "singularity": 0,
-       "dodger": 4,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 45,
+      "particles": 0,
       "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 17
      },
      "boss": {
       "bossType": "mini",
@@ -25204,28 +25219,29 @@
       "fireCooldown": 0.600000000000001
      },
      "spawn": {
-      "wave": 3,
-      "timer": 0.09820000000000545,
-      "budget": 12,
-      "killsThisWave": 11,
+      "wave": 4,
+      "timer": 0.49582000000000803,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1017234092,
+     "rngState": -763127033,
      "eventCounts": {
-      "weapon-fire": 411,
+      "weapon-fire": 428,
       "spawn": 31,
-      "kill": 23,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3,
+      "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1
      }
     },
@@ -25253,43 +25269,43 @@
       "lives": 3,
       "energy": 100,
       "boost": 0.7570000000000011,
-      "score": 23350,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 4,
-      "enemies": 8,
+      "enemies": 5,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 3,
+       "grunt": 2,
+       "wanderer": 2,
        "singularity": 0,
-       "dodger": 4,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 14,
+      "particles": 0,
       "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 12
      },
      "boss": {
       "bossType": "mini",
@@ -25305,28 +25321,29 @@
       "fireCooldown": 0.10000000000000075
      },
      "spawn": {
-      "wave": 3,
-      "timer": 0.5982000000000056,
-      "budget": 12,
-      "killsThisWave": 11,
+      "wave": 4,
+      "timer": 0.9958200000000096,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1017234092,
+     "rngState": -763127033,
      "eventCounts": {
-      "weapon-fire": 416,
+      "weapon-fire": 434,
       "spawn": 31,
-      "kill": 23,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3,
+      "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1
      }
     },
@@ -25354,33 +25371,33 @@
       "lives": 3,
       "energy": 100,
       "boost": 0.8470000000000012,
-      "score": 23350,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 14,
-      "enemies": 8,
+      "enemies": 6,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 3,
-       "singularity": 0,
-       "dodger": 4,
+       "grunt": 2,
+       "wanderer": 2,
+       "singularity": 1,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
@@ -25390,13 +25407,13 @@
       "particles": 0,
       "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 18
      },
      "boss": {
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 70,
+      "hp": 68.56,
       "maxHp": 70,
       "pos": {
        "x": -7.707116685035349,
@@ -25406,30 +25423,32 @@
       "fireCooldown": 0.7166666666666662
      },
      "spawn": {
-      "wave": 3,
-      "timer": 1.0982000000000065,
-      "budget": 12,
-      "killsThisWave": 11,
+      "wave": 4,
+      "timer": 0.24994400000000894,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1017234092,
+     "rngState": -827068230,
      "eventCounts": {
-      "weapon-fire": 420,
-      "spawn": 31,
-      "kill": 23,
-      "multiplier-up": 18,
+      "weapon-fire": 439,
+      "spawn": 32,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3,
+      "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
-      "boss-fire": 1
+      "boss-fire": 1,
+      "boss-hit": 1
      }
     },
     {
@@ -25456,33 +25475,33 @@
       "lives": 3,
       "energy": 100,
       "boost": 0.9370000000000013,
-      "score": 23350,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 16,
-      "enemies": 9,
+      "enemies": 6,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 4,
-       "singularity": 0,
-       "dodger": 4,
+       "grunt": 2,
+       "wanderer": 2,
+       "singularity": 1,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
@@ -25492,13 +25511,13 @@
       "particles": 0,
       "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 14
      },
      "boss": {
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 70,
+      "hp": 67.12,
       "maxHp": 70,
       "pos": {
        "x": -8.536917938089005,
@@ -25508,30 +25527,32 @@
       "fireCooldown": 0.21666666666666567
      },
      "spawn": {
-      "wave": 3,
-      "timer": 0.27280000000000576,
-      "budget": 12,
-      "killsThisWave": 11,
+      "wave": 4,
+      "timer": 0.7499440000000096,
+      "budget": 16,
+      "killsThisWave": 2,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 953292895,
+     "rngState": -827068230,
      "eventCounts": {
-      "weapon-fire": 425,
+      "weapon-fire": 445,
       "spawn": 32,
-      "kill": 23,
-      "multiplier-up": 18,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 2,
       "skill-fire": 2,
-      "shockwave": 4,
+      "shockwave": 3,
       "hit-player": 2,
-      "pickup": 3,
+      "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
-      "boss-fire": 1
+      "boss-fire": 1,
+      "boss-hit": 2
      }
     },
     {
@@ -25556,42 +25577,42 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 2.2,
+      "energy": 0,
       "boost": 1,
-      "score": 23750,
+      "score": 34000,
       "multiplier": 1,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
       "bullets": 19,
-      "enemies": 8,
+      "enemies": 7,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 4,
-       "singularity": 0,
-       "dodger": 3,
+       "grunt": 3,
+       "wanderer": 2,
+       "singularity": 1,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 1,
       "itemsByKind": {
-       "life": 0,
+       "life": 1,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 194,
+      "particles": 130,
       "impulses": 1,
       "pendingBursts": 1,
       "weaponEffects": 0
@@ -25600,7 +25621,7 @@
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 58,
+      "hp": 53.68000000000001,
       "maxHp": 70,
       "pos": {
        "x": -8.536388510850358,
@@ -25611,30 +25632,31 @@
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.7728000000000066,
+      "timer": 0.0040680000000097305,
       "budget": 16,
-      "killsThisWave": 0,
+      "killsThisWave": 2,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": -1484963597,
+     "rngState": -493124351,
      "eventCounts": {
-      "weapon-fire": 430,
-      "spawn": 32,
-      "kill": 24,
-      "multiplier-up": 18,
+      "weapon-fire": 451,
+      "spawn": 33,
+      "kill": 26,
+      "multiplier-up": 22,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
       "hit-player": 2,
-      "pickup": 3,
+      "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 2,
-      "boss-hit": 1
+      "boss-hit": 4
      }
     },
     {
@@ -25659,42 +25681,42 @@
       "hp": 100,
       "alive": true,
       "lives": 3,
-      "energy": 6.200000000000006,
+      "energy": 8.400000000000004,
       "boost": 1,
-      "score": 23750,
-      "multiplier": 1,
+      "score": 34350,
+      "multiplier": 2,
       "invuln": 0,
       "shield": 0,
       "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": null,
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
-       "missile": 0,
-       "lightning": 0,
+       "missile": 1,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 13,
-      "enemies": 9,
+      "bullets": 12,
+      "enemies": 5,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 5,
-       "singularity": 0,
-       "dodger": 3,
+       "grunt": 2,
+       "wanderer": 1,
+       "singularity": 1,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 2,
       "itemsByKind": {
-       "life": 0,
+       "life": 2,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 664,
+      "particles": 728,
       "impulses": 1,
       "pendingBursts": 0,
       "weaponEffects": 0
@@ -25703,7 +25725,7 @@
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 55,
+      "hp": 49.24000000000001,
       "maxHp": 70,
       "pos": {
        "x": -7.6093616383175675,
@@ -25714,30 +25736,31 @@
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.02692400000000667,
+      "timer": 0.5040680000000097,
       "budget": 16,
-      "killsThisWave": 0,
+      "killsThisWave": 4,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1784200429,
+     "rngState": 646582071,
      "eventCounts": {
-      "weapon-fire": 435,
+      "weapon-fire": 457,
       "spawn": 33,
-      "kill": 24,
-      "multiplier-up": 18,
+      "kill": 28,
+      "multiplier-up": 23,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
       "hit-player": 2,
-      "pickup": 3,
+      "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 2,
-      "boss-hit": 4
+      "boss-hit": 8
      }
     },
     {
@@ -25745,14 +25768,14 @@
      "time": 45.99999999999867,
      "player": {
       "pos": {
-       "x": -7.160849690063112,
+       "x": -6.043921156769022,
        "y": 0,
-       "z": -24.201904587263094
+       "z": -24.56367455616666
       },
       "vel": {
-       "x": 10.430638015472974,
+       "x": 15.661045913554732,
        "y": 0,
-       "z": -1.1764348414467727
+       "z": -3.27591832827539
       },
       "aim": {
        "x": -0.08842028754642978,
@@ -25761,44 +25784,44 @@
       },
       "hp": 100,
       "alive": true,
-      "lives": 2,
-      "energy": 12.400000000000006,
+      "lives": 3,
+      "energy": 12.39999999999999,
       "boost": 1,
-      "score": 24000,
-      "multiplier": 1,
-      "invuln": 1.2833333333333337,
-      "shield": 1.2833333333333337,
-      "hitCount": 0,
+      "score": 34350,
+      "multiplier": 2,
+      "invuln": 0,
+      "shield": 0,
+      "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 19,
-      "enemies": 8,
+      "bullets": 18,
+      "enemies": 5,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 4,
-       "singularity": 0,
-       "dodger": 3,
+       "grunt": 2,
+       "wanderer": 1,
+       "singularity": 1,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 2,
       "itemsByKind": {
-       "life": 0,
+       "life": 2,
        "heal": 0,
        "weapon": 0,
        "boost": 0,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 645,
-      "impulses": 2,
+      "particles": 593,
+      "impulses": 1,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
@@ -25806,42 +25829,42 @@
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 50,
+      "hp": 42.80000000000001,
       "maxHp": 70,
       "pos": {
-       "x": -5.9097572872494055,
+       "x": -5.89465247631377,
        "y": 0,
-       "z": -11.356072114554225
+       "z": -11.330609967209577
       },
       "fireCooldown": 0.9166666666666669
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.5269240000000067,
+      "timer": 1.0040680000000113,
       "budget": 16,
-      "killsThisWave": 1,
+      "killsThisWave": 4,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1493884938,
+     "rngState": 646582071,
      "eventCounts": {
-      "weapon-fire": 441,
+      "weapon-fire": 463,
       "spawn": 33,
-      "kill": 25,
-      "multiplier-up": 19,
+      "kill": 28,
+      "multiplier-up": 23,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
-      "hit-player": 3,
+      "hit-player": 2,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 3,
-      "boss-hit": 9,
-      "revive": 1
+      "boss-hit": 14
      }
     },
     {
@@ -25849,14 +25872,14 @@
      "time": 46.49999999999864,
      "player": {
       "pos": {
-       "x": 0.6845449737559395,
+       "x": 1.9094888773480916,
        "y": 0,
-       "z": -24.046730014661993
+       "z": -24.683331191889295
       },
       "vel": {
-       "x": 15.766038605601366,
+       "x": 15.784412453683547,
        "y": 0,
-       "z": 2.7261743683571176
+       "z": 2.6176943083560786
       },
       "aim": {
        "x": -0.6537548094393321,
@@ -25865,43 +25888,43 @@
       },
       "hp": 100,
       "alive": true,
-      "lives": 2,
-      "energy": 18.59999999999999,
+      "lives": 3,
+      "energy": 20.799999999999976,
       "boost": 1,
-      "score": 24250,
-      "multiplier": 1,
-      "invuln": 0.783333333333334,
-      "shield": 0.783333333333334,
-      "hitCount": 0,
+      "score": 36350,
+      "multiplier": 5,
+      "invuln": 0,
+      "shield": 0,
+      "hitCount": 2,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 18,
-      "enemies": 7,
+      "bullets": 16,
+      "enemies": 4,
       "enemiesByKind": {
-       "grunt": 1,
-       "wanderer": 3,
+       "grunt": 2,
+       "wanderer": 1,
        "singularity": 0,
-       "dodger": 3,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 0,
+      "items": 3,
       "itemsByKind": {
-       "life": 0,
+       "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 0,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 439,
+      "particles": 493,
       "impulses": 2,
       "pendingBursts": 0,
       "weaponEffects": 0
@@ -25910,43 +25933,42 @@
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 49,
+      "hp": 39.360000000000014,
       "maxHp": 70,
       "pos": {
-       "x": -3.808960704691763,
+       "x": -3.7427376775182806,
        "y": 0,
-       "z": -12.061213233269951
+       "z": -11.872950536385169
       },
       "fireCooldown": 0.41666666666666563
      },
      "spawn": {
       "wave": 4,
-      "timer": 1.0269240000000082,
+      "timer": 0.25819200000001064,
       "budget": 16,
-      "killsThisWave": 2,
+      "killsThisWave": 6,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": -988914648,
+     "rngState": -671038075,
      "eventCounts": {
-      "weapon-fire": 446,
-      "spawn": 33,
-      "kill": 26,
-      "multiplier-up": 19,
+      "weapon-fire": 468,
+      "spawn": 34,
+      "kill": 30,
+      "multiplier-up": 25,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
-      "hit-player": 3,
+      "hit-player": 2,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 3,
-      "boss-hit": 10,
-      "revive": 1,
-      "missile-explode": 1
+      "boss-hit": 17
      }
     },
     {
@@ -25954,14 +25976,14 @@
      "time": 46.999999999998614,
      "player": {
       "pos": {
-       "x": 8.133407397287533,
+       "x": 8.016908041915073,
        "y": 0,
-       "z": -21.25346091362938
+       "z": -22.054318139804387
       },
       "vel": {
-       "x": 13.750233084069258,
+       "x": 13.532606964977145,
        "y": 0,
-       "z": 8.181142348949033
+       "z": 8.536307675538183
       },
       "aim": {
        "x": -0.972686281776339,
@@ -25971,43 +25993,43 @@
       "hp": 100,
       "alive": true,
       "lives": 2,
-      "energy": 33.59999999999997,
+      "energy": 29.19999999999996,
       "boost": 1,
-      "score": 28350,
-      "multiplier": 7,
-      "invuln": 0.2833333333333332,
-      "shield": 0.2833333333333332,
+      "score": 37700,
+      "multiplier": 1,
+      "invuln": 1.0333333333333345,
+      "shield": 1.0333333333333345,
       "hitCount": 0,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 19,
-      "enemies": 3,
+      "bullets": 23,
+      "enemies": 2,
       "enemiesByKind": {
-       "grunt": 0,
+       "grunt": 1,
        "wanderer": 0,
        "singularity": 0,
-       "dodger": 3,
+       "dodger": 1,
        "boss": 0
       },
-      "items": 2,
+      "items": 3,
       "itemsByKind": {
        "life": 2,
        "heal": 0,
        "weapon": 0,
-       "boost": 0,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 585,
-      "impulses": 2,
+      "particles": 429,
+      "impulses": 3,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
@@ -26015,43 +26037,43 @@
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 49,
+      "hp": 37.920000000000016,
       "maxHp": 70,
       "pos": {
-       "x": -1.6097458028488933,
+       "x": -1.5292665970979065,
        "y": 0,
-       "z": -11.772194067708979
+       "z": -11.622197923387171
       },
       "fireCooldown": 1.016666666666667
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.28104800000000757,
+      "timer": 0.7581920000000114,
       "budget": 16,
-      "killsThisWave": 7,
+      "killsThisWave": 8,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1491140820,
+     "rngState": 1095671835,
      "eventCounts": {
-      "weapon-fire": 451,
+      "weapon-fire": 474,
       "spawn": 34,
-      "kill": 31,
-      "multiplier-up": 24,
+      "kill": 32,
+      "multiplier-up": 26,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
       "hit-player": 3,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 4,
-      "boss-hit": 10,
-      "revive": 1,
-      "missile-explode": 2
+      "boss-hit": 18,
+      "revive": 1
      }
     },
     {
@@ -26059,14 +26081,14 @@
      "time": 47.499999999998586,
      "player": {
       "pos": {
-       "x": 14.06802867052908,
+       "x": 13.90905364650517,
        "y": 0,
-       "z": -15.95742917360223
+       "z": -16.703672533816935
       },
       "vel": {
-       "x": 9.841771467693931,
+       "x": 9.818952735838158,
        "y": 0,
-       "z": 12.615051897542303
+       "z": 12.632821029816593
       },
       "aim": {
        "x": -0.9250080364786573,
@@ -26076,43 +26098,43 @@
       "hp": 100,
       "alive": true,
       "lives": 2,
-      "energy": 41.999999999999964,
+      "energy": 35.39999999999995,
       "boost": 1,
-      "score": 34350,
-      "multiplier": 10,
-      "invuln": 0,
-      "shield": 0,
+      "score": 38100,
+      "multiplier": 2,
+      "invuln": 0.5333333333333332,
+      "shield": 0.5333333333333332,
       "hitCount": 0,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 20,
-      "enemies": 1,
+      "bullets": 22,
+      "enemies": 2,
       "enemiesByKind": {
-       "grunt": 0,
+       "grunt": 1,
        "wanderer": 0,
-       "singularity": 0,
-       "dodger": 1,
+       "singularity": 1,
+       "dodger": 0,
        "boss": 0
       },
-      "items": 2,
+      "items": 4,
       "itemsByKind": {
        "life": 2,
        "heal": 0,
-       "weapon": 0,
-       "boost": 0,
+       "weapon": 1,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 513,
-      "impulses": 1,
+      "particles": 318,
+      "impulses": 2,
       "pendingBursts": 0,
       "weaponEffects": 0
      },
@@ -26120,43 +26142,43 @@
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 49,
+      "hp": 36.48000000000002,
       "maxHp": 70,
       "pos": {
-       "x": 0.28288586825034717,
+       "x": 0.4280549528254974,
        "y": 0,
-       "z": -10.609651973452868
+       "z": -10.572483593954942
       },
       "fireCooldown": 0.5166666666666656
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.7810480000000084,
+      "timer": 0.01231600000001154,
       "budget": 16,
       "killsThisWave": 9,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1825084699,
+     "rngState": -980751669,
      "eventCounts": {
-      "weapon-fire": 457,
-      "spawn": 34,
+      "weapon-fire": 480,
+      "spawn": 35,
       "kill": 33,
-      "multiplier-up": 26,
+      "multiplier-up": 27,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
       "hit-player": 3,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 4,
-      "boss-hit": 10,
-      "revive": 1,
-      "missile-explode": 2
+      "boss-hit": 19,
+      "revive": 1
      }
     },
     {
@@ -26164,14 +26186,14 @@
      "time": 47.99999999999856,
      "player": {
       "pos": {
-       "x": 17.681823384963486,
+       "x": 17.518733849532996,
        "y": 0,
-       "z": -8.83107737063743
+       "z": -9.574831405357823
       },
       "vel": {
-       "x": 5.127328921351959,
+       "x": 5.1252313398664455,
        "y": 0,
-       "z": 17.493338997400564
+       "z": 17.493994500897237
       },
       "aim": {
        "x": -0.5286902129153532,
@@ -26181,87 +26203,87 @@
       "hp": 100,
       "alive": true,
       "lives": 2,
-      "energy": 45.99999999999995,
+      "energy": 39.399999999999935,
       "boost": 0.9908333333333333,
-      "score": 34350,
-      "multiplier": 10,
-      "invuln": 0,
-      "shield": 0,
+      "score": 38100,
+      "multiplier": 2,
+      "invuln": 0.03333333333333327,
+      "shield": 0.03333333333333327,
       "hitCount": 0,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 14,
+      "bullets": 12,
       "enemies": 2,
       "enemiesByKind": {
        "grunt": 1,
        "wanderer": 0,
-       "singularity": 0,
-       "dodger": 1,
+       "singularity": 1,
+       "dodger": 0,
        "boss": 0
       },
-      "items": 2,
+      "items": 4,
       "itemsByKind": {
        "life": 2,
        "heal": 0,
-       "weapon": 0,
-       "boost": 0,
+       "weapon": 1,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 353,
+      "particles": 169,
       "impulses": 1,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 27
      },
      "boss": {
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 46.29102107965721,
+      "hp": 33.60000000000002,
       "maxHp": 70,
       "pos": {
-       "x": 1.6055672601036879,
+       "x": 1.840301058687042,
        "y": 0,
-       "z": -8.822252192136485
+       "z": -8.85602478844073
       },
       "fireCooldown": 0.016666666666665716
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.03517200000000854,
+      "timer": 0.5123160000000115,
       "budget": 16,
       "killsThisWave": 9,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 1290826223,
+     "rngState": -980751669,
      "eventCounts": {
-      "weapon-fire": 463,
+      "weapon-fire": 487,
       "spawn": 35,
       "kill": 33,
-      "multiplier-up": 26,
+      "multiplier-up": 27,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
       "hit-player": 3,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 4,
-      "boss-hit": 11,
-      "revive": 1,
-      "missile-explode": 3
+      "boss-hit": 21,
+      "revive": 1
      }
     },
     {
@@ -26269,14 +26291,14 @@
      "time": 48.49999999999853,
      "player": {
       "pos": {
-       "x": 18.933239364296373,
+       "x": 18.76965511989819,
        "y": 0,
-       "z": 3.877227337499179
+       "z": 3.133559891556749
       },
       "vel": {
-       "x": -1.88534582163882,
+       "x": -1.8855924234076895,
        "y": 0,
-       "z": 25.931553581164955
+       "z": 25.93153565087859
       },
       "aim": {
        "x": 0.06689326629095939,
@@ -26286,87 +26308,87 @@
       "hp": 100,
       "alive": true,
       "lives": 2,
-      "energy": 52.19999999999994,
+      "energy": 43.39999999999992,
       "boost": 0.7158333333333337,
-      "score": 38350,
-      "multiplier": 11,
+      "score": 38100,
+      "multiplier": 2,
       "invuln": 0,
       "shield": 0,
       "hitCount": 0,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 19,
-      "enemies": 1,
+      "bullets": 18,
+      "enemies": 2,
       "enemiesByKind": {
        "grunt": 1,
        "wanderer": 0,
-       "singularity": 0,
+       "singularity": 1,
        "dodger": 0,
        "boss": 0
       },
-      "items": 2,
+      "items": 3,
       "itemsByKind": {
-       "life": 2,
+       "life": 1,
        "heal": 0,
-       "weapon": 0,
-       "boost": 0,
+       "weapon": 1,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 270,
-      "impulses": 0,
+      "particles": 54,
+      "impulses": 1,
       "pendingBursts": 0,
-      "weaponEffects": 8
+      "weaponEffects": 17
      },
      "boss": {
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 46.29102107965721,
+      "hp": 33.60000000000002,
       "maxHp": 70,
       "pos": {
-       "x": 1.9630702100815027,
+       "x": 2.264674481541689,
        "y": 0,
-       "z": -6.644462782459416
+       "z": -6.6933226047621375
       },
       "fireCooldown": 0.6166666666666659
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.5351720000000086,
+      "timer": 1.012316000000013,
       "budget": 16,
-      "killsThisWave": 10,
+      "killsThisWave": 9,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 135639174,
+     "rngState": -980751669,
      "eventCounts": {
-      "weapon-fire": 468,
+      "weapon-fire": 492,
       "spawn": 35,
-      "kill": 34,
+      "kill": 33,
       "multiplier-up": 27,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
       "hit-player": 3,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 5,
-      "boss-hit": 11,
-      "revive": 1,
-      "missile-explode": 4
+      "boss-hit": 21,
+      "revive": 1
      }
     },
     {
@@ -26374,14 +26396,14 @@
      "time": 48.9999999999985,
      "player": {
       "pos": {
-       "x": 15.568798736188374,
+       "x": 15.405171485698299,
        "y": 0,
-       "z": 16.35767137925338
+       "z": 15.613995483829484
       },
       "vel": {
-       "x": -11.133298888167035,
+       "x": -11.133317869103736,
        "y": 0,
-       "z": 23.495736972198568
+       "z": 23.495727978198406
       },
       "aim": {
        "x": 0.637264380600123,
@@ -26391,87 +26413,87 @@
       "hp": 100,
       "alive": true,
       "lives": 2,
-      "energy": 58.39999999999993,
+      "energy": 47.399999999999906,
       "boost": 0.44083333333333397,
-      "score": 39450,
-      "multiplier": 12,
+      "score": 38100,
+      "multiplier": 2,
       "invuln": 0,
       "shield": 0,
       "hitCount": 0,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 15,
-      "enemies": 0,
+      "bullets": 14,
+      "enemies": 3,
       "enemiesByKind": {
-       "grunt": 0,
-       "wanderer": 0,
-       "singularity": 0,
+       "grunt": 1,
+       "wanderer": 1,
+       "singularity": 1,
        "dodger": 0,
        "boss": 0
       },
       "items": 3,
       "itemsByKind": {
-       "life": 3,
+       "life": 1,
        "heal": 0,
-       "weapon": 0,
-       "boost": 0,
+       "weapon": 1,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 251,
-      "impulses": 0,
+      "particles": 12,
+      "impulses": 1,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 12
      },
      "boss": {
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 46.29102107965721,
+      "hp": 33.60000000000002,
       "maxHp": 70,
       "pos": {
-       "x": 1.2681641651101572,
+       "x": 1.5860955554917933,
        "y": 0,
-       "z": -4.535706455026689
+       "z": -4.580715367087758
       },
       "fireCooldown": 0.1166666666666657
      },
      "spawn": {
       "wave": 4,
-      "timer": 1.03517200000001,
+      "timer": 0.2664400000000124,
       "budget": 16,
-      "killsThisWave": 11,
+      "killsThisWave": 9,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 116241071,
+     "rngState": -1044692866,
      "eventCounts": {
-      "weapon-fire": 474,
-      "spawn": 35,
-      "kill": 35,
-      "multiplier-up": 28,
+      "weapon-fire": 498,
+      "spawn": 36,
+      "kill": 33,
+      "multiplier-up": 27,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
       "hit-player": 3,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 5,
-      "boss-hit": 11,
-      "revive": 1,
-      "missile-explode": 5
+      "boss-hit": 21,
+      "revive": 1
      }
     },
     {
@@ -26479,14 +26501,14 @@
      "time": 49.49999999999847,
      "player": {
       "pos": {
-       "x": 9.452858075057986,
+       "x": 9.720865133548967,
        "y": 0,
-       "z": 23.62934561541667
+       "z": 23.520358863234886
       },
       "vel": {
-       "x": -14.848979883354835,
+       "x": -14.780428293021018,
        "y": 0,
-       "z": 5.940295667991953
+       "z": 6.108688684896528
       },
       "aim": {
        "x": 0.9674477601714268,
@@ -26496,87 +26518,87 @@
       "hp": 100,
       "alive": true,
       "lives": 2,
-      "energy": 62.39999999999991,
+      "energy": 51.39999999999989,
       "boost": 0.3970000000000008,
-      "score": 39450,
-      "multiplier": 12,
+      "score": 38100,
+      "multiplier": 2,
       "invuln": 0,
       "shield": 0,
       "hitCount": 0,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 19,
-      "enemies": 1,
+      "bullets": 17,
+      "enemies": 3,
       "enemiesByKind": {
        "grunt": 1,
-       "wanderer": 0,
-       "singularity": 0,
+       "wanderer": 1,
+       "singularity": 1,
        "dodger": 0,
        "boss": 0
       },
       "items": 3,
       "itemsByKind": {
-       "life": 3,
+       "life": 1,
        "heal": 0,
-       "weapon": 0,
-       "boost": 0,
+       "weapon": 1,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 165,
+      "particles": 0,
       "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 10
      },
      "boss": {
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 46.29102107965721,
+      "hp": 33.60000000000002,
       "maxHp": 70,
       "pos": {
-       "x": -0.09467076403081304,
+       "x": 0.21702317913340968,
        "y": 0,
-       "z": -2.769567610784154
+       "z": -2.819507452233224
       },
       "fireCooldown": 0.7166666666666662
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.28929600000000943,
+      "timer": 0.7664400000000131,
       "budget": 16,
-      "killsThisWave": 11,
+      "killsThisWave": 9,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 52299874,
+     "rngState": -1044692866,
      "eventCounts": {
-      "weapon-fire": 480,
+      "weapon-fire": 504,
       "spawn": 36,
-      "kill": 35,
-      "multiplier-up": 28,
+      "kill": 33,
+      "multiplier-up": 27,
       "skill": 3,
       "skill-fire": 3,
       "shockwave": 4,
       "hit-player": 3,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 6,
-      "boss-hit": 11,
-      "revive": 1,
-      "missile-explode": 5
+      "boss-hit": 21,
+      "revive": 1
      }
     },
     {
@@ -26584,14 +26606,14 @@
      "time": 49.999999999998444,
      "player": {
       "pos": {
-       "x": 1.6864344954488684,
+       "x": 1.974757922754078,
        "y": 0,
-       "z": 25.39406305994691
+       "z": 25.37327001288009
       },
       "vel": {
-       "x": -15.960049460801217,
+       "x": -15.892170114351554,
        "y": 0,
-       "z": 1.0599161660828589
+       "z": 1.0886801936298016
       },
       "aim": {
        "x": 0.9329958438330921,
@@ -26601,87 +26623,87 @@
       "hp": 100,
       "alive": true,
       "lives": 2,
-      "energy": 66.40000000000002,
+      "energy": 55.39999999999988,
       "boost": 0.4870000000000009,
-      "score": 39450,
-      "multiplier": 12,
+      "score": 38100,
+      "multiplier": 2,
       "invuln": 0,
       "shield": 0,
       "hitCount": 0,
       "primaryWeapon": "blaster",
-      "secondaryWeapon": "missile",
+      "secondaryWeapon": "lightning",
       "weaponLevels": {
        "blaster": 1,
        "missile": 1,
-       "lightning": 0,
+       "lightning": 1,
        "laser": 0
       }
      },
      "counts": {
-      "bullets": 13,
-      "enemies": 1,
+      "bullets": 11,
+      "enemies": 4,
       "enemiesByKind": {
        "grunt": 1,
-       "wanderer": 0,
-       "singularity": 0,
+       "wanderer": 1,
+       "singularity": 2,
        "dodger": 0,
        "boss": 0
       },
       "items": 3,
       "itemsByKind": {
-       "life": 3,
+       "life": 1,
        "heal": 0,
-       "weapon": 0,
-       "boost": 0,
+       "weapon": 1,
+       "boost": 1,
        "shield": 0,
        "multiplier": 0
       },
-      "particles": 92,
+      "particles": 0,
       "impulses": 0,
       "pendingBursts": 0,
-      "weaponEffects": 0
+      "weaponEffects": 8
      },
      "boss": {
       "bossType": "mini",
       "bossNumber": 1,
       "rageLevel": 0,
-      "hp": 46.29102107965721,
+      "hp": 33.60000000000002,
       "maxHp": 70,
       "pos": {
-       "x": -1.8061691985725594,
+       "x": -1.495748227199153,
        "y": 0,
-       "z": -1.3373824496713533
+       "z": -1.3888571388673758
       },
       "fireCooldown": 0.21666666666666567
      },
      "spawn": {
       "wave": 4,
-      "timer": 0.7892960000000103,
+      "timer": 0.020564000000013186,
       "budget": 16,
-      "killsThisWave": 11,
+      "killsThisWave": 9,
       "bossTimer": 52,
       "bossTimerMax": 42,
       "bossIndex": 0
      },
-     "bossActiveWave": 3,
+     "bossActiveWave": 4,
      "bossDefeatedWaves": [],
      "gameOver": false,
-     "rngState": 52299874,
+     "rngState": -1108634063,
      "eventCounts": {
-      "weapon-fire": 486,
-      "spawn": 36,
-      "kill": 35,
-      "multiplier-up": 28,
+      "weapon-fire": 510,
+      "spawn": 37,
+      "kill": 33,
+      "multiplier-up": 27,
       "skill": 3,
       "skill-fire": 3,
-      "shockwave": 4,
+      "shockwave": 5,
       "hit-player": 3,
       "pickup": 4,
+      "missile-explode": 3,
       "boss-spawn": 1,
       "boss-fire": 6,
-      "boss-hit": 11,
-      "revive": 1,
-      "missile-explode": 5
+      "boss-hit": 21,
+      "revive": 1
      }
     }
    ]

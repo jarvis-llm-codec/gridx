@@ -24,6 +24,8 @@ describe('secondary-weapon ultimate', () => {
     const first = stepWorld(world, systems, ultInput(), DT);
     expect(first.filter((event) => event.type === 'ultimate-fire')).toHaveLength(1);
     expect(world.player.ultimateCooldown).toBe(CONFIG.ultimate.cooldown);
+    // Playtest feedback: ultimates must not wobble the floor grid.
+    expect(world.impulses).toHaveLength(0);
     const second = stepWorld(world, systems, ultInput(), DT);
     expect(second.some((event) => event.type === 'ultimate-fire')).toBe(false);
     expect(world.player.ultimateCooldown).toBeLessThan(CONFIG.ultimate.cooldown);

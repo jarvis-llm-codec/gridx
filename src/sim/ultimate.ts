@@ -6,10 +6,9 @@
 // the existing collision + resolveLightning paths in world.ts.
 import { CONFIG } from '../core/config.js';
 import type { PlayerState, World } from '../core/types.js';
-import { createImpulse } from '../math/wave.js';
 import { addTrauma } from '../systems/cameraShake.js';
 import { spawnBullet } from './bullet.js';
-import { WEAPON_COLORS } from './weapons.js';
+import { addWeaponArc, WEAPON_COLORS } from './weapons.js';
 import type { WorldSystems } from './world.js';
 
 const aimAngle = (player: PlayerState): number => Math.atan2(player.aim.z, player.aim.x);
@@ -50,15 +49,27 @@ export const fireUltimate = (world: World, systems: WorldSystems): void => {
         noCone: true,
       });
     }
+    // Visual-only crackle: zigzag bolts radiating 360° out to the arena edge.
+    const edgeRadius = world.arenaRadius - 0.5;
+    for (let bolt = 0; bolt < cfg.radialBolts; bolt += 1) {
+      const angle = base + (bolt / cfg.radialBolts) * Math.PI * 2;
+      const dirX = Math.cos(angle);
+      const dirZ = Math.sin(angle);
+      const along = player.pos.x * dirX + player.pos.z * dirZ;
+      const reach = -along + Math.sqrt(Math.max(0,
+        along * along + edgeRadius * edgeRadius - (player.pos.x ** 2 + player.pos.z ** 2)));
+      addWeaponArc(world, 'lightning', { x: player.pos.x, z: player.pos.z }, {
+        x: player.pos.x + dirX * reach,
+        z: player.pos.z + dirZ * reach,
+      }, bolt * 7 + 3);
+    }
   } else {
     world.ultimateBeam = { t: CONFIG.ultimate.laser.duration, tick: 0, level };
   }
 
+  // No grid impulse on purpose — the floor stays calm during ultimates
+  // (playtest feedback: the wobble read as noise, not spectacle).
   world.events.push({ type: 'ultimate-fire', pos: { ...player.pos }, weapon });
-  world.impulses.push(createImpulse(player.pos.x, player.pos.z, CONFIG.grid.impulseStrength * 4, {
-    eventTier: 'localBlast',
-    coupleEntities: true,
-  }));
   world.pendingBursts.push({
     pos: { ...player.pos },
     remaining: CONFIG.particles.perBigKill * 2,

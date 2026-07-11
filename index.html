@@ -158,7 +158,7 @@
         background: rgba(25,240,255,0.4); border: 2px solid rgba(25,240,255,0.85);
         box-shadow: 0 0 18px rgba(25,240,255,0.6); transform: translate(-50%,-50%);
       }
-      #joy-btn, #joy-btn2, #joy-btn3, #joy-btn4 {
+      #joy-btn, #joy-btn2, #joy-btn3, #joy-btn4, #joy-btn5 {
         position: fixed; border-radius: 50%; user-select: none; z-index: 16;
         touch-action: none; display: flex; align-items: center; justify-content: center;
         font: 800 13px system-ui, sans-serif;
@@ -183,6 +183,11 @@
         border: 2px solid rgba(124,77,255,0.85); background: rgba(124,77,255,0.16);
         color: #c4adff; text-shadow: 0 0 10px #7c4dff; box-shadow: 0 0 18px rgba(124,77,255,0.45);
       }
+      #joy-btn5 {
+        right: 108px; bottom: 255px; width: 64px; height: 64px;
+        border: 2px solid rgba(255,119,51,0.85); background: rgba(255,119,51,0.14);
+        color: #ffb066; text-shadow: 0 0 10px #ff7733; box-shadow: 0 0 18px rgba(255,119,51,0.45);
+      }
       #hud-energy {
         margin-top: 5px; width: 168px; height: 11px; border: 1px solid rgba(25,240,255,0.55);
         border-radius: 6px; background: rgba(25,240,255,0.06); overflow: hidden;
@@ -197,6 +202,27 @@
       #hud-energy.ready {
         border-color: rgba(255,43,214,0.9);
         box-shadow: 0 0 16px rgba(255,43,214,0.5), 0 0 8px rgba(25,240,255,0.3) inset;
+      }
+      #hud-ult {
+        margin-top: 4px; width: 168px; height: 8px; border: 1px solid rgba(255,119,51,0.55);
+        border-radius: 5px; background: rgba(255,119,51,0.06); overflow: hidden;
+        box-shadow: 0 0 8px rgba(255,119,51,0.2) inset; pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      #hud-ult-fill {
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, #ff7733, #ffdd33);
+        box-shadow: 0 0 12px #ff7733;
+        transition: width 0.12s ease-out;
+      }
+      #hud-ult.ready {
+        border-color: rgba(255,221,51,0.95);
+        box-shadow: 0 0 18px rgba(255,180,51,0.65), 0 0 8px rgba(255,119,51,0.3) inset;
+        animation: ult-ready-pulse 1.1s ease-in-out infinite;
+      }
+      @keyframes ult-ready-pulse {
+        0%, 100% { filter: brightness(1); }
+        50% { filter: brightness(1.55); }
       }
       #hud-weapon { display: grid; gap: 3px; justify-items: end; margin-top: 5px; font-weight: 800; }
       .weapon-slot { padding: 3px 7px; border: 1px solid currentColor; border-radius: 4px; background: rgba(5,3,15,0.72); font-size: 11px; letter-spacing: 0.08em; }
@@ -231,6 +257,21 @@
         mix-blend-mode: screen;
       }
       #damage-vignette.flash { animation: damage-flash 360ms ease-out; }
+      #ult-flash {
+        --ult-color: #19f0ff;
+        position: fixed; inset: 0; z-index: 12; pointer-events: none; opacity: 0;
+        background: radial-gradient(circle,
+          color-mix(in srgb, var(--ult-color) 40%, white) 0%,
+          color-mix(in srgb, var(--ult-color) 24%, transparent) 42%,
+          transparent 74%);
+        mix-blend-mode: screen;
+      }
+      #ult-flash.flash { animation: ult-flash 520ms ease-out; }
+      @keyframes ult-flash {
+        0% { opacity: 0.95; }
+        30% { opacity: 0.5; }
+        100% { opacity: 0; }
+      }
       #item-label-layer {
         position: absolute; inset: 0; overflow: hidden; pointer-events: none;
         user-select: none; z-index: 8; font-family: 'Segoe UI', system-ui, sans-serif;
@@ -253,6 +294,8 @@
       }
       @media (prefers-reduced-motion: reduce) {
         #damage-vignette.flash { animation-duration: 180ms; }
+        #ult-flash.flash { animation-duration: 240ms; }
+        #hud-ult.ready { animation: none; }
       }
     </style>
     <style>
@@ -270,12 +313,14 @@
       <div id="hud-mult">×1</div>
       <div id="hud-hp">100</div>
       <div id="hud-energy"><div id="hud-energy-fill"></div></div>
+      <div id="hud-ult"><div id="hud-ult-fill"></div></div>
       <div id="hud-weapon"><span id="hud-primary" class="weapon-slot">MAIN BLASTER · ALWAYS</span><span id="hud-secondary" class="weapon-slot">SUB EMPTY</span></div>
       <div id="hud-lives">♥♥♥</div>
       <div id="hud-wave">W1</div>
       <div id="hud-mute">&#128266;</div>
     </div>
     <div id="damage-vignette" aria-hidden="true"></div>
+    <div id="ult-flash" aria-hidden="true"></div>
     <div id="hud-boss">
       <div id="hud-boss-label">⚠ BOSS</div>
       <div id="hud-boss-track"><div id="hud-boss-fill"></div></div>
@@ -286,8 +331,8 @@
     </div>
     <div id="help">
       WASD / Arrow Keys — Move &nbsp;•&nbsp; Mouse — Aim &nbsp;•&nbsp; Hold Click/Space — Fire<br />
-      SHIFT — Boost &nbsp;•&nbsp; Wheel — Zoom &nbsp;•&nbsp; Q / F — Bomb (Nova) &nbsp;•&nbsp; BLASTER always fires + WEAPON equips SUB &nbsp;•&nbsp; P — Pause &nbsp;•&nbsp; M — Mute &nbsp;•&nbsp; R — Restart<br />
-      Touch: Left — Move &nbsp;•&nbsp; Right — Aim+Fire &nbsp;•&nbsp; Boost / Bomb / II / R Buttons
+      SHIFT — Boost &nbsp;•&nbsp; Wheel — Zoom &nbsp;•&nbsp; Q / F — Bomb (Nova) &nbsp;•&nbsp; E / Right Click — SUB Ultimate &nbsp;•&nbsp; BLASTER always fires + WEAPON equips SUB &nbsp;•&nbsp; P — Pause &nbsp;•&nbsp; M — Mute &nbsp;•&nbsp; R — Restart<br />
+      Touch: Left — Move &nbsp;•&nbsp; Right — Aim+Fire &nbsp;•&nbsp; Boost / Bomb / ULT / II / R Buttons
     </div>
     <div id="overlay">
       <h1 id="overlay-title">GRIDX</h1>

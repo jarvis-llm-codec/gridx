@@ -30,6 +30,7 @@ export const createPlayer = (pos = { x: 0, y: 0, z: 0 }): PlayerState => ({
   primaryWeapon: 'blaster',
   secondaryWeapon: null,
   weaponCooldowns: { primary: 0, secondary: 0 },
+  ultimateCooldown: 0,
   lives: CONFIG.player.maxLives,
   shield: 0,
   hitCount: 0,
@@ -87,6 +88,7 @@ export const stepPlayer = (player: PlayerState, input: InputState, dt: number, w
   player.fireCooldown = Math.max(0, player.fireCooldown - dt);
   player.weaponCooldowns.primary = Math.max(0, player.weaponCooldowns.primary - dt);
   player.weaponCooldowns.secondary = Math.max(0, player.weaponCooldowns.secondary - dt);
+  player.ultimateCooldown = Math.max(0, player.ultimateCooldown - dt);
   player.invuln = Math.max(0, player.invuln - dt);
   player.energy = Math.min(config.maxEnergy, player.energy + config.energyRegen * dt);
   player.shield = Math.max(0, player.shield - dt);

@@ -15,6 +15,7 @@ import { stepEnemyBehavior } from './enemyBehaviors.js';
 import { dropChanceForWave, makeItem, randomItemKind, stepItems } from './items.js';
 import { spawnBurst, stepParticle } from './particles.js';
 import { createPlayer, damagePlayer, stepPlayer, tryFire } from './player.js';
+import { canFireUltimate, fireUltimate, stepUltimate } from './ultimate.js';
 import { addWeaponArc, firePlayerWeapons, WEAPON_COLORS } from './weapons.js';
 
 export interface WorldSystems {
@@ -43,6 +44,8 @@ export const createWorld = (seed: number): { world: World; systems: WorldSystems
     pendingBursts: [],
     pendingLightning: [],
     weaponEffects: [],
+    ultimateVolley: null,
+    ultimateBeam: null,
     trauma: 0,
     eventWobble: 0,
     gameOver: false,
@@ -124,18 +127,18 @@ export const fireSkill = (world: World, systems: WorldSystems): void => {
 const resolveLightning = (world: World, systems: WorldSystems): void => {
   for (const shot of world.pendingLightning) {
     const hit = new Set<number>();
-    const maxChains = 2 + shot.level;
+    const maxChains = shot.superChains ?? 2 + shot.level;
     let from = { ...shot.pos };
     for (let chain = 0; chain < maxChains; chain += 1) {
       const targets: Array<EnemyState | BossState> = world.enemies.filter((target) => !target.dead && !hit.has(target.id));
       if (world.boss && !world.boss.dead && !hit.has(world.boss.id)) targets.push(world.boss);
       let target: EnemyState | BossState | null = null;
-      let best = (chain === 0 ? shot.range : 8 + shot.level) ** 2;
+      let best = (chain === 0 ? shot.range : shot.chainRange ?? 8 + shot.level) ** 2;
       for (const candidate of targets) {
         const deltaX = candidate.pos.x - from.x;
         const deltaZ = candidate.pos.z - from.z;
         const distanceSquared = deltaX * deltaX + deltaZ * deltaZ;
-        if (chain === 0 && (deltaX * shot.dir.x + deltaZ * shot.dir.z) / Math.max(0.001, Math.sqrt(distanceSquared)) < 0.1) continue;
+        if (chain === 0 && !shot.noCone && (deltaX * shot.dir.x + deltaZ * shot.dir.z) / Math.max(0.001, Math.sqrt(distanceSquared)) < 0.1) continue;
         if (distanceSquared < best) {
           best = distanceSquared;
           target = candidate;
@@ -203,6 +206,8 @@ export const stepWorld = (world: World, systems: WorldSystems, input: InputState
     fireSkill(world, systems);
     world.events.push({ type: 'skill-fire', pos: { ...world.player.pos } });
   }
+  if (input.ultimate && canFireUltimate(world.player)) fireUltimate(world, systems);
+  stepUltimate(world, dt);
 
   const spawnResult = stepSpawn(world, systems.spawn, dt);
   systems.spawn = spawnResult.sys;

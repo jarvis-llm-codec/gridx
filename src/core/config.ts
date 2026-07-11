@@ -105,6 +105,15 @@ export const CONFIG = {
     zoomLambda: 7,
   },
   grid: { impulseStrength: 6, maxImpulses: 20 },
+  // Secondary-weapon ultimate: one button, pure time cooldown (unlike NOVA's
+  // energy cost). Fires the super version of the equipped secondary. New
+  // section only — golden scenario never presses the button, so no rebaseline.
+  ultimate: {
+    cooldown: 45,
+    missile: { count: 20, perWave: 4, waveInterval: 0.06, damageMul: 1.1, turnRate: 7.5, blastRadius: 2.9, speed: 17, life: 3.4 },
+    lightning: { shots: 6, chains: 12, chainRange: 14, range: 60, damageMul: 1.25 },
+    laser: { duration: 2.0, burstInterval: 0.08, beamsPerBurst: 3, spreadDeg: 5, damageMul: 0.9, speed: 80, life: 0.5 },
+  },
   lightningVisual: {
     displacement: 0.22,
     depth: 5,

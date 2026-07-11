@@ -31,6 +31,9 @@ const inputForStep = (step: number, scenarioIndex: number): InputState => {
     mute: false,
     restart: false,
     skill: step > 0 && step % 900 === 0,
+    // Never pressed in the golden scenario — keeps the baseline valid while
+    // the ultimate feature exists only behind this input edge.
+    ultimate: false,
   };
 };
 

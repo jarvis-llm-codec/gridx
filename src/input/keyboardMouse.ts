@@ -29,6 +29,7 @@ export const createInputAdapter = (): InputAdapter => {
   let muteEdge = false;
   let restartEdge = false;
   let skillEdge = false;
+  let ultimateEdge = false;
   let attached = false;
   let target: HTMLElement | null = null;
   let aimResolver: MouseAimResolver | null = null;
@@ -43,6 +44,7 @@ export const createInputAdapter = (): InputAdapter => {
   let pauseButton: HTMLDivElement | null = null;
   let restartButton: HTMLDivElement | null = null;
   let skillButton: HTMLDivElement | null = null;
+  let ultimateButton: HTMLDivElement | null = null;
   let touchBoost = false;
   const moveTouch: TouchStick = { id: null, originX: 0, originY: 0, deltaX: 0, deltaY: 0 };
   const aimTouch: TouchStick = { id: null, originX: 0, originY: 0, deltaX: 0, deltaY: 0 };
@@ -58,6 +60,7 @@ export const createInputAdapter = (): InputAdapter => {
       if (key === 'm') muteEdge = true;
       if (key === 'r') restartEdge = true;
       if (key === 'f' || key === 'q') skillEdge = true;
+      if (key === 'e') ultimateEdge = true;
     }
   };
   const onKeyDown = onKey(true);
@@ -73,9 +76,13 @@ export const createInputAdapter = (): InputAdapter => {
   };
   const onMouseDown = (event: MouseEvent) => {
     if (event.button === 0) firing = true;
+    if (event.button === 2) ultimateEdge = true;
   };
   const onMouseUp = (event: MouseEvent) => {
     if (event.button === 0) firing = false;
+  };
+  const onContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
   };
   const onBlur = () => {
     keys.clear();
@@ -111,7 +118,7 @@ export const createInputAdapter = (): InputAdapter => {
     if (!target) return;
     const rect = target.getBoundingClientRect();
     for (const touch of event.changedTouches) {
-      if ([boostButton, pauseButton, restartButton, skillButton].includes(touch.target as HTMLDivElement)) continue;
+      if ([boostButton, pauseButton, restartButton, skillButton, ultimateButton].includes(touch.target as HTMLDivElement)) continue;
       const horizontal = (touch.clientX - rect.left) / rect.width;
       const stick = horizontal < 0.5 ? moveTouch : aimTouch;
       const joystick = horizontal < 0.5 ? leftJoystick : rightJoystick;
@@ -195,6 +202,7 @@ export const createInputAdapter = (): InputAdapter => {
       if (target) {
         target.removeEventListener('mousemove', onMouseMove);
         target.removeEventListener('mousedown', onMouseDown);
+        target.removeEventListener('contextmenu', onContextMenu);
         target.removeEventListener('touchstart', onTouchStart);
         target.removeEventListener('touchmove', onTouchMove);
         target.removeEventListener('touchend', onTouchEnd);
@@ -207,7 +215,7 @@ export const createInputAdapter = (): InputAdapter => {
       moveTouch.id = null;
       aimTouch.id = null;
     }
-    for (const element of [leftJoystick, rightJoystick, boostButton, pauseButton, restartButton, skillButton]) {
+    for (const element of [leftJoystick, rightJoystick, boostButton, pauseButton, restartButton, skillButton, ultimateButton]) {
       element?.remove();
     }
     leftJoystick = null;
@@ -218,6 +226,7 @@ export const createInputAdapter = (): InputAdapter => {
     pauseButton = null;
     restartButton = null;
     skillButton = null;
+    ultimateButton = null;
   };
 
   return {
@@ -233,6 +242,7 @@ export const createInputAdapter = (): InputAdapter => {
       window.addEventListener('keyup', onKeyUp);
       element.addEventListener('mousemove', onMouseMove);
       element.addEventListener('mousedown', onMouseDown);
+      element.addEventListener('contextmenu', onContextMenu);
       window.addEventListener('mouseup', onMouseUp);
       window.addEventListener('blur', onBlur);
       if (isTouchDevice()) {
@@ -244,7 +254,8 @@ export const createInputAdapter = (): InputAdapter => {
         pauseButton = makeButton('joy-btn2', 'II', () => { pauseEdge = true; });
         restartButton = makeButton('joy-btn3', 'R', () => { restartEdge = true; });
         skillButton = makeButton('joy-btn4', 'BOMB', () => { skillEdge = true; });
-        document.body.append(boostButton, pauseButton, restartButton, skillButton);
+        ultimateButton = makeButton('joy-btn5', 'ULT', () => { ultimateEdge = true; });
+        document.body.append(boostButton, pauseButton, restartButton, skillButton, ultimateButton);
         element.addEventListener('touchstart', onTouchStart, { passive: false });
         element.addEventListener('touchmove', onTouchMove, { passive: false });
         element.addEventListener('touchend', onTouchEnd, { passive: false });
@@ -297,10 +308,12 @@ export const createInputAdapter = (): InputAdapter => {
       input.mute = muteEdge;
       input.restart = restartEdge;
       input.skill = skillEdge;
+      input.ultimate = ultimateEdge;
       pauseEdge = false;
       muteEdge = false;
       restartEdge = false;
       skillEdge = false;
+      ultimateEdge = false;
       return input;
     },
   };

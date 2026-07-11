@@ -41,6 +41,7 @@ export interface PlayerState extends Body {
   primaryWeapon: 'blaster';
   secondaryWeapon: Exclude<WeaponType, 'blaster'> | null;
   weaponCooldowns: Record<WeaponSlot, number>;
+  ultimateCooldown: number;
   lives: number;
   shield: number;
   hitCount: number;
@@ -122,6 +123,26 @@ export interface PendingLightning {
   level: number;
   damage: number;
   range: number;
+  /** Ultimate override: fixed chain count (default 2 + level). */
+  superChains?: number;
+  /** Ultimate override: hop-to-hop search range (default 8 + level). */
+  chainRange?: number;
+  /** Ultimate override: skip the first-arc aim-cone restriction. */
+  noCone?: boolean;
+}
+
+/** Staggered ultimate missile volley being drained by stepUltimate. */
+export interface UltimateVolley {
+  remaining: number;
+  timer: number;
+  level: number;
+}
+
+/** Timed ultimate laser barrage being drained by stepUltimate. */
+export interface UltimateBeam {
+  t: number;
+  tick: number;
+  level: number;
 }
 
 export interface WeaponEffect {
@@ -151,7 +172,8 @@ export type GameEvent =
   | { type: 'boss-fire'; pos: Vec }
   | { type: 'boss-hit'; pos: Vec }
   | { type: 'boss-dead'; pos: Vec; score: number }
-  | { type: 'missile-explode'; pos: Vec; radius: number };
+  | { type: 'missile-explode'; pos: Vec; radius: number }
+  | { type: 'ultimate-fire'; pos: Vec; weapon: Exclude<WeaponType, 'blaster'> };
 
 export interface World {
   seed: number;
@@ -172,6 +194,8 @@ export interface World {
   pendingBursts: PendingBurst[];
   pendingLightning: PendingLightning[];
   weaponEffects: WeaponEffect[];
+  ultimateVolley: UltimateVolley | null;
+  ultimateBeam: UltimateBeam | null;
   trauma: number;
   eventWobble: number;
   gameOver: boolean;

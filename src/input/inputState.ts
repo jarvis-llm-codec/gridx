@@ -19,6 +19,8 @@ export interface InputState {
   /** Restart requested this frame (edge). */
   restart: boolean;
   skill: boolean;
+  /** Secondary-weapon ultimate requested this frame (edge). */
+  ultimate: boolean;
 }
 
 export const emptyInput = (): InputState => ({
@@ -32,6 +34,7 @@ export const emptyInput = (): InputState => ({
   mute: false,
   restart: false,
   skill: false,
+  ultimate: false,
 });
 
 /** Merge two inputs (latter wins on edges, max on continuous). Used for multi-source input. */
@@ -46,4 +49,5 @@ export const mergeInput = (a: InputState, b: InputState): InputState => ({
   mute: a.mute || b.mute,
   restart: a.restart || b.restart,
   skill: a.skill || b.skill,
+  ultimate: a.ultimate || b.ultimate,
 });

@@ -75,7 +75,12 @@ export class AudioEngine {
   private bossMode = false;
   private externalBgm = false;
 
-  constructor() {}
+  /**
+   * @param sfxBase Base URL for optional .ogg SFX samples, or null to skip
+   * fetching entirely (single-file build: synth fallback only). The literal
+   * lives at the call site so the single build can dead-code-eliminate it.
+   */
+  constructor(private readonly sfxBase: string | null = null) {}
 
   // ---------------------------------------------------------------- lifecycle
 
@@ -177,9 +182,9 @@ export class AudioEngine {
 
   private async loadLightningSample(): Promise<void> {
     const ctx = this.ctx;
-    if (!ctx) return;
+    if (!ctx || !this.sfxBase) return;
     try {
-      const response = await fetch('assets/sfx/lightning.ogg');
+      const response = await fetch(`${this.sfxBase}lightning.ogg`);
       if (!response.ok) return;
       this.lightningBuffer = await ctx.decodeAudioData(await response.arrayBuffer());
     } catch {
@@ -188,8 +193,10 @@ export class AudioEngine {
   }
 
   private async loadSampleMap(): Promise<void> {
+    const base = this.sfxBase;
+    if (!base) return;
     await Promise.all(['fire', 'explosion', 'bigkill', 'hit', 'pickup', 'multiplier', 'boss', 'death'].map(async (name) => {
-      try { const r = await fetch(`assets/sfx/${name}.ogg`); if (r.ok && this.ctx) this.sampleBuffers.set(name, await this.ctx.decodeAudioData(await r.arrayBuffer())); } catch { /* per-event fallback */ }
+      try { const r = await fetch(`${base}${name}.ogg`); if (r.ok && this.ctx) this.sampleBuffers.set(name, await this.ctx.decodeAudioData(await r.arrayBuffer())); } catch { /* per-event fallback */ }
     }));
   }
 
@@ -513,6 +520,84 @@ export class AudioEngine {
     oscillator.start(time); oscillator.stop(time + 0.66);
   }
 
+  /** Secondary-weapon ultimate — each weapon gets its own signature sound. */
+  playUltimate(weapon: 'missile' | 'lightning' | 'laser', pan = 0): void {
+    const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
+    const t = this.time;
+    const panner = this.makePanner(pan); const output: AudioNode = panner ?? this.sfxBus;
+    panner?.connect(this.sfxBus);
+
+    if (weapon === 'missile') {
+      // MISSILE STORM: deep sub boom, then a rising salvo of whoosh pops.
+      const sub = ctx.createOscillator(); sub.type = 'sine';
+      sub.frequency.setValueAtTime(95, t);
+      sub.frequency.exponentialRampToValueAtTime(38, t + 0.5);
+      const subGain = ctx.createGain(); subGain.gain.setValueAtTime(0.42, t);
+      subGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.55);
+      sub.connect(subGain); subGain.connect(output);
+      sub.start(t); sub.stop(t + 0.6);
+      for (let pop = 0; pop < 6; pop += 1) {
+        const at = t + 0.08 + pop * 0.11;
+        const noise = this.noiseSource(); if (!noise) break;
+        const band = ctx.createBiquadFilter(); band.type = 'bandpass';
+        band.frequency.value = 480 + pop * 210; band.Q.value = 1.6;
+        const gain = ctx.createGain(); gain.gain.setValueAtTime(0.0001, at);
+        gain.gain.exponentialRampToValueAtTime(0.3, at + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.16);
+        noise.connect(band); band.connect(gain); gain.connect(output);
+        noise.start(at); noise.stop(at + 0.18);
+      }
+    } else if (weapon === 'lightning') {
+      // TEMPEST: full-sky thunder — huge noise crash + rolling sub rumble.
+      const noise = this.noiseSource();
+      if (noise) {
+        const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.Q.value = 0.8;
+        lp.frequency.setValueAtTime(5200, t);
+        lp.frequency.exponentialRampToValueAtTime(140, t + 1.0);
+        const gain = ctx.createGain(); gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.5, t + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + 1.05);
+        noise.connect(lp); lp.connect(gain); gain.connect(output);
+        noise.start(t); noise.stop(t + 1.1);
+      }
+      const rumble = ctx.createOscillator(); rumble.type = 'square';
+      rumble.frequency.setValueAtTime(64, t);
+      rumble.frequency.exponentialRampToValueAtTime(26, t + 0.9);
+      const rumbleGain = ctx.createGain(); rumbleGain.gain.setValueAtTime(0.0001, t);
+      rumbleGain.gain.exponentialRampToValueAtTime(0.26, t + 0.03);
+      rumbleGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.95);
+      const rumbleLp = ctx.createBiquadFilter(); rumbleLp.type = 'lowpass'; rumbleLp.frequency.value = 220;
+      rumble.connect(rumbleLp); rumbleLp.connect(rumbleGain); rumbleGain.connect(output);
+      rumble.start(t); rumble.stop(t + 1.0);
+    } else {
+      // OVERDRIVE: charge-up scream into a sustained detuned beam drone
+      // matching the barrage duration.
+      const duration = 2.0;
+      const charge = ctx.createOscillator(); charge.type = 'sawtooth';
+      charge.frequency.setValueAtTime(220, t);
+      charge.frequency.exponentialRampToValueAtTime(1760, t + 0.3);
+      const chargeGain = ctx.createGain(); chargeGain.gain.setValueAtTime(0.0001, t);
+      chargeGain.gain.exponentialRampToValueAtTime(0.26, t + 0.05);
+      chargeGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.34);
+      charge.connect(chargeGain); chargeGain.connect(output);
+      charge.start(t); charge.stop(t + 0.36);
+      for (const detune of [-9, 9]) {
+        const beam = ctx.createOscillator(); beam.type = 'sawtooth';
+        beam.frequency.value = 880; beam.detune.value = detune;
+        const tremolo = ctx.createOscillator(); tremolo.type = 'sine'; tremolo.frequency.value = 13;
+        const tremoloGain = ctx.createGain(); tremoloGain.gain.value = 0.05;
+        const beamGain = ctx.createGain(); beamGain.gain.setValueAtTime(0.0001, t + 0.28);
+        beamGain.gain.exponentialRampToValueAtTime(0.14, t + 0.36);
+        beamGain.gain.setValueAtTime(0.14, t + duration - 0.25);
+        beamGain.gain.exponentialRampToValueAtTime(0.0001, t + duration + 0.1);
+        tremolo.connect(tremoloGain); tremoloGain.connect(beamGain.gain);
+        beam.connect(beamGain); beamGain.connect(output);
+        beam.start(t + 0.28); beam.stop(t + duration + 0.15);
+        tremolo.start(t + 0.28); tremolo.stop(t + duration + 0.15);
+      }
+    }
+  }
+
   playPickup(kind: ItemKind, pan = 0): void {
     const ctx = this.ctx; if (!ctx || !this.sfxBus) return;
     const start = this.time;
@@ -587,6 +672,7 @@ export class AudioEngine {
         case 'multiplier-up': this.playMultiplierUp(e.value); break;
         case 'game-over': this.playGameOver(); break;
         case 'skill-fire': this.playSkill(this.panFor(e.pos, playerX, arenaR)); break;
+        case 'ultimate-fire': this.playUltimate(e.weapon, this.panFor(e.pos, playerX, arenaR)); break;
         case 'weapon-fire': this.playFire(e.weapon, this.panFor(e.pos, playerX, arenaR)); break;
         case 'pickup': this.playPickup(e.kind, this.panFor(e.pos, playerX, arenaR)); break;
         case 'boss-fire': this.playBossFire(this.panFor(e.pos, playerX, arenaR)); break;

@@ -6,10 +6,12 @@ import { createInputAdapter } from './input/keyboardMouse.js';
 import { hashSeed } from './math/rng.js';
 import { Renderer } from './render/renderer.js';
 import { createWorld, stepWorld, type WorldSystems } from './sim/world.js';
-import { WEAPON_DROP_ORDER, WEAPON_NAMES } from './sim/weapons.js';
+import { WEAPON_COLORS, WEAPON_DROP_ORDER, WEAPON_NAMES } from './sim/weapons.js';
 import { leaderboard, type LeaderboardGame } from './ui/leaderboard.js';
 
 const SEED = hashSeed('geometry-wars-3d-v2');
+// Statically replaced by Vite so single builds fold away every asset URL.
+const MODE = (import.meta as ImportMeta & { env?: { MODE?: string } }).env?.MODE;
 
 interface HudElements {
   score: HTMLElement;
@@ -22,6 +24,9 @@ interface HudElements {
   mute: HTMLElement;
   energyWrap: HTMLElement;
   energyFill: HTMLElement;
+  ultWrap: HTMLElement;
+  ultFill: HTMLElement;
+  ultFlash: HTMLElement;
   weapon: HTMLElement;
   primaryWeapon: HTMLElement;
   secondaryWeapon: HTMLElement;
@@ -40,7 +45,7 @@ export class Game implements LeaderboardGame {
   private readonly input = createInputAdapter();
   private readonly loop;
   private readonly hud: HudElements;
-  private readonly audio = new AudioEngine();
+  private readonly audio = new AudioEngine(MODE === 'single' ? null : 'assets/sfx/');
   private readonly bgm = new BgmManager({ onExternalState: (active) => this.audio.setExternalBgmActive(active) });
   private world;
   private systems: WorldSystems;
@@ -61,8 +66,7 @@ export class Game implements LeaderboardGame {
     this.input.setMouseAimResolver((x, y, playerPos) => this.renderer.screenToArenaAim(x, y, playerPos));
     this.input.attach(container);
     this.updateMuteIcon();
-    const mode = (import.meta as ImportMeta & { env?: { MODE?: string } }).env?.MODE;
-    if (mode !== 'single') {
+    if (MODE !== 'single') {
       this.bgm.loadBgm({
         base: 'assets/bgm/base.ogg',
         miniBoss: 'assets/bgm/boss_mini.ogg',
@@ -116,6 +120,8 @@ export class Game implements LeaderboardGame {
     if (!this.world.gameOver) this.runTime += dt;
     const events = stepWorld(this.world, this.systems, input, dt);
     if (events.some((event) => event.type === 'hit-player')) this.flashDamage();
+    const ultimateEvent = events.find((event) => event.type === 'ultimate-fire');
+    if (ultimateEvent && ultimateEvent.type === 'ultimate-fire') this.flashUltimate(ultimateEvent.weapon);
     if (this.audioStarted) this.audio.setBossMode(Boolean(this.world.boss && !this.world.boss.dead));
     if (this.audioStarted) {
       const liveBoss = this.world.boss && !this.world.boss.dead ? this.world.boss : null;
@@ -137,6 +143,13 @@ export class Game implements LeaderboardGame {
     this.hud.damageVignette.classList.remove('flash');
     void this.hud.damageVignette.offsetWidth;
     this.hud.damageVignette.classList.add('flash');
+  }
+
+  private flashUltimate(weapon: keyof typeof WEAPON_COLORS): void {
+    this.hud.ultFlash.style.setProperty('--ult-color', `#${WEAPON_COLORS[weapon].toString(16).padStart(6, '0')}`);
+    this.hud.ultFlash.classList.remove('flash');
+    void this.hud.ultFlash.offsetWidth;
+    this.hud.ultFlash.classList.add('flash');
   }
 
   private toggleMute(): void {
@@ -189,6 +202,10 @@ export class Game implements LeaderboardGame {
       ? `SUB ${WEAPON_NAMES[secondary]} · LV${player.weaponLevels[secondary]}`
       : 'SUB EMPTY';
     this.hud.secondaryWeapon.style.opacity = secondary ? '1' : '0.46';
+    const ultProgress = secondary ? Math.max(0, Math.min(1, 1 - player.ultimateCooldown / CONFIG.ultimate.cooldown)) : 0;
+    this.hud.ultFill.style.width = `${ultProgress * 100}%`;
+    this.hud.ultWrap.classList.toggle('ready', Boolean(secondary) && player.ultimateCooldown <= 0);
+    this.hud.ultWrap.style.opacity = secondary ? '1' : '0.35';
     this.hud.lives.textContent = '♥'.repeat(Math.max(0, player.lives));
     const boss = this.world.boss;
     if (boss && !boss.dead) {
@@ -250,6 +267,9 @@ const boot = (): void => {
     mute: required('hud-mute'),
     energyWrap: required('hud-energy'),
     energyFill: required('hud-energy-fill'),
+    ultWrap: required('hud-ult'),
+    ultFill: required('hud-ult-fill'),
+    ultFlash: required('ult-flash'),
     weapon: required('hud-weapon'),
     primaryWeapon: required('hud-primary'),
     secondaryWeapon: required('hud-secondary'),

@@ -11,7 +11,9 @@ describe('input state', () => {
   it('exposes the canonical mouse aim resolver contract', () => {
     const adapter = createInputAdapter();
     adapter.setMouseAimResolver(() => ({ x: 1, z: 0 }));
-    expect(adapter.snapshot({ x: 0, y: 0, z: 0 })).toEqual(emptyInput());
+    // Autofire contract: the DOM adapter always reports firing (touchpads
+    // can't drag-aim while holding the button); everything else idles.
+    expect(adapter.snapshot({ x: 0, y: 0, z: 0 })).toEqual({ ...emptyInput(), firing: true });
     adapter.detach();
   });
 });

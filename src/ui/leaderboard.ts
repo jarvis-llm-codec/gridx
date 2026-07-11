@@ -228,6 +228,13 @@ const hideAll = (): void => {
 const bind = (targetGame: LeaderboardGame): void => {
   if (game) return;
   game = targetGame;
+  // Anonymous load counter (gw_pings, insert-only) — GitHub Pages exposes no
+  // request stats, so the game counts its own boots. Fire and forget.
+  void fetch(`${SUPABASE_URL}/rest/v1/gw_pings`, {
+    method: 'POST',
+    headers: { ...HEADERS, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+    body: '{}',
+  }).catch(() => {});
   element('gw-start-btn').addEventListener('click', () => game?.beginGame());
   element('gw-board-btn').addEventListener('click', () => showBoard('menu'));
   element('gw-board-close').addEventListener('click', showMenu);

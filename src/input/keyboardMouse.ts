@@ -302,7 +302,11 @@ export const createInputAdapter = (): InputAdapter => {
           input.aimZ = aimTouch.deltaY / length;
         }
       }
-      input.firing = firing || keyDown(' ', '') || aimTouch.id !== null;
+      // Autofire: firing costs nothing, and touchpads can't drag the cursor
+      // while the button is held — aiming and firing fought each other there
+      // (reddit report: "controls don't work on touchpad laptop").
+      const AUTOFIRE = true;
+      input.firing = AUTOFIRE || firing || keyDown(' ', '') || aimTouch.id !== null;
       input.boost = keyDown('shift', 'shiftleft') || touchBoost;
       input.pause = pauseEdge;
       input.mute = muteEdge;

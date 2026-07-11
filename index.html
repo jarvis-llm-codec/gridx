@@ -48,6 +48,9 @@
         transition: opacity 0.2s;
       }
 
+      /* Touch-capable laptops: stop the browser from hijacking drags on the
+         play area as scroll/pinch gestures. Overlays stay scrollable. */
+      #app { touch-action: none; }
       #help {
         position: fixed;
         left: 18px;
@@ -332,7 +335,7 @@
       <div id="hud-bosstimer-track"><div id="hud-bosstimer-fill"></div></div>
     </div>
     <div id="help">
-      WASD / Arrow Keys — Move &nbsp;•&nbsp; Mouse — Aim &nbsp;•&nbsp; Hold Click/Space — Fire<br />
+      WASD / Arrow Keys — Move &nbsp;•&nbsp; Mouse — Aim &nbsp;•&nbsp; AUTOFIRE (always shooting)<br />
       SHIFT — Boost &nbsp;•&nbsp; Wheel — Zoom &nbsp;•&nbsp; Q / F — Bomb (Nova) &nbsp;•&nbsp; E / Right Click — SUB Ultimate &nbsp;•&nbsp; BLASTER always fires + WEAPON equips SUB &nbsp;•&nbsp; P — Pause &nbsp;•&nbsp; M — Mute &nbsp;•&nbsp; R — Restart<br />
       Touch: Left — Move &nbsp;•&nbsp; Right — Aim+Fire &nbsp;•&nbsp; Boost / Bomb / ULT / II / R Buttons
     </div>

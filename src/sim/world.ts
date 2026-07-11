@@ -46,6 +46,7 @@ export const createWorld = (seed: number): { world: World; systems: WorldSystems
     weaponEffects: [],
     ultimateVolley: null,
     ultimateBeam: null,
+    ultimateTempest: null,
     trauma: 0,
     eventWobble: 0,
     gameOver: false,

@@ -111,8 +111,13 @@ export const CONFIG = {
   ultimate: {
     cooldown: 45,
     missile: { count: 60, perWave: 6, waveInterval: 0.06, damageMul: 1.1, turnRate: 7.5, blastRadius: 2.9, speed: 17, life: 3.4 },
-    lightning: { shots: 6, chains: 12, chainRange: 14, range: 60, damageMul: 1.25, radialBolts: 14 },
-    laser: { duration: 6.0, burstInterval: 0.08, beamsPerBurst: 3, spreadDeg: 5, damageMul: 0.9, speed: 80, life: 0.5 },
+    // Tempest crackle sweeps the full circle over time (arms rotating in
+    // step), not one single-frame flash — sparks burst at each bolt tip.
+    lightning: {
+      shots: 6, chains: 12, chainRange: 14, range: 60, damageMul: 1.25,
+      sweepBolts: 18, sweepInterval: 0.04, arms: 2, sparkPerBolt: 12,
+    },
+    laser: { duration: 5.0, burstInterval: 0.08, beamsPerBurst: 3, spreadDeg: 5, damageMul: 0.9, speed: 80, life: 0.5 },
   },
   lightningVisual: {
     displacement: 0.22,

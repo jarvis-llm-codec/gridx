@@ -49,20 +49,9 @@ export const fireUltimate = (world: World, systems: WorldSystems): void => {
         noCone: true,
       });
     }
-    // Visual-only crackle: zigzag bolts radiating 360° out to the arena edge.
-    const edgeRadius = world.arenaRadius - 0.5;
-    for (let bolt = 0; bolt < cfg.radialBolts; bolt += 1) {
-      const angle = base + (bolt / cfg.radialBolts) * Math.PI * 2;
-      const dirX = Math.cos(angle);
-      const dirZ = Math.sin(angle);
-      const along = player.pos.x * dirX + player.pos.z * dirZ;
-      const reach = -along + Math.sqrt(Math.max(0,
-        along * along + edgeRadius * edgeRadius - (player.pos.x ** 2 + player.pos.z ** 2)));
-      addWeaponArc(world, 'lightning', { x: player.pos.x, z: player.pos.z }, {
-        x: player.pos.x + dirX * reach,
-        z: player.pos.z + dirZ * reach,
-      }, bolt * 7 + 3);
-    }
+    // Visual crackle: a rotating sweep drained by stepUltimate — bolts walk
+    // the full circle over time instead of flashing once ("펑" complaint).
+    world.ultimateTempest = { remaining: cfg.sweepBolts, timer: 0, base };
   } else {
     world.ultimateBeam = { t: CONFIG.ultimate.laser.duration, tick: 0, level };
   }
@@ -109,6 +98,37 @@ export const stepUltimate = (world: World, dt: number): void => {
       volley.timer += cfg.waveInterval;
     }
     if (volley.remaining <= 0) world.ultimateVolley = null;
+  }
+
+  const tempest = world.ultimateTempest;
+  if (tempest) {
+    const cfg = CONFIG.ultimate.lightning;
+    const armSpan = (Math.PI * 2) / cfg.arms;
+    const edgeRadius = world.arenaRadius - 0.5;
+    tempest.timer -= dt;
+    while (tempest.timer <= 0 && tempest.remaining > 0) {
+      const index = cfg.sweepBolts - tempest.remaining;
+      const progress = index / cfg.sweepBolts;
+      for (let arm = 0; arm < cfg.arms; arm += 1) {
+        const angle = tempest.base + (progress + arm) * armSpan;
+        const dirX = Math.cos(angle);
+        const dirZ = Math.sin(angle);
+        const along = player.pos.x * dirX + player.pos.z * dirZ;
+        const reach = -along + Math.sqrt(Math.max(0,
+          along * along + edgeRadius * edgeRadius - (player.pos.x ** 2 + player.pos.z ** 2)));
+        const tip = { x: player.pos.x + dirX * reach, z: player.pos.z + dirZ * reach };
+        addWeaponArc(world, 'lightning', { x: player.pos.x, z: player.pos.z }, tip, index * 7 + arm * 13 + 3);
+        world.pendingBursts.push({
+          pos: { x: tip.x, y: 0, z: tip.z },
+          remaining: cfg.sparkPerBolt,
+          color: WEAPON_COLORS.lightning,
+          perFrame: cfg.sparkPerBolt,
+        });
+      }
+      tempest.remaining -= 1;
+      tempest.timer += cfg.sweepInterval;
+    }
+    if (tempest.remaining <= 0) world.ultimateTempest = null;
   }
 
   const beam = world.ultimateBeam;

@@ -70,6 +70,13 @@ describe('secondary-weapon ultimate', () => {
     expect(events.filter((event) => event.type === 'kill')).toHaveLength(ring.length);
     expect(world.pendingLightning).toHaveLength(0);
     expect(world.weaponEffects.some((effect) => effect.kind === 'lightning')).toBe(true);
+    // The crackle sweep walks the circle over time instead of one flash.
+    expect(world.ultimateTempest).not.toBeNull();
+    const sweepSteps = Math.ceil(
+      (CONFIG.ultimate.lightning.sweepBolts * CONFIG.ultimate.lightning.sweepInterval + 0.1) / DT,
+    );
+    for (let step = 0; step < sweepSteps; step += 1) stepWorld(world, systems, emptyInput(), DT);
+    expect(world.ultimateTempest).toBeNull();
   });
 
   it('overdrive sustains a piercing laser barrage for its duration', () => {

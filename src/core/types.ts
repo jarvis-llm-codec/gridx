@@ -138,6 +138,13 @@ export interface UltimateVolley {
   level: number;
 }
 
+/** Rotating tempest crackle sweep being drained by stepUltimate. */
+export interface UltimateTempest {
+  remaining: number;
+  timer: number;
+  base: number;
+}
+
 /** Timed ultimate laser barrage being drained by stepUltimate. */
 export interface UltimateBeam {
   t: number;
@@ -196,6 +203,7 @@ export interface World {
   weaponEffects: WeaponEffect[];
   ultimateVolley: UltimateVolley | null;
   ultimateBeam: UltimateBeam | null;
+  ultimateTempest: UltimateTempest | null;
   trauma: number;
   eventWobble: number;
   gameOver: boolean;

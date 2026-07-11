@@ -49,9 +49,9 @@ export const fireUltimate = (world: World, systems: WorldSystems): void => {
         noCone: true,
       });
     }
-    // Visual crackle: a rotating sweep drained by stepUltimate — bolts walk
-    // the full circle over time instead of flashing once ("펑" complaint).
-    world.ultimateTempest = { remaining: cfg.sweepBolts, timer: 0, base };
+    // Visual crackle: a spark orbits the ship for orbitTurns revolutions,
+    // drained tick by tick in stepUltimate (one flash read as just "펑").
+    world.ultimateTempest = { remaining: cfg.orbitTurns * cfg.ticksPerTurn, timer: 0, base };
   } else {
     world.ultimateBeam = { t: CONFIG.ultimate.laser.duration, tick: 0, level };
   }
@@ -103,30 +103,27 @@ export const stepUltimate = (world: World, dt: number): void => {
   const tempest = world.ultimateTempest;
   if (tempest) {
     const cfg = CONFIG.ultimate.lightning;
-    const armSpan = (Math.PI * 2) / cfg.arms;
-    const edgeRadius = world.arenaRadius - 0.5;
+    const totalTicks = cfg.orbitTurns * cfg.ticksPerTurn;
+    const angleStep = (Math.PI * 2) / cfg.ticksPerTurn;
     tempest.timer -= dt;
     while (tempest.timer <= 0 && tempest.remaining > 0) {
-      const index = cfg.sweepBolts - tempest.remaining;
-      const progress = index / cfg.sweepBolts;
-      for (let arm = 0; arm < cfg.arms; arm += 1) {
-        const angle = tempest.base + (progress + arm) * armSpan;
-        const dirX = Math.cos(angle);
-        const dirZ = Math.sin(angle);
-        const along = player.pos.x * dirX + player.pos.z * dirZ;
-        const reach = -along + Math.sqrt(Math.max(0,
-          along * along + edgeRadius * edgeRadius - (player.pos.x ** 2 + player.pos.z ** 2)));
-        const tip = { x: player.pos.x + dirX * reach, z: player.pos.z + dirZ * reach };
-        addWeaponArc(world, 'lightning', { x: player.pos.x, z: player.pos.z }, tip, index * 7 + arm * 13 + 3);
-        world.pendingBursts.push({
-          pos: { x: tip.x, y: 0, z: tip.z },
-          remaining: cfg.sparkPerBolt,
-          color: WEAPON_COLORS.lightning,
-          perFrame: cfg.sparkPerBolt,
-        });
-      }
+      const index = totalTicks - tempest.remaining;
+      // Both ends are computed from the CURRENT ship position, so the ring
+      // rides along with the ship; radius spirals gently outward per turn.
+      const radius = cfg.orbitRadius + (index / cfg.ticksPerTurn) * cfg.orbitGrow;
+      const angleA = tempest.base + index * angleStep;
+      const angleB = angleA + angleStep;
+      const from = { x: player.pos.x + Math.cos(angleA) * radius, z: player.pos.z + Math.sin(angleA) * radius };
+      const tip = { x: player.pos.x + Math.cos(angleB) * radius, z: player.pos.z + Math.sin(angleB) * radius };
+      addWeaponArc(world, 'lightning', from, tip, index * 7 + 3);
+      world.pendingBursts.push({
+        pos: { x: tip.x, y: 0, z: tip.z },
+        remaining: cfg.sparkPerTick,
+        color: WEAPON_COLORS.lightning,
+        perFrame: cfg.sparkPerTick,
+      });
       tempest.remaining -= 1;
-      tempest.timer += cfg.sweepInterval;
+      tempest.timer += cfg.orbitInterval;
     }
     if (tempest.remaining <= 0) world.ultimateTempest = null;
   }

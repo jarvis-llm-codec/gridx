@@ -24,6 +24,10 @@ export class BgmManager {
   private tracks: Partial<Record<Track, HTMLAudioElement>> = {};
   private current: Track | null = null;
   private enabled = false;
+  // Fade generation per element: starting a new fade invalidates the old
+  // loop AND its done() — otherwise a stale fade-out pauses a track that a
+  // restart just faded back in (music died until the next boss switch).
+  private readonly fadeTokens = new WeakMap<HTMLAudioElement, number>();
 
   constructor(config: BgmConfig = {}) {
     this.volumes = {
@@ -52,6 +56,7 @@ export class BgmManager {
     const base = this.tracks.base;
     if (!base) return false;
     try {
+      base.currentTime = 0;
       await base.play();
       this.current = 'base';
       this.fade(base, this.volumes.base);
@@ -95,9 +100,12 @@ export class BgmManager {
   dispose(): void { this.disposeTracks(); }
 
   private fade(audio: HTMLAudioElement, target: number, done?: () => void): void {
+    const token = (this.fadeTokens.get(audio) ?? 0) + 1;
+    this.fadeTokens.set(audio, token);
     const start = audio.volume;
     const began = performance.now();
     const tick = (now: number) => {
+      if (this.fadeTokens.get(audio) !== token) return; // superseded
       const p = Math.min(1, (now - began) / (this.fadeSeconds * 1000));
       audio.volume = start + (target - start) * p;
       if (p < 1) requestAnimationFrame(tick); else done?.();

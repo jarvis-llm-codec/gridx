@@ -123,12 +123,14 @@ export interface PendingLightning {
   level: number;
   damage: number;
   range: number;
-  /** Ultimate override: fixed chain count (default 2 + level). */
-  superChains?: number;
-  /** Ultimate override: hop-to-hop search range (default 8 + level). */
-  chainRange?: number;
-  /** Ultimate override: skip the first-arc aim-cone restriction. */
-  noCone?: boolean;
+}
+
+/** Damage swath along a segment (ultimate searing beams), resolved in world. */
+export interface PendingSear {
+  from: PlanePoint;
+  to: PlanePoint;
+  damage: number;
+  width: number;
 }
 
 /** Staggered ultimate missile volley being drained by stepUltimate. */
@@ -138,11 +140,11 @@ export interface UltimateVolley {
   level: number;
 }
 
-/** Rotating tempest crackle sweep being drained by stepUltimate. */
+/** Timed tempest searing-beam barrage being drained by stepUltimate. */
 export interface UltimateTempest {
-  remaining: number;
-  timer: number;
-  base: number;
+  t: number;
+  tick: number;
+  level: number;
 }
 
 /** Timed ultimate laser barrage being drained by stepUltimate. */
@@ -200,6 +202,7 @@ export interface World {
   spawnState: { timer: number; wave: number; budget: number; toSpawn: number };
   pendingBursts: PendingBurst[];
   pendingLightning: PendingLightning[];
+  pendingSears: PendingSear[];
   weaponEffects: WeaponEffect[];
   ultimateVolley: UltimateVolley | null;
   ultimateBeam: UltimateBeam | null;

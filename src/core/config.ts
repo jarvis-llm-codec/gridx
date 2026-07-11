@@ -110,14 +110,12 @@ export const CONFIG = {
   // section only — golden scenario never presses the button, so no rebaseline.
   ultimate: {
     cooldown: 45,
-    missile: { count: 60, perWave: 6, waveInterval: 0.06, damageMul: 1.1, turnRate: 7.5, blastRadius: 2.9, speed: 17, life: 3.4 },
-    // Tempest crackle: an electric spark orbits the SHIP (not the arena rim)
-    // for orbitTurns fast revolutions — pure zigzag arcs + tip crackle, no
-    // particle bursts (those read as explosions, not electricity). The orbit
-    // follows the ship if it moves.
+    missile: { count: 100, perWave: 6, waveInterval: 0.06, damageMul: 1.1, turnRate: 7.5, blastRadius: 2.9, speed: 17, life: 3.4 },
+    // Tempest: 3 long straight lightning streams (3x a normal arc's length)
+    // searing whatever they touch for ~5s, tracking the aim. Long bolts keep
+    // addWeaponArc's zigzag readable — short orbit chords never did.
     lightning: {
-      shots: 6, chains: 12, chainRange: 14, range: 60, damageMul: 1.25,
-      orbitTurns: 10, ticksPerTurn: 14, orbitInterval: 0.013, orbitRadius: 2.4, orbitGrow: 0.12,
+      streams: 3, spreadDeg: 10, length: 24, duration: 5.0, interval: 0.05, damage: 0.5, width: 1.0,
     },
     laser: { duration: 5.0, burstInterval: 0.08, beamsPerBurst: 3, spreadDeg: 5, damageMul: 0.9, speed: 80, life: 0.5 },
   },

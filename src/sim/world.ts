@@ -43,6 +43,7 @@ export const createWorld = (seed: number): { world: World; systems: WorldSystems
     spawnState: { timer: 0, wave: 1, budget: CONFIG.spawn.waveBudgetGrowth, toSpawn: 0 },
     pendingBursts: [],
     pendingLightning: [],
+    pendingSears: [],
     weaponEffects: [],
     ultimateVolley: null,
     ultimateBeam: null,
@@ -128,18 +129,18 @@ export const fireSkill = (world: World, systems: WorldSystems): void => {
 const resolveLightning = (world: World, systems: WorldSystems): void => {
   for (const shot of world.pendingLightning) {
     const hit = new Set<number>();
-    const maxChains = shot.superChains ?? 2 + shot.level;
+    const maxChains = 2 + shot.level;
     let from = { ...shot.pos };
     for (let chain = 0; chain < maxChains; chain += 1) {
       const targets: Array<EnemyState | BossState> = world.enemies.filter((target) => !target.dead && !hit.has(target.id));
       if (world.boss && !world.boss.dead && !hit.has(world.boss.id)) targets.push(world.boss);
       let target: EnemyState | BossState | null = null;
-      let best = (chain === 0 ? shot.range : shot.chainRange ?? 8 + shot.level) ** 2;
+      let best = (chain === 0 ? shot.range : 8 + shot.level) ** 2;
       for (const candidate of targets) {
         const deltaX = candidate.pos.x - from.x;
         const deltaZ = candidate.pos.z - from.z;
         const distanceSquared = deltaX * deltaX + deltaZ * deltaZ;
-        if (chain === 0 && !shot.noCone && (deltaX * shot.dir.x + deltaZ * shot.dir.z) / Math.max(0.001, Math.sqrt(distanceSquared)) < 0.1) continue;
+        if (chain === 0 && (deltaX * shot.dir.x + deltaZ * shot.dir.z) / Math.max(0.001, Math.sqrt(distanceSquared)) < 0.1) continue;
         if (distanceSquared < best) {
           best = distanceSquared;
           target = candidate;
@@ -160,6 +161,35 @@ const resolveLightning = (world: World, systems: WorldSystems): void => {
     }
   }
   world.pendingLightning.length = 0;
+};
+
+/** Distance from a point to the segment [from, to] on the XZ plane. */
+const segmentDistance = (
+  px: number, pz: number,
+  from: { x: number; z: number }, to: { x: number; z: number },
+): number => {
+  const dx = to.x - from.x;
+  const dz = to.z - from.z;
+  const lengthSq = dx * dx + dz * dz || 1;
+  const t = Math.max(0, Math.min(1, ((px - from.x) * dx + (pz - from.z) * dz) / lengthSq));
+  return Math.hypot(px - (from.x + dx * t), pz - (from.z + dz * t));
+};
+
+/** Ultimate searing beams: damage everything along each queued segment. */
+const resolveSears = (world: World, systems: WorldSystems): void => {
+  for (const sear of world.pendingSears) {
+    for (const enemy of world.enemies) {
+      if (enemy.dead) continue;
+      if (segmentDistance(enemy.pos.x, enemy.pos.z, sear.from, sear.to) <= enemy.radius + sear.width) {
+        if (damageEnemy(enemy, sear.damage)) killEnemy(world, systems, enemy);
+      }
+    }
+    const boss = world.boss;
+    if (boss && !boss.dead && segmentDistance(boss.pos.x, boss.pos.z, sear.from, sear.to) <= boss.radius + sear.width) {
+      bossHit(boss, sear.damage * 0.8, world, systems);
+    }
+  }
+  world.pendingSears.length = 0;
 };
 
 const detonateMissile = (world: World, systems: WorldSystems, missile: BulletState): void => {
@@ -255,6 +285,7 @@ export const stepWorld = (world: World, systems: WorldSystems, input: InputState
 
   for (const bullet of world.bullets) stepBullet(bullet, dt, world);
   resolveLightning(world, systems);
+  resolveSears(world, systems);
   for (const missile of world.bullets) {
     if (missile.kind === 'missile' && missile.owner === 'player' && !missile.spent && missile.life <= 0) {
       detonateMissile(world, systems, missile);

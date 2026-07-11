@@ -33,25 +33,8 @@ export const fireUltimate = (world: World, systems: WorldSystems): void => {
   if (weapon === 'missile') {
     world.ultimateVolley = { remaining: CONFIG.ultimate.missile.count, timer: 0, level };
   } else if (weapon === 'lightning') {
-    const cfg = CONFIG.ultimate.lightning;
-    const base = aimAngle(player);
-    for (let shot = 0; shot < cfg.shots; shot += 1) {
-      const angle = base + (shot / cfg.shots) * Math.PI * 2;
-      const dir = { x: Math.cos(angle), y: 0, z: Math.sin(angle) };
-      world.pendingLightning.push({
-        pos: muzzleAt(player, angle, player.radius + 0.28),
-        dir,
-        level,
-        damage: (CONFIG.player.weapons.lightning.damage + (level - 1) * 0.65) * cfg.damageMul,
-        range: cfg.range,
-        superChains: cfg.chains,
-        chainRange: cfg.chainRange,
-        noCone: true,
-      });
-    }
-    // Visual crackle: a spark orbits the ship for orbitTurns revolutions,
-    // drained tick by tick in stepUltimate (one flash read as just "펑").
-    world.ultimateTempest = { remaining: cfg.orbitTurns * cfg.ticksPerTurn, timer: 0, base };
+    // TEMPEST: sustained straight searing streams, drained in stepUltimate.
+    world.ultimateTempest = { t: CONFIG.ultimate.lightning.duration, tick: 0, level };
   } else {
     world.ultimateBeam = { t: CONFIG.ultimate.laser.duration, tick: 0, level };
   }
@@ -103,25 +86,37 @@ export const stepUltimate = (world: World, dt: number): void => {
   const tempest = world.ultimateTempest;
   if (tempest) {
     const cfg = CONFIG.ultimate.lightning;
-    const totalTicks = cfg.orbitTurns * cfg.ticksPerTurn;
-    const angleStep = (Math.PI * 2) / cfg.ticksPerTurn;
-    tempest.timer -= dt;
-    while (tempest.timer <= 0 && tempest.remaining > 0) {
-      const index = totalTicks - tempest.remaining;
-      // Both ends are computed from the CURRENT ship position, so the ring
-      // rides along with the ship; radius spirals gently outward per turn.
-      const radius = cfg.orbitRadius + (index / cfg.ticksPerTurn) * cfg.orbitGrow;
-      const angleA = tempest.base + index * angleStep;
-      const angleB = angleA + angleStep;
-      const from = { x: player.pos.x + Math.cos(angleA) * radius, z: player.pos.z + Math.sin(angleA) * radius };
-      const tip = { x: player.pos.x + Math.cos(angleB) * radius, z: player.pos.z + Math.sin(angleB) * radius };
-      // Arc + built-in tip crackle only — no particle bursts here, they read
-      // as explosions instead of a spark running its orbit.
-      addWeaponArc(world, 'lightning', from, tip, index * 7 + 3);
-      tempest.remaining -= 1;
-      tempest.timer += cfg.orbitInterval;
+    tempest.t -= dt;
+    tempest.tick -= dt;
+    while (tempest.tick <= 0 && tempest.t > 0 && player.alive) {
+      const base = aimAngle(player);
+      const spread = (cfg.spreadDeg * Math.PI) / 180;
+      const tickIndex = Math.round((cfg.duration - tempest.t) / cfg.interval);
+      for (let stream = 0; stream < cfg.streams; stream += 1) {
+        const angle = base + (stream - (cfg.streams - 1) / 2) * spread;
+        const dir = { x: Math.cos(angle), z: Math.sin(angle) };
+        const muzzle = muzzleAt(player, angle, player.radius + 0.3);
+        const tip = { x: muzzle.x + dir.x * cfg.length, z: muzzle.z + dir.z * cfg.length };
+        // Long bolts every tick: overlapping 0.24s lifetimes flicker like a
+        // held-down arc welder; damage rides the pendingSears queue.
+        addWeaponArc(world, 'lightning', { x: muzzle.x, z: muzzle.z }, tip, tickIndex * 11 + stream * 5 + 3);
+        world.pendingSears.push({
+          from: { x: muzzle.x, z: muzzle.z },
+          to: tip,
+          damage: cfg.damage,
+          width: cfg.width,
+        });
+      }
+      world.events.push({
+        type: 'weapon-fire',
+        pos: { ...player.pos },
+        weapon: 'lightning',
+        level: tempest.level,
+        slot: 'secondary',
+      });
+      tempest.tick += cfg.interval;
     }
-    if (tempest.remaining <= 0) world.ultimateTempest = null;
+    if (tempest.t <= 0) world.ultimateTempest = null;
   }
 
   const beam = world.ultimateBeam;

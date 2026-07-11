@@ -48,7 +48,9 @@ describe('secondary-weapon ultimate', () => {
     stepWorld(world, systems, ultInput(), DT);
     const seen = new Set(world.bullets.filter((bullet) => bullet.kind === 'missile').map((bullet) => bullet.id));
     expect(seen.size).toBe(CONFIG.ultimate.missile.perWave);
-    for (let step = 0; step < 40; step += 1) {
+    const missile = CONFIG.ultimate.missile;
+    const volleySteps = Math.ceil(((missile.count / missile.perWave) * missile.waveInterval + 0.2) / DT);
+    for (let step = 0; step < volleySteps; step += 1) {
       stepWorld(world, systems, emptyInput(), DT);
       for (const bullet of world.bullets) if (bullet.kind === 'missile') seen.add(bullet.id);
     }
@@ -56,27 +58,27 @@ describe('secondary-weapon ultimate', () => {
     expect(world.ultimateVolley).toBeNull();
   });
 
-  it('tempest chains across the whole arena ignoring the aim cone', () => {
+  it('tempest sears straight ahead along the aim, sparing what is behind', () => {
     const { world, systems } = createWorld(24);
     equipWeapon(world.player, 'lightning');
-    const ring = [
-      { x: 12, z: 0 }, { x: -12, z: 0 }, { x: 0, z: 12 }, { x: 0, z: -12 },
-      { x: 9, z: 9 }, { x: -9, z: -9 }, { x: -9, z: 9 }, { x: 9, z: -9 },
-    ];
-    for (const spot of ring) world.enemies.push(createEnemy('grunt', { x: spot.x, y: 0, z: spot.z }, world));
+    // Default aim is -z: one grunt in the beam path, one behind the ship.
+    world.enemies.push(createEnemy('grunt', { x: 0, y: 0, z: -10 }, world));
+    world.enemies.push(createEnemy('grunt', { x: 0, y: 0, z: 14 }, world));
     const events = stepWorld(world, systems, ultInput(), DT);
     expect(events.some((event) => event.type === 'ultimate-fire')).toBe(true);
-    // Grunts die in one tempest hit; enemies behind the aim must die too.
-    expect(events.filter((event) => event.type === 'kill')).toHaveLength(ring.length);
-    expect(world.pendingLightning).toHaveLength(0);
-    expect(world.weaponEffects.some((effect) => effect.kind === 'lightning')).toBe(true);
-    // The crackle spark orbits the ship over time instead of one flash.
     expect(world.ultimateTempest).not.toBeNull();
+    expect(world.weaponEffects.some((effect) => effect.kind === 'lightning')).toBe(true);
+    // 0.5 damage per 0.05s tick kills the hp-1 grunt in front within a beat.
+    let frontKilled = events.some((event) => event.type === 'kill');
+    for (let step = 0; step < 20 && !frontKilled; step += 1) {
+      frontKilled = stepWorld(world, systems, emptyInput(), DT).some((event) => event.type === 'kill');
+    }
+    expect(frontKilled).toBe(true);
+    expect(world.enemies.some((enemy) => !enemy.dead && enemy.pos.z > 5)).toBe(true);
+    // The barrage drains after its configured duration.
     const lightning = CONFIG.ultimate.lightning;
-    const orbitSteps = Math.ceil(
-      (lightning.orbitTurns * lightning.ticksPerTurn * lightning.orbitInterval + 0.1) / DT,
-    );
-    for (let step = 0; step < orbitSteps; step += 1) stepWorld(world, systems, emptyInput(), DT);
+    const drainSteps = Math.ceil((lightning.duration + 0.2) / DT);
+    for (let step = 0; step < drainSteps; step += 1) stepWorld(world, systems, emptyInput(), DT);
     expect(world.ultimateTempest).toBeNull();
   });
 

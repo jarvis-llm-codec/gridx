@@ -13,7 +13,12 @@ interface ScoreEntry {
   score: number;
   playtime_s: number;
   comment?: string;
+  client_v?: string;
 }
+
+// Version gate: the DB rejects inserts without the current tag, cutting off
+// stale tabs / archived copies of the pre-rebalance game still submitting.
+const CLIENT_V = 'gridx-2';
 
 interface LastRun {
   score: number;
@@ -89,6 +94,7 @@ const submitScore = async (name: string, score: number, time: number, comment: s
     name: cleanName(name) || 'AAA',
     score: Math.max(0, Math.min(2147483647, Math.floor(score || 0))),
     playtime_s: Math.max(0, Math.min(2147483647, Math.floor(time || 0))),
+    client_v: CLIENT_V,
   };
   const cleanedComment = cleanComment(comment);
   if (cleanedComment) body.comment = cleanedComment;

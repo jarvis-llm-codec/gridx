@@ -241,8 +241,9 @@
       #hud-boss-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #ff3a4a, #ff8a3a);
         box-shadow: 0 0 14px #ff3a4a; transition: width 0.1s; }
       #hud-bosstimer {
-        /* Sits above the 3-line #help block (~76px tall incl. offset). */
-        position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%);
+        /* Same slot as #hud-boss: the two swap — countdown until the boss
+           spawns, HP bar while it lives, countdown again when it dies. */
+        position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
         width: min(70vw, 560px); display: none; flex-direction: column; align-items: center; gap: 4px;
         pointer-events: none; z-index: 10; font-family: 'Segoe UI', system-ui, monospace;
       }
@@ -302,7 +303,7 @@
     <style>
       @media (max-width: 560px) {
         #help { display: none; }
-        #hud-bosstimer { bottom: 12px; width: min(82vw, 560px); }
+        #hud-bosstimer { width: min(82vw, 560px); }
       }
     </style>
     <script type="module" src="/src/main.ts"></script>

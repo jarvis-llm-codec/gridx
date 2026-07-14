@@ -89,6 +89,9 @@ const fetchRank = async (score: number): Promise<number | null> => {
   return Number.isFinite(total) ? total + 1 : null;
 };
 
+// Writes go through the gw-submit Edge Function, not straight to the table:
+// direct anon INSERT is revoked, so this gateway is the only writer. It applies
+// per-IP rate limiting + server-side plausibility checks a forged client cannot skip.
 const submitScore = async (name: string, score: number, time: number, comment: string): Promise<ScoreEntry> => {
   const body: ScoreEntry = {
     name: cleanName(name) || 'AAA',
@@ -98,9 +101,9 @@ const submitScore = async (name: string, score: number, time: number, comment: s
   };
   const cleanedComment = cleanComment(comment);
   if (cleanedComment) body.comment = cleanedComment;
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/gw_leaderboard`, {
+  const response = await fetch(`${SUPABASE_URL}/functions/v1/gw-submit`, {
     method: 'POST',
-    headers: { ...HEADERS, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+    headers: { ...HEADERS, 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
   if (!response.ok) throw new Error(`submit ${response.status}`);
